@@ -12,18 +12,18 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue'
-import { createClient } from '@supabase/supabase-js'
+  import { ref, onMounted } from 'vue'
+  import { createClient } from '@supabase/supabase-js'
 
-const supabase = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_KEY)
-const instruments = ref([])
+  const supabase = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_KEY)
+  const instruments = ref([])
 
-async function getInstruments() {
-  const { data } = await supabase.from('instruments').select()
-  instruments.value = data
-}
+  async function getInstruments() {
+    const { data } = await supabase.from('instruments').select()
+    instruments.value = data
+  }
 
-onMounted(() => {
-  getInstruments()
-})
+  onMounted(() => {
+    getInstruments()
+  })
 </script>
