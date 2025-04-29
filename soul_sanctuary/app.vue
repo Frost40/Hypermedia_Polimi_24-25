@@ -1,7 +1,9 @@
 <template>
   <div>
     <NuxtRouteAnnouncer />
-    <NuxtWelcome />
+    <NuxtLayout>
+      <NuxtPage />
+    </NuxtLayout>
     
     <ul>
       <li v-for="instrument in instruments" :key="instrument.id">
