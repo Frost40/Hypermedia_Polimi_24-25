@@ -15,7 +15,8 @@
   
   <style scoped>
   .main-content {
-    padding: 2rem;
+    padding: 0;
+    margin: 0;
   }
   </style>
   
