@@ -9,8 +9,8 @@
   
   <style scoped>
   .navbar {
-    background-color: #3c3c3c;
-    color: white;
+    background-color: #3D5144;
+    color: #DDECEA;
     padding: 1rem;
   }
   </style>
