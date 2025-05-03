@@ -3,3 +3,13 @@ body {
   margin: 0;
   padding: 0;
 }
+
+.title {
+  font-family: 'Oregano';
+  font-size: 64px;
+}
+
+.subtitle {
+  font-family: 'Oregano';
+  font-size: 46px;
+}

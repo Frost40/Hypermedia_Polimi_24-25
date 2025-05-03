@@ -1,9 +1,14 @@
 <template>
+
+  <Head>
+    <Title>Soul Sanctuary - FAQ</Title>
+  </Head>
+
   <div class="faq-page">
-    <h1 class="faq-title">FAQ</h1>
+    <h1 class="faq-title title">FAQ</h1>
 
     <div class="faq-section">
-      <h2 class="section-title">Yoga</h2>
+      <h2 class="section-title subtitile">Yoga</h2>
       <div class="faq-list">
         <FaqItem
             question="What should I wear to class?"
@@ -29,7 +34,7 @@
     </div>
 
     <div class="faq-section">
-      <h2 class="section-title">Mediation</h2>
+      <h2 class="section-title subtitile">Mediation</h2>
       <div class="faq-list">
         <FaqItem
             question="What will I learn in a typical mediation course?"
@@ -50,7 +55,7 @@
     </div>
 
     <div class="faq-section">
-      <h2 class="section-title">Workshop</h2>
+      <h2 class="section-title subtitile">Workshop</h2>
       <div class="faq-list">
         <FaqItem
             question="What can I achieve by participating in a workshop?"
@@ -76,7 +81,7 @@
     </div>
 
     <div class="faq-section">
-      <h2 class="section-title">Seminars</h2>
+      <h2 class="section-title subtitile">Seminars</h2>
       <div class="faq-list">
         <FaqItem
             question="What should I bring with me to the seminar?"
@@ -106,7 +111,6 @@
   .faq-page {
     background-color: #BCC7C2;
     min-height: 100vh;
-    font-family: 'Arial', sans-serif;
     color: #3D5144;
     box-sizing: border-box;
     padding: 0;
@@ -123,7 +127,6 @@
 
   .faq-title {
     text-align: center;
-    font-size: 2rem;
     padding: 5rem 2rem;
     margin-top: 0rem;
     background-color: #3D5144;
@@ -169,10 +172,7 @@
   }
 
   .section-title {
-    font-size: 1.3rem;
     margin-bottom: 1rem;
-    font-style: italic;
-    font-weight: bold;
     padding-bottom: 0.5rem;
     padding-left: 2.5rem;
     display: flex;
