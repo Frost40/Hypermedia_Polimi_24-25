@@ -2,7 +2,7 @@
   <header class="navbar">
     <div class="navbar-logo">
       <NuxtLink to="/" class="logo-link">
-        <img src="~/assets/logo.svg" alt="Soul Sanctuary Logo" class="logo-img">
+        <img src="../assets/svgs/logo.svg" alt="Soul Sanctuary Logo" class="logo-img">
       </NuxtLink>
     </div>
 

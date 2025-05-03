@@ -7,9 +7,11 @@ body {
 .title {
   font-family: 'Oregano';
   font-size: 64px;
+  font-weight: normal;
 }
 
 .subtitle {
   font-family: 'Oregano';
   font-size: 46px;
+  font-weight: normal;
 }
