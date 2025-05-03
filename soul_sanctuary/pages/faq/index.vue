@@ -8,7 +8,7 @@
     <h1 class="faq-title title">FAQ</h1>
 
     <div class="faq-section">
-      <h2 class="section-title subtitile">Yoga</h2>
+      <h2 class="section-title subtitle">Yoga</h2>
       <div class="faq-list">
         <FaqItem
             question="What should I wear to class?"
@@ -34,7 +34,7 @@
     </div>
 
     <div class="faq-section">
-      <h2 class="section-title subtitile">Mediation</h2>
+      <h2 class="section-title subtitle">Mediation</h2>
       <div class="faq-list">
         <FaqItem
             question="What will I learn in a typical mediation course?"
@@ -55,7 +55,7 @@
     </div>
 
     <div class="faq-section">
-      <h2 class="section-title subtitile">Workshop</h2>
+      <h2 class="section-title subtitle">Workshop</h2>
       <div class="faq-list">
         <FaqItem
             question="What can I achieve by participating in a workshop?"
@@ -81,7 +81,7 @@
     </div>
 
     <div class="faq-section">
-      <h2 class="section-title subtitile">Seminars</h2>
+      <h2 class="section-title subtitle">Seminars</h2>
       <div class="faq-list">
         <FaqItem
             question="What should I bring with me to the seminar?"
@@ -128,7 +128,7 @@
   .faq-title {
     text-align: center;
     padding: 5rem 2rem;
-    margin-top: 0rem;
+    margin-top: 0;
     background-color: #3D5144;
     color: #BCC7C2;
   }

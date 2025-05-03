@@ -17,8 +17,8 @@
 
 <script setup>
 import { ref, defineProps, onMounted, nextTick } from 'vue'
-import expandIcon from '~/assets/expand.svg'
-import reduceIcon from '~/assets/reduce.svg'
+import expandIcon from 'assets/svgs/Expand.svg'
+import reduceIcon from 'assets/svgs/Reduce.svg'
 
 const props = defineProps({
   question: { type: String, required: true },
