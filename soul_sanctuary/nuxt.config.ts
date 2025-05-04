@@ -7,7 +7,8 @@ export default defineNuxtConfig({
   modules: ['@nuxtjs/google-fonts'],
   googleFonts: {
     families: {
-      Oregano: true
+      Oregano: true,
+      Inter: true
     },
     display: 'swap'
   }
