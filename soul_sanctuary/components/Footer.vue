@@ -1,18 +1,20 @@
 <template>
     <footer class="footer">
+      <div>
+        
+      </div>
       <p>&copy; 2025 My Project. All rights reserved.</p>
     </footer>
-  </template>
+</template>
   
-  <script setup></script>
+<script setup></script>
   
-  <style scoped>
+<style scoped>
   .footer {
-    margin-top: 0rem;
+    margin-top: auto;
     padding: 1rem;
     background-color: #3D5144;
     color: #DDECEA;
     text-align: center;
   }
-  </style>
-  
+</style>

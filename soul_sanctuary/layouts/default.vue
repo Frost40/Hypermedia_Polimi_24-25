@@ -2,21 +2,21 @@
     <div>
       <NavBar />
       <main class="main-content">
-        <slot />
+        <slot></slot>
       </main>
-      <Footer />
+      <Footer></Footer>
     </div>
-  </template>
+</template>
   
-  <script setup>
+<script setup>
   import NavBar from '~/components/NavBar.vue'
   import Footer from '~/components/Footer.vue'
-  </script>
+</script>
   
-  <style scoped>
+<style scoped>
   .main-content {
-    padding: 0;
-    margin: 0;
+    padding: 0px;
+    margin: 0px;
+    margin-bottom: 0px;
   }
-  </style>
-  
+</style>
