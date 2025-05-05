@@ -20,8 +20,23 @@ body {
   margin-bottom: 10px;
 }
 
+.subtitle_clear {
+  font-family: 'Oregano';
+  font-size: 32px;
+  font-weight: normal;
+  color: #DDECEA;
+  margin-bottom: 10px;
+}
+
 .text {
   font-family: 'Inter';
   font-size: 16px;
   font-weight: normal;
+}
+
+.text_clear {
+  font-family: 'Inter';
+  font-size: 16px;
+  font-weight: normal;
+  color: #DDECEA;
 }
