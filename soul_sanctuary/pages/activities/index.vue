@@ -1,104 +1,85 @@
 <script setup>
-import { ref } from "vue";
-import ActivityCard from "~/components/ActivityCard.vue";
+    import ActivityCard from "~/components/ActivityCard.vue";
 
-// API call to fetch activities data
-const { data: allActivities } = await useFetch('/api/activities');
+    // API call to fetch all activities
+    const { data: allActivities } = await useFetch("/api/activities");
+  </script>
 
-// Per debugging
-const activitiesString = computed(() => {
-  return JSON.stringify(allActivities.value, null, 2);
-});
-</script>
-
-<template>
-  <Head>
-    <Title>Soul Sanctuary - Activities</Title>
-  </Head>
-  <main class="activities-page">
-    <div class="page-header">
-      <h1 class="page-title title">All Activities</h1>
-      <p class="page-description">Discover our most popular activities below — explore what we offer and find the perfect fit for your journey.</p>
-    </div>
-
-    <div class="activities-grid">
-      <div v-for="(row, rowIndex) in Math.ceil(allActivities.length / 2)" :key="rowIndex" class="activity-row">
+  <template>
+    <Head>
+      <Title>Soul Sanctuary - Activities</Title>
+    </Head>
+    <main class="activities-page">
+      <div class="page-header">
+        <h1 class="page-title title">All Activities</h1>
+        <p class="page-description text">
+          Discover our most popular activities below — explore what we offer and find the perfect fit for your journey.
+        </p>
+      </div>
+      <div class="activities-grid">
         <ActivityCard
-            v-if="allActivities[(rowIndex * 2)]"
-            :id="allActivities[(rowIndex * 2) + 1].id"
-            :name="allActivities[(rowIndex * 2)].name"
-        />
-        <ActivityCard
-            v-if="allActivities[(rowIndex * 2) + 1]"
-            :id="allActivities[(rowIndex * 2) + 1].id"
-            :name="allActivities[(rowIndex * 2) + 1].name"
+          v-for="activity in allActivities"
+          :key="activity.id"
+          :id="activity.id"
+          :name="activity.name"
+          :imageUrl="activity.imageUrl"
         />
       </div>
-    </div>
-  </main>
-</template>
+    </main>
+  </template>
 
-<style scoped>
-.activities-page {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 2rem;
-}
-
-.page-header {
-  text-align: center;
-  margin-bottom: 3rem;
-}
-
-.page-title {
-  margin-bottom: 1rem;
-  padding-bottom: 0.5rem;
-  padding-left: 2.5rem;
-  display: flex;
-  align-items: center;
-}
-
-.page-title::after {
-  content: "";
-  flex-grow: 1;
-  height: 2px;
-  background: #3D5144;
-  margin-left: 1rem;
-}
-
-.page-description {
-  max-width: 800px;
-  margin: 0 auto;
-  color: #666;
-  font-size: 1.1rem;
-  line-height: 1.6;
-}
-
-.activities-grid {
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-}
-
-.activity-row {
-  display: flex;
-  gap: 2rem;
-  justify-content: center;
-}
-
-.activity-row > * {
-  flex: 1;
-  max-width: 500px;
-}
-
-@media (max-width: 768px) {
-  .activity-row {
-    flex-direction: column;
-    gap: 1.5rem;
+  <style scoped>
+  .activities-page {
+    max-width: 1440px;
+    margin: 0 auto;
   }
 
-  .activity-row > * {
-    max-width: 100%;
+  .page-header {
+    text-align: center;
+    margin-bottom: 1rem;
   }
-}
-</style>
+
+  .page-title {
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    padding-left: 2.5rem;
+    display: flex;
+    align-items: center;
+  }
+
+  .page-title::after {
+    content: "";
+    flex-grow: 1;
+    height: 2px;
+    background: #3D5144;
+    margin-left: 1rem;
+  }
+
+  .page-description {
+    max-width: 700px;
+    margin: 0 auto;
+    color: #3D5144;
+    line-height: 1.6;
+  }
+
+  /* 2 columns layout for screens between 1440 and 750 */
+  .activities-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(350px, 1fr));
+    row-gap: clamp(0.5rem, 2vw, 3rem);
+    column-gap: clamp(0rem, 3vw, 5rem);
+    margin: 0 auto;
+    padding: 2.5rem;
+    box-sizing: border-box;
+  }
+
+  /* 1 column layout for screens below the 750 mark */
+  @media (max-width: 800px) {
+    .activities-grid {
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
+      justify-items: center;
+      max-width: 600px;
+    }
+  }
+  </style>
