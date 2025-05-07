@@ -12,8 +12,7 @@ defineProps({
   },
   imageUrl: {
     type: String,
-    required: false,
-    default: () => defaultImage
+    required: true,
   }
 });
 </script>
@@ -21,8 +20,8 @@ defineProps({
 <template>
   <div class="activity-card">
     <div class="card-bg"
-         :style="{ backgroundImage: `url(${imageUrl})` }"
-         :class="{ 'default-green': imageUrl === defaultImage }"
+         :style="{ backgroundImage: `url(${imageUrl || defaultImage})` }"
+         :class="{ 'default-green': !imageUrl || imageUrl === defaultImage }"
     ></div>
       <NuxtLink :to="`/activities/${id}`" class="activity-title subtitle">
         {{ name }}
@@ -53,15 +52,13 @@ defineProps({
   background-size: cover;
   background-position: center;
   transition: filter 0.3s ease;
-  opacity: 0.8;
+  filter: brightness(80%);
 }
 
 /* Default-green applies a green background in blend mode to make the title stand out more */
 .default-green {
   background-color: #BCC7C2;
   background-blend-mode: multiply;
-  opacity: 1;
-  filter: brightness(80%);
 }
 
 .activity-card:hover .card-bg {
