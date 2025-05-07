@@ -16,7 +16,8 @@ export default defineEventHandler(async (event) => {
         const { data: highlights, error } = await supabase
             .from('activity')
             .select('*')
-            .eq('highlighted', true);
+            .eq('highlighted', true)
+            .order('id', { ascending: true });
 
         if (error) {
             return  createError({statusCode: 400, statusMessage: error.message})
