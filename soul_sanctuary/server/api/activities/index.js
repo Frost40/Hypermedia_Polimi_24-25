@@ -1,6 +1,7 @@
 import {createClient} from "@supabase/supabase-js";
 import { defineEventHandler, createError } from 'h3';
 
+// This API endpoint retrieves all activities from the Supabase database
 export default defineEventHandler(async (event) => {
   const supabaseUrl = process.env.SUPABASE_URL;
   const supabaseKey = process.env.SUPABASE_KEY;
@@ -17,7 +18,7 @@ export default defineEventHandler(async (event) => {
         .select('*');
 
     if (error) {
-      throw createError({statusCode: 400, statusMessage: error.message})
+      return  createError({statusCode: 400, statusMessage: error.message})
     }
 
     return allActivities;
