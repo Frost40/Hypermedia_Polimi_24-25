@@ -3,7 +3,7 @@
     <Title>Soul Sanctuary - Contact Us</Title>
   </Head>
     
-  <main>
+  <main class="main">
     <div class="ContactUs_container">
       <div class="contact_sx">
         <p class="map_text subtitle">Come find us at:</p>
@@ -12,7 +12,7 @@
         <div class="opening_hours">
           <p class="subtitle">Opening Hours:</p>
           <div class="weekday_hours">
-            <p class="text" >Monday - Friday: 9:00 AM - 6:00 PM</p>
+            <p class="text" >Monday - Friday: 7:00 AM - 6:00 PM</p>
             <p class="text">Saturday - Sunday: 10:00 AM - 4:00 PM</p>
           </div>
         </div>
@@ -53,12 +53,16 @@
   
 <style scoped>
 
+  .main{
+    max-width: 1440px;
+  }
+
   .ContactUs_container {
-      display: flex;                       
-      flex-direction: column;               
-      margin: 0px;                            
-      justify-content: center;             
-      width: 100vw;                         
+    display: flex;                       
+    flex-direction: column;               
+    margin: 0px;                            
+    justify-content: center;             
+    width: 100vw;                         
   }
 
   .contact_sx{
