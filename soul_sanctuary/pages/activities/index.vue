@@ -60,9 +60,10 @@
   margin: 0 auto;
   color: #3D5144;
   line-height: 1.6;
+  padding: 0 2.5rem;
 }
 
-/* 2 columns layout for screens between 1440 and 750 */
+/* 2 columns layout for screens between 1440 and 800 */
 .activities-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(350px, 1fr));
