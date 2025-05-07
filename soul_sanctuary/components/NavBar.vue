@@ -30,7 +30,7 @@
 .navbar {
   background-color: #3D5144; /* Dark background color similar to the image */
   color: #DDECEA; /* Default text color */
-  padding: 0.1rem 2rem; /* Inner spacing (top/bottom and sides) */
+  padding: 0.1rem 2.5rem; /* Inner spacing (top/bottom and sides) */
   display: flex; /* Use Flexbox to align elements */
   justify-content: space-between; /* Distribute space between logo and links */
   align-items: center; /* Vertically center items */
@@ -50,8 +50,6 @@
 
 .navbar-links ul {
   list-style: none; /* Remove list bullets */
-  margin: 0;
-  padding: 0;
   display: flex; /* Use Flexbox to arrange links in a row */
   gap: 1.5rem; /* Space between links */
   align-items: center; /* Center link text vertically */
@@ -100,7 +98,4 @@
   border-radius: 20px; /* Rounded corners for the button shape */
   /* Adjust margin or gap if the added padding affects spacing */
 }
-
-/* Ensure active link is also bold on hover - inherited from :hover rule */
-/* .navbar-links a.router-link-exact-active:hover { ... } - no need to override, it inherits */
 </style>

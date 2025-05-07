@@ -4,9 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0b8a09fc-be63-4202-8a90-8175cd7c1f6e" name="Changes" comment="refactor index.vue and ActivityCard.vue for improved readability and consistent styling">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/soul_sanctuary/components/ActivityCard.vue" beforeDir="false" afterPath="$PROJECT_DIR$/soul_sanctuary/components/ActivityCard.vue" afterDir="false" />
+    <list default="true" id="0b8a09fc-be63-4202-8a90-8175cd7c1f6e" name="Changes" comment="refactor ActivityCard.vue to enforce required imageUrl prop and improve background handling">
+      <change beforePath="$PROJECT_DIR$/soul_sanctuary/components/NavBar.vue" beforeDir="false" afterPath="$PROJECT_DIR$/soul_sanctuary/components/NavBar.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -97,7 +96,7 @@
       <workItem from="1746448733247" duration="7340000" />
       <workItem from="1746512667418" duration="1729000" />
       <workItem from="1746614549614" duration="425000" />
-      <workItem from="1746622128836" duration="4115000" />
+      <workItem from="1746622128836" duration="4548000" />
     </task>
     <task id="LOCAL-00001" summary="refactor index.vue and ActivityCard.vue for improved readability and consistent styling">
       <option name="closed" value="true" />
@@ -107,7 +106,15 @@
       <option name="project" value="LOCAL" />
       <updated>1746613806203</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="refactor ActivityCard.vue to enforce required imageUrl prop and improve background handling">
+      <option name="closed" value="true" />
+      <created>1746626470583</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1746626470583</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -115,6 +122,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="refactor index.vue and ActivityCard.vue for improved readability and consistent styling" />
-    <option name="LAST_COMMIT_MESSAGE" value="refactor index.vue and ActivityCard.vue for improved readability and consistent styling" />
+    <MESSAGE value="refactor ActivityCard.vue to enforce required imageUrl prop and improve background handling" />
+    <option name="LAST_COMMIT_MESSAGE" value="refactor ActivityCard.vue to enforce required imageUrl prop and improve background handling" />
   </component>
 </project>
