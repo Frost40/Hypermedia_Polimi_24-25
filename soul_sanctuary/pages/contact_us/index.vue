@@ -130,10 +130,6 @@
       .ContactUs_container {
         flex-direction: row;              
       }
-
-      .map_embed {
-    
-    }
   }
 
   @media (min-width: 1024px) {
