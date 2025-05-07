@@ -84,6 +84,4 @@ defineProps({
   text-decoration: underline;
   font-weight: bold;
 }
-
-
 </style>
