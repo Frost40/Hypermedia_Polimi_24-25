@@ -12,17 +12,24 @@
                 <p class="text">{{activity.description}}</p>
             </div>
         </div>
+        <div class="schedule-section">
+          <h1 class="subtitle"> Schedule </h1>
+          <CourseScheduleTable :schedule="activity.schedule" />
+        </div>
     </main>
 </template>
 
 <script setup>
 
-    const route = useRoute()
-    const id = route.params.id;
+  import CourseScheduleTable from '@/components/CourseScheduleTable.vue'
 
-    // API call to fetch the right activity
-    const { data: activityData } = await useFetch('/api/activities/'+ id);
-    const activity = activityData.value[0];
+  const route = useRoute()
+  const id = route.params.id;
+
+  // API call to fetch the right activity
+  const { data: activityData } = await useFetch('/api/activities/'+ id);
+  const activity = activityData.value[0];
+
 </script>
 
 <style scoped>
@@ -61,6 +68,9 @@
   align-items: center;
   justify-content: center;
   box-sizing: border-box;
+}
+.subtitle{
+  margin: 0 2.5rem;
 }
 
 @media (max-width: 768px) {
