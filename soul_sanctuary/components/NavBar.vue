@@ -6,53 +6,87 @@
       </NuxtLink>
     </div>
 
-    <nav class="navbar-links">
+    <!-- Hamburger button; visible on mobile -->
+    <button class="hamburger" @click="mobileMenuOpen = !mobileMenuOpen">
+      <span class="hamburger-icon"></span>
+      <span class="hamburger-icon"></span>
+      <span class="hamburger-icon"></span>
+    </button>
+
+    <!-- Navigation links -->
+    <nav class="navbar-links" :class="{ 'mobile-open': mobileMenuOpen }">
       <ul>
-        <li><NuxtLink to="/about" :data-text="'About Us'">About Us</NuxtLink></li>
-        <li><NuxtLink to="/teachers" :data-text="'Teachers'">Teachers</NuxtLink></li>
-        <li><NuxtLink to="/activities" :data-text="'Activities'">Activities</NuxtLink></li>
-        <li><NuxtLink to="/highlights" :data-text="'Highlights'">Highlights</NuxtLink></li>
-        <li><NuxtLink to="/contact_us" :data-text="'Contacts Us'">Contacts Us</NuxtLink></li>
-        <li><NuxtLink to="/faq" :data-text="'FAQ'">FAQ</NuxtLink></li>
+        <li>
+          <NuxtLink to="/about" :data-text="'About Us'" @click="mobileMenuOpen = false">
+            About Us
+          </NuxtLink>
+        </li>
+        <li>
+          <NuxtLink to="/teachers" :data-text="'Teachers'" @click="mobileMenuOpen = false">
+            Teachers
+          </NuxtLink>
+        </li>
+        <li>
+          <NuxtLink to="/activities" :data-text="'Activities'" @click="mobileMenuOpen = false">
+            Activities
+          </NuxtLink>
+        </li>
+        <li>
+          <NuxtLink to="/highlights" :data-text="'Highlights'" @click="mobileMenuOpen = false">
+            Highlights
+          </NuxtLink>
+        </li>
+        <li>
+          <NuxtLink to="/contact_us" :data-text="'Contacts Us'" @click="mobileMenuOpen = false">
+            Contacts Us
+          </NuxtLink>
+        </li>
+        <li>
+          <NuxtLink to="/faq" :data-text="'FAQ'" @click="mobileMenuOpen = false">
+            FAQ
+          </NuxtLink>
+        </li>
       </ul>
     </nav>
   </header>
 </template>
 
 <script setup>
+import { ref } from 'vue'
 
+const mobileMenuOpen = ref(false)
 </script>
 
 <style scoped>
-/* Styles specific to this component. 'scoped' ensures that styles
-   only apply to this component to prevent conflicts. */
-
+/* Desktop styles */
 .navbar {
-  background-color: #3D5144; /* Dark background color similar to the image */
-  color: #DDECEA; /* Default text color */
-  padding: 0.1rem 2.5rem; /* Inner spacing (top/bottom and sides) */
-  display: flex; /* Use Flexbox to align elements */
-  justify-content: space-between; /* Distribute space between logo and links */
-  align-items: center; /* Vertically center items */
+  background-color: #3D5144;
+  color: #DDECEA;
+  padding: 0.1rem 2.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative; /* Needed for absolute positioning of mobile menu */
+  z-index: 3;
 }
 
 .navbar-logo .logo-link {
-  display: flex; /* Use flex to align the logo image and text */
-  flex-direction: column; /* Stack image and text */
-  align-items: center; /* Center the image and text */
-  text-decoration: none; /* Remove underline from the link */
-  color: #DDECEA; /* Logo text color */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none;
+  color: #DDECEA;
 }
 
 .navbar-logo .logo-img {
-  height: 80px; /* Height of the logo image. Adjust as needed */
+  height: 80px;
 }
 
 .navbar-links ul {
-  list-style: none; /* Remove list bullets */
-  display: flex; /* Use Flexbox to arrange links in a row */
-  gap: 1.5rem; /* Space between links */
-  align-items: center; /* Center link text vertically */
+  list-style: none;
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
 }
 
 .navbar-links li {
@@ -61,14 +95,13 @@
 }
 
 .navbar-links a {
-  color: #DDECEA; /* Link color */
-  text-decoration: none; /* Remove link underline */
-  font-size: 1rem; /* Link text size */
-  font-weight: normal; /* Base font weight for transition */
-  transition: color 0.3s ease, font-weight 0.3s ease, background-color 0.3s ease, padding 0.3s ease; /* Smooth transition for multiple properties */
-  padding: 0.5rem 0; /* Add some vertical padding for click area, no horizontal padding initially */
-  border-radius: 20px; /* Apply border-radius even when not active, but no background/padding */
-  /* Reserve space for bold version */
+  color: #DDECEA;
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: normal;
+  transition: color 0.3s ease, font-weight 0.3s ease, background-color 0.3s ease, padding 0.3s ease;
+  padding: 0.5rem 0;
+  border-radius: 20px;
   display: inline-block;
   position: relative;
 }
@@ -82,20 +115,62 @@
   display: block;
 }
 
-/* Hover effect: text becomes bold */
 .navbar-links a:hover {
-  font-weight: bold; /* Make text bold on hover */
-  color: #DDECEA; /* Optional: change color slightly on hover */
+  font-weight: bold;
+  color: #DDECEA;
 }
 
-/* Style for the active link (current page) */
-/* NuxtLink adds the 'router-link-exact-active' class when the route matches exactly */
 .navbar-links a.router-link-exact-active {
-  font-weight: bold; /* Make the active link bold by default */
-  background-color: #DDECEA; /* Light background for the active link */
-  color: #3D5144; /* Dark text color for the active link */
-  padding: 0.5rem 1rem; /* Add padding to create the button shape */
-  border-radius: 20px; /* Rounded corners for the button shape */
-  /* Adjust margin or gap if the added padding affects spacing */
+  font-weight: bold;
+  background-color: #DDECEA;
+  color: #3D5144;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+}
+
+/* Hamburger styles */
+.hamburger {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.hamburger-icon {
+  display: block;
+  width: 25px;
+  height: 3px;
+  background-color: #DDECEA;
+  margin: 4px 0;
+}
+
+/* Mobile styles */
+@media (max-width: 768px) {
+  /* Show hamburger button on mobile views */
+  .hamburger {
+    display: block;
+  }
+
+  /* Hide nav-links by default on mobile */
+  .navbar-links {
+    display: none;
+  }
+
+  /* Display dropdown when active */
+  .navbar-links.mobile-open {
+    display: block;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    left: 0;
+    background-color: #3D5144;
+    padding: 1rem 2.5rem;
+  }
+
+  .navbar-links ul {
+    flex-direction: column;
+    gap: 1rem;
+    padding: 0;
+  }
 }
 </style>
