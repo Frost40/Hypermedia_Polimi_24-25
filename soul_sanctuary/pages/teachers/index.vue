@@ -13,7 +13,7 @@
     <div class="page-header">
       <h1 class="page-title title">All Teachers</h1>
       <p class="page-description text">
-        Meet our teachers — each brings a unique approach to guide you on your journey of growth and well-being
+        Meet our teachers — each brings a unique approach to guide you on your journey of growth and well-being.
       </p>
     </div>
     <div class="teachers-grid">
@@ -63,6 +63,7 @@
   color: #3D5144;
   line-height: 1.6;
   padding: 0 2.5rem;
+  text-align: left;
 }
 
 .teachers-grid {
