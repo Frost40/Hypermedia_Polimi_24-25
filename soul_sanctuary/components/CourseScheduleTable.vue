@@ -69,17 +69,14 @@
     table {
     width: 100%;
     border-collapse: collapse;
-    margin: 1rem 0;
     }
 
     .desktop table {
     border-collapse: separate; 
-    border-spacing: 16px 0; 
     }
 
     .mobile table {
     border-collapse: separate;
-    border-spacing: 0 16px; 
     }
 
     th,
