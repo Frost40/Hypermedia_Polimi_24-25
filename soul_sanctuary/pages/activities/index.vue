@@ -3,28 +3,62 @@
 
   // API call to fetch all activities
   const { data: allActivities } = await useFetch("/api/activities");
+
+  // Define page-specific meta tags for improved SEO
+  useHead({
+    meta: [
+      // Page-specific description for better SEO
+      { name: 'description', content: 'Explore our yoga classes, meditation sessions, and wellness activities at Soul Sanctuary. Find activities suited for all experience levels.' },
+      // Additional keywords specific to this page
+      { name: 'keywords', content: 'yoga classes, meditation sessions, wellness activities, spiritual classes, mindfulness workshops, group activities, Soul Sanctuary activities' },
+      
+      // Open Graph specific to this page for better social sharing
+      { property: 'og:title', content: 'Activities & Classes - Soul Sanctuary' },
+      { property: 'og:description', content: 'Discover yoga, meditation, and wellness activities at Soul Sanctuary. Classes for all experience levels.' },
+      
+      // Twitter Card specific to this page
+      { name: 'twitter:title', content: 'Activities & Classes - Soul Sanctuary' },
+      { name: 'twitter:description', content: 'Discover yoga, meditation, and wellness activities at Soul Sanctuary. Classes for all experience levels.' },
+    ]
+  })
 </script>
 
 <template>
   <Head>
-    <Title>Soul Sanctuary - Activities</Title>
+    <Title>Soul Sanctuary - All Activities</Title>
+    <!-- Ensure this page is indexed and links are followed -->
+    <meta name="robots" content="index, follow">
+    <!-- Specify canonical URL to prevent duplicate content issues -->
+    <link rel="canonical" href="https://soulsanctuary.example.com/activities">
   </Head>
-  <main class="activities-page">
-    <div class="page-header">
-      <h1 class="page-title title">All Activities</h1>
+  <!-- Added role="main" for screen readers and aria-labelledby for accessibility -->
+  <main class="activities-page" role="main" aria-labelledby="page-title">
+    <!-- Added section with aria-labelledby for proper document structure -->
+    <section class="page-header" aria-labelledby="page-title">
+      <!-- Added id to connect with aria-labelledby -->
+      <h1 id="page-title" class="page-title title">All Activities</h1>
       <p class="page-description text">
         Discover our most popular activities below — explore what we offer and find the perfect fit for your journey.
       </p>
-    </div>
-    <div class="activities-grid">
+    </section>
+    
+    <!-- Added aria-label to describe this section to screen readers -->
+    <section class="activities-grid" aria-label="Activities list">
+      <!-- Fixed placement of aria-label by moving it to a properly supported attribute -->
       <ActivityCard
         v-for="activity in allActivities"
         :key="activity.id"
         :id="activity.id"
         :name="activity.name"
         :imageUrl="activity.imageUrl"
+        aria-label="`Activity: ${activity.name}`"
       />
-    </div>
+      
+      <!-- Added for screen readers when no activities are available -->
+      <p v-if="!allActivities || allActivities.length === 0" aria-live="polite">
+        No activities are currently available. Please check back soon.
+      </p>
+    </section>
   </main>
 </template>
 
@@ -82,5 +116,10 @@
     justify-items: center;
     max-width: 600px;
   }
+}
+
+/* Added to ensure text remains visible during webfont load */
+.activities-page {
+  font-display: swap;
 }
 </style>
