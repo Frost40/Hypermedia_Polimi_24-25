@@ -18,15 +18,15 @@ defineProps({
 </script>
 
 <template>
-  <div class="activity-card">
+  <NuxtLink :to="`/activities/${id}`" class="activity-card">
     <div class="card-bg"
          :style="{ backgroundImage: `url(${imageUrl || defaultImage})` }"
          :class="{ 'default-green': !imageUrl || imageUrl === defaultImage }"
     ></div>
-      <NuxtLink :to="`/activities/${id}`" class="activity-title subtitle">
-        {{ name }}
-      </NuxtLink>
-  </div>
+    <div class="activity-title subtitle">
+      {{ name }}
+    </div>
+  </NuxtLink>
 </template>
 
 <style scoped>
@@ -36,6 +36,7 @@ defineProps({
   height: 300px;
   border-radius: 40px;
   overflow: hidden;
+  text-decoration: none;
 
   /* Flex properties to allow centered title*/
   display: flex;
