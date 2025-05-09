@@ -23,6 +23,7 @@ const { data: highlights } = await useFetch("/api/highlights");
           :id="activity.id"
           :name="activity.name"
           :imageUrl="activity.imageUrl"
+          :provenance="'fromHighlights'"
       />
     </div>
   </main>
