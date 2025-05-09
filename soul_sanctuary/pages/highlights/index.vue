@@ -1,7 +1,7 @@
 <script setup>
 import ActivityCard from "~/components/ActivityCard.vue";
 
-// API call to fetch all activities
+// API call to fetch all highlights
 const { data: highlights } = await useFetch("/api/highlights");
 </script>
 
