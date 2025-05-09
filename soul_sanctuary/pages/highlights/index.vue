@@ -7,7 +7,7 @@ const { data: highlights } = await useFetch("/api/highlights");
 
 <template>
   <Head>
-    <Title>Soul Sanctuary - Activities</Title>
+    <Title>Soul Sanctuary - Highlights</Title>
   </Head>
   <main class="activities-page">
     <div class="page-header">
