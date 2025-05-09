@@ -62,6 +62,7 @@ const mobileMenuOpen = ref(false)
 .navbar {
   background-color: #3D5144;
   color: #DDECEA;
+  max-width: 1440px;
   padding: 0.1rem 2.5rem;
   display: flex;
   justify-content: space-between;
