@@ -17,6 +17,5 @@
   .main-content {
     padding: 0px;
     margin: 0px;
-    margin-bottom: 0px;
   }
 </style>
