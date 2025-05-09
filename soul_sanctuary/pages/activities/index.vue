@@ -23,6 +23,7 @@
         :id="activity.id"
         :name="activity.name"
         :imageUrl="activity.imageUrl"
+        :provenance="'all'"
       />
     </div>
   </main>

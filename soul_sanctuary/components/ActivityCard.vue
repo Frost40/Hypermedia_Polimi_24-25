@@ -13,6 +13,10 @@ defineProps({
   imageUrl: {
     type: String,
     required: true,
+  },
+  provenance:{
+    type: String,
+    required: true,
   }
 });
 </script>
@@ -23,9 +27,13 @@ defineProps({
          :style="{ backgroundImage: `url(${imageUrl || defaultImage})` }"
          :class="{ 'default-green': !imageUrl || imageUrl === defaultImage }"
     ></div>
-      <NuxtLink :to="`/activities/${id}`" class="activity-title subtitle">
-        {{ name }}
-      </NuxtLink>
+    <NuxtLink
+      :to="{
+        path: `/activities/${id}`,
+        query: { from: provenance }
+      }" class="activity-title subtitle">
+      {{ name }}
+    </NuxtLink>
   </div>
 </template>
 
@@ -81,4 +89,5 @@ defineProps({
   text-decoration: underline;
   font-weight: bold;
 }
+
 </style>
