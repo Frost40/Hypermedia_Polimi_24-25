@@ -29,8 +29,8 @@ defineProps({
         alt="Teacher"
         class="teacher-image"
       />
-      <h2 class="teacher-name">{{ name }}</h2>
-      <p class="teacher-area">{{ mainAreaOfExpertise }}</p>
+      <h2 class="subtitle">{{ name }}</h2>
+      <p class="text">{{ mainAreaOfExpertise }}</p>
     </NuxtLink>
   </div>
 </template>
@@ -38,7 +38,7 @@ defineProps({
 <style scoped>
 .teacher-card {
   width: 340px;
-  height: 503px;
+  height: 480px;
   /*border: 1px solid #3D5144; /* Border for debug */
   border-radius: 16px;
   overflow: hidden;
@@ -55,7 +55,6 @@ defineProps({
   text-decoration: none;
   color: inherit;
   height: 100%;
-  padding: 1rem;
 }
 
 .teacher-image {
@@ -69,29 +68,8 @@ defineProps({
   filter: brightness(80%);
 }
 
-.teacher-name {
-  font-family: 'Oregano';
-  text-decoration: underline;
-  font-weight: normal;
-  padding-top: 9px;
-  font-size: 45px;
-  margin: 0.8rem 0 0.2rem;
-  color: #3C3C3C;
-  text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
-}
-
-.teacher-name:hover {
+.subtitle:hover {
   font-weight: bold;
-}
-
-.teacher-area {
-  font-family: 'Inter';
-  padding-top: 10px;
-  font-size: 25px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 45px;
-  color: #3C3C3C;
-  margin: 0;
+  text-decoration: underline;
 }
 </style>
