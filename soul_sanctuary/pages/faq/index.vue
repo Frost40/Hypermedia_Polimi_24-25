@@ -1,30 +1,122 @@
 <script setup>
-  import { ref } from 'vue';
-  import FaqItem from '~/components/FaqItem.vue';
+import { ref } from 'vue';
+import FaqItem from '~/components/FaqItem.vue';
+import AlertPopup from '~/components/AlertPopup.vue';
+import ExpandIcon from '~/assets/svgs/Expand.svg?raw';
+import ReduceIcon from '~/assets/svgs/Reduce.svg?raw';
 
-  // Example FAQ data - you'll replace this with your actual questions and answers
-  const faqItems = ref([
-    { question: 'What classes do you offer?', answer: 'We offer a variety of yoga, meditation, and wellness classes...' },
-    { question: 'How much do classes cost?', answer: 'You can find our pricing details on the Pricing page...' },
-    { question: 'What is your cancellation policy?', answer: 'Please refer to our Policies page for detailed cancellation information...' },
-    { question: 'Do I need to bring my own mat?', answer: 'While we have mats available, we recommend bringing your own for comfort and hygiene...' },
-    { question: 'How do I book a class?', answer: 'You can book classes directly through our website calendar...' },
-    { question: 'Are classes suitable for beginners?', answer: 'Yes, we have classes suitable for all levels, including complete beginners...' },
-    { question: 'What should I wear?', answer: 'Wear comfortable clothing that allows for easy movement...' },
-  ]);
+// Example FAQ data - you'll replace this with your actual questions and answers
+const faqItems = ref([
+  { question: 'What classes do you offer?', answer: 'We offer a variety of yoga, meditation, and wellness classes...' },
+  { question: 'How much do classes cost?', answer: 'You can find our pricing details on the Pricing page...' },
+  { question: 'What is your cancellation policy?', answer: 'Please refer to our Policies page for detailed cancellation information...' },
+  { question: 'Do I need to bring my own mat?', answer: 'While we have mats available, we recommend bringing your own for comfort and hygiene...' },
+  { question: 'How do I book a class?', answer: 'You can book classes directly through our website calendar...' },
+  { question: 'Are classes suitable for beginners?', answer: 'Yes, we have classes suitable for all levels, including complete beginners...' },
+  { question: 'What should I wear?', answer: 'Wear comfortable clothing that allows for easy movement...' },
+]);
 
-  // You can add variables here to store form data if needed for handling submission
-  // const name = ref('');
-  // const email = ref('');
-  // const selectedCourse = ref('');
-  // const question = ref('');
+// Variables for the form
+const name = ref('');
+const email = ref('');
+const course = ref('');
+const question = ref('');
 
-  // Function to handle form submission (currently just an alert)
-  // const handleSubmit = () => {
-  //   alert('Form submitted! (Handling submission requires backend logic)');
-  //   // Here you would typically send the form data to your backend
-  // };
+// Form state variables
+const isSubmitting = ref(false);
+const showPopup = ref(false);
+const popupType = ref('success');
+const popupMessage = ref('');
+const popupErrors = ref([]);
 
+// Function to close the popup
+const closePopup = () => {
+  showPopup.value = false;
+};
+
+// Function to handle form submission
+const handleSubmit = async () => {
+  // Reset the state
+  isSubmitting.value = true;
+
+  try {
+    // Send form data to the API
+    const response = await $fetch('/api/faq/form', {
+      method: 'POST',
+      body: {
+        name: name.value,
+        email: email.value,
+        course: course.value,
+        question: question.value
+      }
+    });
+
+    if (response.status === 'success') {
+      // Form submitted successfully
+      popupType.value = 'success';
+      popupMessage.value = 'Your question has been submitted successfully! We will get back to you soon.';
+      popupErrors.value = [];
+      showPopup.value = true;
+
+      // Reset the form
+      name.value = '';
+      email.value = '';
+      course.value = '';
+      question.value = '';
+    } else {
+      // Validation or other errors
+      popupType.value = 'error';
+      popupMessage.value = response.message || 'An error occurred while submitting the form';
+      popupErrors.value = response.errors || [];
+      showPopup.value = true;
+    }
+  } catch (error) {
+    console.error('Error submitting form:', error);
+    popupType.value = 'error';
+    popupMessage.value = 'A connection error occurred. Please try again later.';
+    popupErrors.value = [];
+    showPopup.value = true;
+  } finally {
+    isSubmitting.value = false;
+  }
+};
+
+const dropdownOpen = ref(false);
+const courses = [
+  { value: '', label: 'Select a course' },
+  { value: 'hata yoga', label: 'Hata Yoga' },
+  { value: 'prenatal yoga', label: 'Prenatal Yoga' },
+  { value: 'vinyasa yoga', label: 'Vinyasa Yoga' },
+  { value: 'awaken your chakras', label: 'Awaken Your Chakras' },
+  { value: 'guided meditations', label: 'Guided Meditations for Stress, Anxiety & Depression' },
+  { value: 'walking meditation', label: 'Walking Meditation in Nature' },
+  { value: 'yoga mindful eating', label: 'Yoga & Mindful Eating' },
+  { value: 'yoga in the park', label: 'Yoga in the Park' }
+];
+
+const dropdownRef = ref(null);
+
+const toggleDropdown = () => {
+  dropdownOpen.value = !dropdownOpen.value;
+};
+
+const selectCourse = (option) => {
+  course.value = option.value;
+  dropdownOpen.value = false;
+};
+
+// Calcola la posizione del dropdown rispetto al viewport
+const dropdownPositionStyle = computed(() => {
+  if (!dropdownOpen.value || !dropdownRef.value) return {};
+  const rect = dropdownRef.value.getBoundingClientRect();
+  return {
+    position: 'absolute',
+    top: rect.bottom + window.scrollY + 'px',
+    left: rect.left + window.scrollX + 'px',
+    width: rect.width + 'px',
+    zIndex: 1000
+  };
+});
 </script>
 
 <template>
@@ -33,6 +125,16 @@
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://yoursite.example.com/faq">
   </Head>
+
+  <!-- Alert Popup Component -->
+  <AlertPopup
+      :type="popupType"
+      :message="popupMessage"
+      :errors="popupErrors"
+      :show="showPopup"
+      @close="closePopup"
+  />
+
   <main class="faq-page" role="main" aria-labelledby="page-title">
     <div class="page-header" aria-labelledby="page-title">
       <h1 id="page-title" class="page-title title_clear">FAQ</h1>
@@ -45,10 +147,10 @@
         <h2 class="section-title subtitle">Frequently Asked Questions</h2>
         <div class="faq-list">
           <FaqItem
-            v-for="(item, index) in faqItems"
-            :key="index"
-            :question="item.question"
-            :answer="item.answer"
+              v-for="(item, index) in faqItems"
+              :key="index"
+              :question="item.question"
+              :answer="item.answer"
           />
         </div>
       </div>
@@ -59,32 +161,50 @@
         </p>
         <form @submit.prevent="handleSubmit">
           <div class="form-group">
-            <label for="name">Name</label>
-            <input type="text" id="name" name="name" placeholder="Your name" required>
+            <label for="name" class="text">Name</label>
+            <input type="text" id="name" v-model="name" placeholder="Your name" required>
           </div>
           <div class="form-group">
-            <label for="email">Email</label>
-            <input type="email" id="email" name="email" placeholder="Your email@example.com" required>
+            <label for="email" class="text">Email</label>
+            <input type="email" id="email" v-model="email" placeholder="Your email@example.com" required>
           </div>
           <div class="form-group">
-            <label for="course">Course Field</label>
-            <select id="course" name="course" required>
-              <option value="">Select a course</option>
-              <option value="hata yoga">Hata Yoga</option>
-              <option value="renatal yoga">Prenatal Yoga</option>
-              <option value="vinyasa yoga">Vinyasa Yoga</option>
-              <option value="awaken your chakras">Awaken Your Chakras</option>
-              <option value="guided meditations">Guided Meditations for Stress, Anxiety & Depression</option>
-              <option value="walking weditation in nature">Walking Meditation in Nature</option>
-              <option value="yoga mindful eating">Yoga & Mindful Eating</option>
-              <option value="yoga in the ark">Yoga & Mindful Eating</option>
-            </select>
+            <label class="text">Course Field</label>
+            <div ref="dropdownRef" class="dropdown-container" :class="{ open: dropdownOpen }" @click="toggleDropdown">
+              <span class="selected-value text">
+                {{
+                  courses.find((opt) => opt.value === course)
+                      ? courses.find((opt) => opt.value === course).label
+                      : 'Select a course'
+                }}
+              </span>
+              <span class="dropdown-icon" v-html="dropdownOpen ? ReduceIcon : ExpandIcon"></span>
+            </div>
+            <Teleport to="body">
+              <div
+                  v-if="dropdownOpen"
+                  :style="dropdownPositionStyle"
+                  class="custom-dropdown"
+              >
+                <div
+                    v-for="(option, index) in courses"
+                    :key="index"
+                    class="dropdown-option"
+                    :class="{ selected: option.value === course }"
+                    @click.stop="selectCourse(option)"
+                >
+                  {{ option.label }}
+                </div>
+              </div>
+            </Teleport>
           </div>
           <div class="form-group">
-            <label for="question">Your Question</label>
-            <textarea id="question" name="question" placeholder="Type your question here ..." rows="4" required></textarea>
+            <label for="question" class="text">Your Question</label>
+            <textarea id="question" v-model="question" placeholder="Type your question here ..." rows="4" required></textarea>
           </div>
-          <button type="submit" class="submit-button">Submit</button>
+          <button type="submit" class="submit-button" :disabled="isSubmitting">
+            {{ isSubmitting ? 'Submitting...' : 'Submit' }}
+          </button>
         </form>
       </div>
     </div>
@@ -94,7 +214,7 @@
 <style scoped>
 .faq-page {
   max-width: 1440px;
-  padding: 1rem 2rem;
+  padding: 1rem 1.5rem;
   margin: 0 auto;
 }
 
@@ -119,7 +239,7 @@
 /* New styles for the FAQ body and sections */
 .faq-body {
   display: flex; /* Use flexbox for side-by-side layout */
-  gap: 2rem; /* Space between the two columns */
+  gap: 1.5rem; /* Space between the two columns */
 }
 
 .faq-section {
@@ -172,9 +292,10 @@
   width: 100%; /* Make inputs fill the container */
   padding: 0.8rem;
   border: 1px solid #ccc;
-  border-radius: 5px;
+  border-radius: 10px;
   font-size: 1rem;
   box-sizing: border-box; /* Include padding in the element's total width and height */
+  background-color: #F7F7F7;
 }
 
 .form-group textarea {
@@ -186,7 +307,7 @@
   width: 100%; /* Make button fill the container */
   padding: 1rem;
   background-color: #3D5144; /* Dark green button */
-  color: white;
+  color: #F7F7F7;
   border: none;
   border-radius: 5px;
   font-size: 1.2rem;
@@ -198,6 +319,51 @@
   background-color: #2c3e33; /* Slightly darker green on hover */
 }
 
-/* You might need to add styles for the FaqItem component itself if it doesn't already match the image */
-/* For example, styles for the question line, the dropdown arrow, and the answer area when expanded */
+.dropdown-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.8rem;
+  border: 1px solid transparent;
+  border-radius: 10px;
+  background-color: #F7F7F7;
+  cursor: pointer;
+}
+
+.dropdown-container.open {
+  border: 1px solid #3D5144;
+}
+
+.selected-value {
+  flex-grow: 1;
+  color: #3D5144;
+}
+
+.dropdown-icon {
+  width: 26px;
+  height: 26px;
+}
+
+.custom-dropdown {
+  border: 1px solid #ccc;
+  border-top: none;
+  border-radius: 0 0 10px 10px;
+  overflow: hidden;
+  background-color: #F7F7F7;
+}
+
+.dropdown-option {
+  padding: 0.8rem;
+  background-color: #F7F7F7;
+  cursor: pointer;
+  color: #3D5144;
+}
+
+.dropdown-option:hover {
+  background-color: #BCC7C2;
+}
+
+.dropdown-option.selected {
+  border-left: 4px solid #3D5144;
+}
 </style>
