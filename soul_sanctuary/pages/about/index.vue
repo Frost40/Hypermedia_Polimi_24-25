@@ -3,12 +3,32 @@
  
   // API call to fetch all activities for the slideshow
   const { data: allActivities } = await useFetch("/api/activities");
+
+    // Define SEO meta data
+    // This overrides global SEO with page-specific content for better search relevance
+    useHead({
+      meta: [
+        // Page-specific description for better search results
+        { name: 'description', content: 'Discover Soul Sanctuary\'s history and mission. Find out about where the center is located and how contact it.' },
+        // Additional keywords specific to this page
+        { name: 'keywords', content: 'yoga center, yoga center history , yoga center past, location, phone number, email, map, wellness' },
+        // Open Graph tags for better social sharing specific to this page
+        { property: 'og:title', content: 'Soul Sanctuary - Popular Wellness About Us page' },
+        { property: 'og:description', content: 'Discover our center and find out why Soul Sanctuary is the perfect fit for you.' },
+        // Twitter card tags for better sharing on Twitter
+        { name: 'twitter:title', content: 'Soul Sanctuary - Popular Wellness About Us page' },
+        { name: 'twitter:description', content: 'Discover our center and find out why Soul Sanctuary is the perfect fit for you.' },]
+    })
 </script>
 
 <template>
 
   <Head>
     <Title>Soul Sanctuary - About Us</Title>
+     <!-- Ensure this page is indexed and links are followed -->
+    <meta name="robots" content="index, follow">
+    <!-- Specify canonical URL to prevent duplicate content issues -->
+    <link rel="canonical" href="https://soulsanctuary.example.com/about">
   </Head>
 
   <main class="about_container">
