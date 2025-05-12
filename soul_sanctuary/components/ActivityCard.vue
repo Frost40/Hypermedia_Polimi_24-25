@@ -22,19 +22,18 @@ defineProps({
 </script>
 
 <template>
-  <div class="activity-card">
-    <div class="card-bg"
-          :style="{ backgroundImage: `url(${imageUrl || defaultImage})` }"
-          :class="{ 'default-green': !imageUrl || imageUrl === defaultImage }"
-    ></div>
-    <NuxtLink
-      :to="{
+  <NuxtLink :to="{
         path: `/activities/${id}`,
         query: { from: provenance }
-      }" class="activity-title subtitle">
+      }" class="activity-card">
+    <div class="card-bg"
+         :style="{ backgroundImage: `url(${imageUrl || defaultImage})` }"
+         :class="{ 'default-green': !imageUrl || imageUrl === defaultImage }"
+    ></div>
+    <div class="activity-title subtitle">
       {{ name }}
-    </NuxtLink>
-  </div>
+    </div>
+  </NuxtLink>
 </template>
 
 <style scoped>
