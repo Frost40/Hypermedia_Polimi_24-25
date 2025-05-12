@@ -28,15 +28,18 @@ defineProps({
     loop
     >
     <SwiperSlide v-for="activity in activities" :key="activity.id">
-      <div class="slide-container">
-        <img :src="activity.imageUrl" alt="An image related to the activity" class="slide-image" />
-        <div class="slide-overlay">
-          <NuxtLink :to="`/activities/${activity.id}`" class="slide-title">
-            {{ activity.name }}
-          </NuxtLink>
+      <NuxtLink :to="`/activities/${activity.id}`" class="slide-link">
+        <div class="slide-container">
+          <img :src="activity.imageUrl" alt="An image related to the activity" class="slide-image" />
+          <div class="slide-overlay">
+            <div class="slide-title">
+              {{ activity.name }}
+            </div>
+          </div>
         </div>
-      </div>
+      </NuxtLink>
     </SwiperSlide>
+
   </Swiper>
 </template>
 
@@ -48,13 +51,6 @@ defineProps({
   border-radius: 1rem;
 }
 
-.slide-container {
-  position: relative;
-  height: 300px;
-  border-radius: 20px;
-  overflow: hidden;
-}
-
 .slide-image {
   width: 100%;
   height: 100%;
@@ -63,13 +59,19 @@ defineProps({
   filter: brightness(90%);
 }
 
+.slide-container {
+  position: relative;
+  height: 300px;
+  border-radius: 20px;
+  overflow: hidden;
+}
 
 .slide-overlay {
   font-family: 'Oregano';
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -70%);
   color: white;
   font-size: 1.5rem;
   text-align: center;
@@ -84,13 +86,13 @@ defineProps({
   color: #DDECEA;
   font-size: 2rem;
   text-decoration: none;
-  font-weight: bold;
   text-align: center;
   display: block;
 }
 
 .slide-title:hover {
   text-decoration: underline;
+  font-weight: bold;
 }
 
 /* For the buttons on the sides of the slider */
@@ -115,6 +117,13 @@ defineProps({
 :deep(.swiper-pagination-bullet-active) {
   background-color: #DDECEA;
   opacity: 1;
+}
+
+.slide-link {
+  display: block;
+  height: 100%;
+  text-decoration: none;
+  color: inherit;
 }
 
 
