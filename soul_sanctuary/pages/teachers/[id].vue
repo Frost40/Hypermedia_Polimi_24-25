@@ -34,15 +34,19 @@
       </div>
     </section>
 
-    <!-- Example usage of array of activities -->
-    <ActivitiesSlider :activities="teacherData.activities" />
+    <!-- Sezione attività -->
+    <div class="activity-section">
+      <h2 class="activity-title subtitle">{{ teacherData.fullname }}'s Classes</h2>
+      <div class="slider-wrapper">
+        <ActivitiesSlider :activities="teacherData.activities" />
+      </div>
 
-    <!-- Example usage of managed activities-->
-     <div>
-      <ActivitiesSlider v-if="teacherData.managedActivities && teacherData.managedActivities.length" :activities="teacherData.managedActivities" />
-      <p v-else>Nessuna attività gestita</p>
+      <h2 class="activity-title subtitle">{{ teacherData.fullname }}'s Responsibilities</h2>
+      <div class="slider-wrapper">
+        <ActivitiesSlider v-if="teacherData.managedActivities && teacherData.managedActivities.length" :activities="teacherData.managedActivities" />
+        <p v-else>Nessuna attività gestita</p>
+      </div>
     </div>
-
   </main>
 </template>
 
@@ -174,6 +178,16 @@ const formattedDescription = computed(() =>
   text-align: left;
 }
 
+.activity-section {
+  margin-top: 3rem;
+  margin-bottom: 2rem;
+}
+
+.slider-wrapper {
+  max-width: 700px;
+  margin: 0 auto 3rem auto;
+}
+
 @media (max-width: 768px) {
   .teacher-box {
     flex-direction: column;
@@ -193,6 +207,10 @@ const formattedDescription = computed(() =>
 
   .photo-section {
     max-width: none;
+  }
+
+  .slider-wrapper {
+    width: 90%;
   }
 }
 </style>

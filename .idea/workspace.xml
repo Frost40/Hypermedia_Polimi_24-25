@@ -5,7 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0b8a09fc-be63-4202-8a90-8175cd7c1f6e" name="Changes" comment="refactor ActivityCard.vue to enforce required imageUrl prop and improve background handling">
-      <change beforePath="$PROJECT_DIR$/soul_sanctuary/components/NavBar.vue" beforeDir="false" afterPath="$PROJECT_DIR$/soul_sanctuary/components/NavBar.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/soul_sanctuary/pages/teachers/[id].vue" beforeDir="false" afterPath="$PROJECT_DIR$/soul_sanctuary/pages/teachers/[id].vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,6 +58,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "dart.analysis.tool.window.visible": "false",
+    "git-widget-placeholder": "teach",
     "last_opened_file_path": "/Users/silvia.denti/Desktop/Hypermedia_Polimi_24-25",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -77,8 +79,7 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-9823dce3aa75-fbdcb00ec9e3-intellij.indexing.shared.core-IU-251.23774.435" />
-        <option value="bundled-js-predefined-d6986cc7102b-f27c65a3e318-JavaScript-IU-251.23774.435" />
+        <option value="bundled-js-predefined-d6986cc7102b-f27c65a3e318-JavaScript-WS-251.23774.424" />
       </set>
     </attachedChunks>
   </component>
@@ -96,6 +97,7 @@
       <workItem from="1746512667418" duration="1729000" />
       <workItem from="1746614549614" duration="425000" />
       <workItem from="1746622128836" duration="4548000" />
+      <workItem from="1747069399983" duration="2543000" />
     </task>
     <task id="LOCAL-00001" summary="refactor index.vue and ActivityCard.vue for improved readability and consistent styling">
       <option name="closed" value="true" />
