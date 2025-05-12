@@ -3,20 +3,50 @@ import ActivityCard from "~/components/ActivityCard.vue";
 
 // API call to fetch all highlights
 const { data: highlights } = await useFetch("/api/highlights");
+
+// Define SEO meta data
+// This overrides global SEO with page-specific content for better search relevance
+useHead({
+  meta: [
+    // Page-specific description for better search results
+    { name: 'description', content: 'Explore Soul Sanctuary\'s most popular wellness activities and programs. Find the perfect activities to enhance your wellbeing journey.' },
+    // Additional keywords specific to this page
+    { name: 'keywords', content: 'wellness activities, soul sanctuary highlights, popular wellness programs, mindfulness activities' },
+    // Open Graph tags for better social sharing specific to this page
+    { property: 'og:title', content: 'Soul Sanctuary - Popular Wellness Highlights' },
+    { property: 'og:description', content: 'Discover our most popular wellness activities and find the perfect fit for your journey at Soul Sanctuary.' },
+    // Twitter card tags for better sharing on Twitter
+    { name: 'twitter:title', content: 'Soul Sanctuary - Popular Wellness Highlights' },
+    { name: 'twitter:description', content: 'Discover our most popular wellness activities and find the perfect fit for your journey at Soul Sanctuary.' },]
+})
 </script>
 
 <template>
   <Head>
     <Title>Soul Sanctuary - Highlights</Title>
+    <!-- Ensure this page is indexed and links are followed -->
+    <meta name="robots" content="index, follow">
+    <!-- Specify canonical URL to prevent duplicate content issues -->
+    <link rel="canonical" href="https://soulsanctuary.example.com/highlights">
   </Head>
-  <main class="activities-page">
+  
+  <!-- Added role="main" for screen readers to identify main content -->
+  <!-- Added aria-labelledby to associate this section with its heading -->
+  <main class="activities-page" role="main" aria-labelledby="highlights-title">
     <div class="page-header">
-      <h1 class="page-title title">Highlights</h1>
+      <!-- Added ID to connect with aria-labelledby -->
+      <h1 id="highlights-title" class="page-title title">Highlights</h1>
       <p class="page-description text">
         Discover our most popular activities below — explore what we offer and find the perfect fit for your journey.
       </p>
     </div>
-    <div class="activities-grid">
+    
+    <!-- Changed div to semantic section element for better document structure -->
+    <!-- Added aria-label to describe this section for screen readers -->
+    <section 
+      class="activities-grid" 
+      aria-label="Featured activities"
+    >
       <ActivityCard
           v-for="activity in highlights"
           :key="activity.id"
@@ -25,7 +55,12 @@ const { data: highlights } = await useFetch("/api/highlights");
           :imageUrl="activity.imageUrl"
           :provenance="'fromHighlights'"
       />
-    </div>
+      
+      <!-- Added accessible message for when no activities are available -->
+      <p v-if="!highlights || highlights.length === 0" class="no-results">
+        No highlight activities are currently available. Please check back soon!
+      </p>
+    </section>
   </main>
 </template>
 
@@ -83,5 +118,14 @@ const { data: highlights } = await useFetch("/api/highlights");
     justify-items: center;
     max-width: 600px;
   }
+}
+
+/* New style for empty state message */
+.no-results {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 2rem;
+  color: #3D5144;
+  font-style: italic;
 }
 </style>
