@@ -12,6 +12,13 @@ body {
   color: #3D5144;
 }
 
+.title_clear {
+  font-family: 'Oregano';
+  font-size: 48px;
+  font-weight: normal;
+  color: #DDECEA;
+}
+
 .subtitle {
   font-family: 'Oregano';
   font-size: 32px;
