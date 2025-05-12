@@ -1,6 +1,6 @@
 <template>
   <Head>
-    <Title>{{ teacher.fullname }} - Soul Sanctuary</Title>
+    <Title>{{ teacherData.fullname }} - Soul Sanctuary</Title>
   </Head>
   <main class="main">
     <!-- Navigazione frecce -->
@@ -16,14 +16,14 @@
     <!-- Sezione foto + info -->
     <div class="teacher-box">
       <div class="photo-section">
-        <img :src="teacher.photo" alt="Teacher's Photo" class="teacher-photo" />
+        <img :src="teacherData.photo" alt="Teacher's Photo" class="teacher-photo" />
       </div>
       <div class="info-section">
-        <h2 class="title">{{ teacher.fullname }}</h2>
-        <p class="text"><strong>Phone:</strong> {{ teacher.phone }}</p>
-        <p class="text"><strong>Email:</strong> <a :href="'mailto:' + teacher.email">{{ teacher.email }}</a></p>
-        <p class="text"><strong>Area:</strong> {{ teacher.area }}</p>
-        <a :href="teacher.cv" target="_blank" class="button">Curriculum</a>
+        <h2 class="title">{{ teacherData.fullname }}</h2>
+        <p class="text"><strong>Phone:</strong> {{ teacherData.phone }}</p>
+        <p class="text"><strong>Email:</strong> <a :href="'mailto:' + teacherData.email">{{ teacherData.email }}</a></p>
+        <p class="text"><strong>Area:</strong> {{ teacherData.area }}</p>
+        <a :href="teacherData.cv" target="_blank" class="button">Curriculum</a>
       </div>
     </div>
 
@@ -33,16 +33,26 @@
         <p class="text" v-html="formattedDescription"></p>
       </div>
     </section>
+
+    <!-- Example usage of array of activities -->
+    <ActivitiesSlider :activities="teacherData.activities" />
+
+    <!-- Example usage of managed activities-->
+     <div>
+      <ActivitiesSlider v-if="teacherData.managedActivities && teacherData.managedActivities.length" :activities="teacherData.managedActivities" />
+      <p v-else>Nessuna attività gestita</p>
+    </div>
+
   </main>
 </template>
 
 <script setup>
+import ActivitiesSlider from '@/components/ActivitySlideShow.vue'
 const route = useRoute()
 const id = route.params.id
 const from = route.query.from || 'all'
 
 const { data: teacherData } = await useFetch('/api/teachers/' + id)
-const teacher = teacherData.value[0]
 
 const { data: allTeachersData } = await useFetch('/api/teachers')
 const allTeachers = allTeachersData.value
@@ -52,7 +62,7 @@ const prevId = currentIndex > 0 ? allTeachers[currentIndex - 1].id : null
 const nextId = currentIndex < allTeachers.length - 1 ? allTeachers[currentIndex + 1].id : null
 
 const formattedDescription = computed(() =>
-    teacher.description.replace(/\n/g, '<br>')
+    teacherData.value?.description.replace(/\n/g, '<br>')
 )
 </script>
 
