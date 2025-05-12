@@ -16,7 +16,7 @@
         Meet our teachers — each brings a unique approach to guide you on your journey of growth and well-being.
       </p>
     </div>
-    <div class="teachers-grid">
+    <div class="teachers-grid" aria-label="A grid where each card represents a teacher of the Soul Sanctuary">
       <TeacherCard
         v-for="teacher in allTeachers"
         :key="teacher.id"

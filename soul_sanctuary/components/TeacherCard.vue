@@ -26,7 +26,7 @@ defineProps({
     <NuxtLink :to="`/teachers/${id}`" class="card-link">
       <img
         :src="imageUrl || defaultImage"
-        alt="Teacher"
+        alt="Picture of the teacher"
         class="teacher-image"
       />
       <h2 class="subtitle">{{ name }}</h2>
@@ -39,7 +39,6 @@ defineProps({
 .teacher-card {
   width: 340px;
   height: 480px;
-  /*border: 1px solid #3D5144; /* Border for debug */
   border-radius: 16px;
   overflow: hidden;
   text-align: center;
