@@ -1,11 +1,9 @@
 <template>
-
   <Head>
     <Title>Soul Sanctuary - Homepage</Title>
   </Head>
 
   <main class="home_container">
-
     <!-- Hero section -->
     <section class="hero">
       <div class="hero_overlay">
@@ -149,17 +147,20 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 3rem;
-  padding: 1rem;
+  gap: 2rem;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
 }
 
 .card {
-  position: relative;
-  width: 300px;
-  height: 200px;
+  flex: 1 1 calc(50% - 1rem);
+  max-width: 500px;
+  min-width: 280px;
+  height: 300px;
   border-radius: 20px;
   overflow: hidden;
-  padding: 1.5rem;
+  padding: 1rem;
   background-size: cover;
   background-position: center;
   display: flex;
