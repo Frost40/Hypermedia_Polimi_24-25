@@ -2,53 +2,59 @@
   <Head>
     <Title>{{ teacherData.fullname }} - Soul Sanctuary</Title>
   </Head>
-  <main class="main">
-    <!-- Navigazione frecce -->
-    <div class="navigation">
-      <NuxtLink v-if="prevId" :to="{ path: `/teachers/${prevId}`, query: { from } }" class="arrow-link left">
-        <img src="../../assets/svgs/previous.svg" class="arrows" />
-      </NuxtLink>
-      <NuxtLink v-if="nextId" :to="{ path: `/teachers/${nextId}`, query: { from } }" class="arrow-link right">
-        <img src="../../assets/svgs/next.svg" class="arrows" />
-      </NuxtLink>
-    </div>
-
-    <!-- Sezione foto + info -->
-    <div class="teacher-box">
-      <div class="photo-section">
-        <img :src="teacherData.photo" alt="Teacher's Photo" class="teacher-photo" />
-      </div>
-      <div class="info-section">
-        <h2 class="title">{{ teacherData.fullname }}</h2>
-        <p class="text"><strong>Phone:</strong> {{ teacherData.phone }}</p>
-        <p class="text"><strong>Email:</strong> <a :href="'mailto:' + teacherData.email">{{ teacherData.email }}</a></p>
-        <p class="text"><strong>Area:</strong> {{ teacherData.area }}</p>
-        <a :href="teacherData.cv" target="_blank" class="button">Curriculum</a>
-      </div>
-    </div>
-
-    <!-- Sezione descrizione -->
-    <section class="description-section">
-      <div class="description-box">
-        <p class="text" v-html="formattedDescription"></p>
-      </div>
-    </section>
-
-    <!-- Sezione attività -->
-    <div class="activity-section">
-      <h2 class="activity-title subtitle">{{ teacherData.fullname }}'s Classes</h2>
-      <div class="slider-wrapper">
-        <ActivitiesSlider :activities="teacherData.activities" />
+  <div :style="backgroundStyle" class="background">
+    <main class="main">
+      <!-- Navigazione frecce -->
+      <div class="navigation">
+        <NuxtLink v-if="prevId" :to="{ path: `/teachers/${prevId}`, query: { from } }" class="arrow-link left">
+          <img src="../../assets/svgs/previous.svg" class="arrows" />
+        </NuxtLink>
+        <NuxtLink v-if="nextId" :to="{ path: `/teachers/${nextId}`, query: { from } }" class="arrow-link right">
+          <img src="../../assets/svgs/next.svg" class="arrows" />
+        </NuxtLink>
       </div>
 
-      <h2 class="activity-title subtitle">{{ teacherData.fullname }}'s Responsibilities</h2>
-      <div class="slider-wrapper">
-        <ActivitiesSlider v-if="teacherData.managedActivities && teacherData.managedActivities.length" :activities="teacherData.managedActivities" />
-        <p v-else>Nessuna attività gestita</p>
+      <!-- Wrapper per centratura verticale -->
+      <div class="teacher-wrapper">
+        <div class="teacher-box">
+          <div class="photo-section">
+            <img :src="teacherData.photo" alt="Teacher's Photo" class="teacher-photo" />
+          </div>
+          <div class="info-section">
+            <h2 class="title">{{ teacherData.fullname }}</h2>
+            <p class="text"><strong>Phone:</strong> {{ teacherData.phone }}</p>
+            <p class="text"><strong>Email:</strong> <a :href="'mailto:' + teacherData.email">{{ teacherData.email }}</a></p>
+            <p class="text"><strong>Area:</strong> {{ teacherData.area }}</p>
+            <a :href="teacherData.cv" target="_blank" class="button">Curriculum</a>
+          </div>
+        </div>
       </div>
-    </div>
-  </main>
+
+      <!-- Sezione descrizione -->
+      <section class="description-section">
+        <div class="description-box">
+          <p class="text" v-html="formattedDescription"></p>
+        </div>
+      </section>
+
+      <!-- Sezione attività -->
+      <div class="activity-section">
+        <h2 class="subtitle" style="text-align: center;">{{ teacherData.fullname }}'s Classes</h2>
+        <div class="slider-wrapper">
+          <ActivitiesSlider :activities="teacherData.activities" />
+        </div>
+
+        <div v-if="teacherData.managedActivities && teacherData.managedActivities.length">
+          <h2 class="subtitle" style="text-align: center;">{{ teacherData.fullname }}'s Responsibilities</h2>
+          <div class="slider-wrapper">
+            <ActivitiesSlider :activities="teacherData.managedActivities" />
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
 </template>
+
 
 <script setup>
 import ActivitiesSlider from '@/components/ActivitySlideShow.vue'
@@ -68,6 +74,19 @@ const nextId = currentIndex < allTeachers.length - 1 ? allTeachers[currentIndex 
 const formattedDescription = computed(() =>
     teacherData.value?.description.replace(/\n/g, '<br>')
 )
+
+import wallpaper from '@/assets/png/wallpaper.png'
+
+const backgroundStyle = {
+  backgroundImage: `linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)), url(${wallpaper})`,
+  backgroundSize: 'cover',
+  backgroundPosition: 'center',
+  backgroundAttachment: 'fixed',
+  backgroundRepeat: 'no-repeat',
+  minHeight: '100vh',
+}
+
+
 </script>
 
 <style scoped>
@@ -77,7 +96,6 @@ const formattedDescription = computed(() =>
   padding: 2rem;
 }
 
-/* Navigazione frecce */
 .navigation {
   display: flex;
   justify-content: space-between;
@@ -112,34 +130,48 @@ const formattedDescription = computed(() =>
   transform: scale(1.15);
 }
 
+.teacher-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem 1rem;
+  margin: 2rem 0;
+}
+
 .teacher-box {
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 3rem;
-  margin: 3rem auto;
-  max-width: 700px;
-  flex-wrap: wrap;
+  max-width: 900px;
+  flex-wrap: nowrap;
 }
 
 .photo-section {
   flex: 1;
-  max-width: 200px;
+  min-width: 250px;
+  max-width: 350px;
 }
 
 .teacher-photo {
-  width: 200px;
-  height: 200px;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1/1;
   object-fit: cover;
   border-radius: 20px;
 }
 
 .info-section {
   flex: 1;
+  min-width: 250px;
   max-width: 400px;
   display: flex;
   flex-direction: column;
   justify-content: center;
+}
+
+.info-section .title {
+  margin-bottom: 0.5rem;
 }
 
 .info-section .text {
@@ -174,7 +206,7 @@ const formattedDescription = computed(() =>
   background-color: #BCC7C2;
   padding: 2rem;
   border-radius: 20px;
-  width: 700px;
+  width: 1000px;
   text-align: left;
 }
 
@@ -188,11 +220,22 @@ const formattedDescription = computed(() =>
   margin: 0 auto 3rem auto;
 }
 
+.activity-title {
+  padding-bottom: 0.5rem;
+  display: flex;
+  align-items: center;
+  padding-left: 0;
+  width: 100%;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
 @media (max-width: 768px) {
   .teacher-box {
     flex-direction: column;
     align-items: center;
     text-align: center;
+    flex-wrap: wrap;
   }
 
   .info-section {
@@ -212,5 +255,10 @@ const formattedDescription = computed(() =>
   .slider-wrapper {
     width: 90%;
   }
+
+  .teacher-wrapper {
+    min-height: auto;
+  }
 }
 </style>
+
