@@ -198,7 +198,7 @@ useHead({
 
   <main class="faq-page" role="main" aria-labelledby="page-title">
     <div class="page-header" aria-labelledby="page-title">
-      <h1 id="page-title" class="page-title title_clear">Frequently Asked Questions</h1>
+      <h1 id="page-title" class="page-title title_clear">FAQ</h1>
       <p class="page-description text_clear">
         Find answers to common questions about our yoga classes, pricing, and policies. If you have a specific question about a course, please use the form below.
       </p>
