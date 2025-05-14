@@ -72,7 +72,7 @@ const closePopup = () => {
 }
 
 .popup-container.success {
-  border-top: 5px solid #3D5144;
+  border-top: 5px solid #57c57c;
 }
 
 .popup-container.error {
