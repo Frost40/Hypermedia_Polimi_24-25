@@ -1,7 +1,10 @@
 <script setup>
 import { ref } from 'vue'
-import ExpandIcon from '~/assets/svgs/Expand.svg'
-import ReduceIcon from '~/assets/svgs/Reduce.svg'
+import ExpandIconGreen from 'assets/svgs/arrow_down_green.svg'
+import ExpandIconWhite from 'assets/svgs/arrow_down_white.svg'
+import ReduceIconGreen from 'assets/svgs/arrow_up_green.svg'
+import ReduceIconWhite from 'assets/svgs/arrow_up_white.svg'
+
 
 // Both question and answer are required props passed by the father
 defineProps({
@@ -16,21 +19,30 @@ defineProps({
 })
 
 const expanded = ref(false)
+const hovered = ref(false)
 
 const toggle = () => {
   expanded.value = !expanded.value
 }
+
+const iconSrc = computed(() => {
+  if(expanded.value) {
+    return ReduceIconWhite
+  }
+  return hovered.value ? ExpandIconWhite : ExpandIconGreen
+})
 </script>
 
 <template>
   <div class="faq-item">
     <!-- Question section -->
-    <div class="faq-question"
-         :class="{ open: expanded }"
-         @click="toggle">
+    <div class="faq-question" :class="{ open: expanded }"
+         @click="toggle"
+         @mouseenter="hovered = true"
+         @mouseleave="hovered = false">
       <span class="question-text text">{{ question }}</span>
       <span class="icon">
-        <img :src="expanded ? ReduceIcon : ExpandIcon" alt="Icon">
+        <img :src="iconSrc" alt="Icon">
       </span>
     </div>
     <!-- Answer section -->
@@ -57,13 +69,11 @@ const toggle = () => {
   transition: background-color 0.3s ease;
 }
 
-/* Hover: the question section inverts the colors used for background and text */
 .faq-question:hover {
   background-color: #3D5144;
-  color: #fff;
+  color: #F7F7F7;
 }
 
-/* New style that overwrites the default one once the dropdown is open */
 .faq-question.open {
   background-color: #3D5144;
   color: #F7F7F7;
@@ -75,9 +85,15 @@ const toggle = () => {
   flex-grow: 1;
 }
 
+.icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .icon img {
-  width: 26px;
-  height: 26px;
+  width: 20px;
+  height: 20px;
 }
 
 .faq-answer {

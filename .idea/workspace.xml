@@ -4,12 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0b8a09fc-be63-4202-8a90-8175cd7c1f6e" name="Changes" comment="refactor ActivityCard.vue to enforce required imageUrl prop and improve background handling">
-      <change afterPath="$PROJECT_DIR$/soul_sanctuary/components/AlertPopup.vue" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/soul_sanctuary/server/api/faq/form/index.js" afterDir="false" />
+    <list default="true" id="0b8a09fc-be63-4202-8a90-8175cd7c1f6e" name="Changes" comment="Add AlertPopup component and integrate form submission handling in FAQ page">
+      <change afterPath="$PROJECT_DIR$/soul_sanctuary/assets/svgs/arrow_down_green.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/soul_sanctuary/assets/svgs/arrow_down_white.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/soul_sanctuary/assets/svgs/arrow_up_green.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/soul_sanctuary/assets/svgs/arrow_up_white.svg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/soul_sanctuary/components/AlertPopup.vue" beforeDir="false" afterPath="$PROJECT_DIR$/soul_sanctuary/components/AlertPopup.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/soul_sanctuary/components/FaqItem.vue" beforeDir="false" afterPath="$PROJECT_DIR$/soul_sanctuary/components/FaqItem.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/soul_sanctuary/components/NavBar.vue" beforeDir="false" afterPath="$PROJECT_DIR$/soul_sanctuary/components/NavBar.vue" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/soul_sanctuary/pages/faq/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/soul_sanctuary/pages/faq/index.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -56,30 +58,35 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "dart.analysis.tool.window.visible": "false",
-    "git-widget-placeholder": "faq__page__2",
-    "last_opened_file_path": "/Users/silvia.denti/Desktop/Hypermedia_Polimi_24-25",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
-    "show.migrate.to.gradle.popup": "false",
-    "ts.external.directory.path": "C:\\Program Files\\JetBrains\\IntelliJ IDEA 2024.3.4\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;dart.analysis.tool.window.visible&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;faq__page__2&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/silvia.denti/Desktop/Hypermedia_Polimi_24-25&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;show.migrate.to.gradle.popup&quot;: &quot;false&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;C:\\Program Files\\JetBrains\\IntelliJ IDEA 2024.3.4\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "vue.recent.templates": [
-      "Vue Composition API Component"
+  &quot;keyToStringList&quot;: {
+    &quot;vue.recent.templates&quot;: [
+      &quot;Vue Composition API Component&quot;
     ]
   }
-}]]></component>
+}</component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Utente\IdeaProjects\Hypermedia_Polimi_24-25\soul_sanctuary\assets\svgs" />
+    </key>
+  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -102,6 +109,7 @@
       <workItem from="1746512667418" duration="1729000" />
       <workItem from="1746614549614" duration="425000" />
       <workItem from="1746622128836" duration="4548000" />
+      <workItem from="1747210933945" duration="9069000" />
     </task>
     <task id="LOCAL-00001" summary="refactor index.vue and ActivityCard.vue for improved readability and consistent styling">
       <option name="closed" value="true" />
@@ -119,7 +127,15 @@
       <option name="project" value="LOCAL" />
       <updated>1746626470583</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Add AlertPopup component and integrate form submission handling in FAQ page">
+      <option name="closed" value="true" />
+      <created>1747066536782</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1747066536782</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -128,6 +144,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="refactor index.vue and ActivityCard.vue for improved readability and consistent styling" />
     <MESSAGE value="refactor ActivityCard.vue to enforce required imageUrl prop and improve background handling" />
-    <option name="LAST_COMMIT_MESSAGE" value="refactor ActivityCard.vue to enforce required imageUrl prop and improve background handling" />
+    <MESSAGE value="Add AlertPopup component and integrate form submission handling in FAQ page" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add AlertPopup component and integrate form submission handling in FAQ page" />
   </component>
 </project>
