@@ -1,4 +1,5 @@
 <template>
+  <main class="main-content">
   <header class="navbar">
     <div class="navbar-logo">
       <NuxtLink to="/" class="logo-link">
@@ -49,6 +50,7 @@
       </ul>
     </nav>
   </header>
+  </main >
 </template>
 
 <script setup>
@@ -59,10 +61,16 @@ const mobileMenuOpen = ref(false)
 
 <style scoped>
 /* Desktop styles */
+.main-content {
+  background-color: #3D5144;
+  align-items: center;
+
+}
 .navbar {
   background-color: #3D5144;
   color: #DDECEA;
   max-width: 1440px;
+  margin: 0 auto;
   padding: 0.1rem 2.5rem;
   display: flex;
   justify-content: space-between;
