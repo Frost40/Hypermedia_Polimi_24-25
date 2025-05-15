@@ -20,6 +20,32 @@
               <p class="text" v-html="formattedDescription"></p>
             </div>
         </div>
+        <div class="teachers-manager-row">
+          <div class="teachers-column">
+            <p class="subtitle">Teachers:</p>
+            <div class="teachers-cards">
+              <TeacherCard
+                v-for="teacher in teachers"
+                :key="teacher.id"
+                :id="teacher.id"
+                :name="teacher.fullname"
+                :mainAreaOfExpertise="teacher.area"
+                :imageUrl="teacher.photo"
+              />
+            </div>
+          </div>
+          <div class="manager-column">
+            <p class="subtitle">Manager:</p>
+            <div class="responsible-card">
+              <TeacherCard
+                :id="allTeachers.manager.id"
+                :name="allTeachers.manager.fullname"
+                :mainAreaOfExpertise="allTeachers.manager.area"
+                :imageUrl="allTeachers.manager.photo"
+              />
+            </div>
+          </div>
+        </div>
         <div class="schedule-section">
           <h1 class="subtitle"> Schedule </h1>
           <CourseScheduleTable :schedule="activity.schedule" />
@@ -30,6 +56,7 @@
 <script setup>
 
   import CourseScheduleTable from '@/components/CourseScheduleTable.vue'
+  import TeacherCard from "~/components/TeacherCard.vue";
 
   const route = useRoute()
   const id = route.params.id;
@@ -48,6 +75,10 @@
   const currentIndex = filteredActivities.findIndex(a => String(a.id) === String(id))
   const prevId = currentIndex > 0 ? filteredActivities[currentIndex - 1].id : null
   const nextId = currentIndex < filteredActivities.length - 1 ? filteredActivities[currentIndex + 1].id : null
+
+  const { data: teachersData } = await useFetch('/api/activities/getTeachers/' + id)
+  const allTeachers = teachersData.value
+  const teachers = allTeachers.teachers;
 
   const formattedDescription = computed(() =>
   activity.description.replace(/\n/g, '<br>')
@@ -132,6 +163,61 @@
 .arrow-link:hover .arrows {
   transform: scale(1.15);
 }
+
+.schedule-section {
+  padding-bottom: 5rem; 
+}
+
+.teachers-manager-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 5rem;
+  margin: 2rem 2.5rem;
+  flex-wrap: wrap;
+}
+
+.teachers-column,
+.manager-column {
+  flex: 1;
+}
+
+.teachers-cards {
+  display: flex;
+  gap: 1rem;     
+  padding-bottom: 0.5rem;
+  box-sizing: border-box;
+}
+
+.responsible-card {
+  display: flex;
+  justify-content: flex-start;
+  gap: 1rem;
+  box-sizing: border-box;
+}
+
+@media (max-width: 768px) {
+  .teachers-manager-row {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .teachers-column,
+  .manager-column {
+    width: 100%;
+  }
+
+  .teachers-cards {
+    flex-wrap: wrap;     /* wrap per andare a capo */
+    justify-content: center;
+    overflow-x: visible; /* niente scroll orizzontale */
+  }
+
+  .responsible-card {
+    justify-content: center;
+  }
+}
+
 
 @media (max-width: 768px) {
   .photo_and_description {
