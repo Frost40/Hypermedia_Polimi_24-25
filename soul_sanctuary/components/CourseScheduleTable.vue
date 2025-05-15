@@ -85,6 +85,7 @@
     padding: 8px;
     vertical-align: top;
     text-align: left;
+    word-break: break-word;
     }
 
     .schedule-table{
