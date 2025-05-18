@@ -8,7 +8,7 @@ export default defineNuxtConfig({
   modules: [
     '@nuxtjs/google-fonts',
   ],
-  
+
   googleFonts: {
     families: {
       Oregano: true,
@@ -29,14 +29,14 @@ export default defineNuxtConfig({
         { name: 'description', content: 'Soul Sanctuary - A place for pet adoption and animal care services' },
         { name: 'keywords', content: 'spiritual wellness, meditation, mind-body connection, yoga, personal growth, wellness center, mindfulness, holistic healing, yoga practice, spiritual retreat, inner peace, wellness journey, yoga classes, spiritual guidance, lessons with teachers, self-discovery, stress relief, mental wellness, spiritual community' },
         { name: 'author', content: 'I Maestri dello Yoga' },
-        
+
         // Open Graph / Facebook
         { property: 'og:type', content: 'website' },
         { property: 'og:url', content: 'https://soulsanctuary.example.com/' },  // TODO: Update with actual URL
         { property: 'og:title', content: 'Soul Sanctuary' },
         { property: 'og:description', content: 'Find your perfect companion at Soul Sanctuary' },
         { property: 'og:image', content: '/assets/svgs/logo.svg' },
-        
+
         // Twitter
         { name: 'twitter:card', content: 'summary_large_image' },
         { name: 'twitter:title', content: 'Soul Sanctuary' },
@@ -48,5 +48,12 @@ export default defineNuxtConfig({
         { rel: 'canonical', href: 'https://soulsanctuary.example.com' } // TODO: Update with actual URL
       ]
     }
+  },
+
+  router: {
+    options: {
+      linkActiveClass: 'router-link-active',
+      linkExactActiveClass: 'router-link-exact-active',
+    }
   }
-})
+});
