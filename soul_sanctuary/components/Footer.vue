@@ -24,6 +24,7 @@
     padding: 1rem;
     background-color: #3D5144;
     text-align: center;
+    word-break: break-word;
   }
 
   .social_logo {
