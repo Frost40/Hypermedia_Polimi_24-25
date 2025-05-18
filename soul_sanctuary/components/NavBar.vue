@@ -22,8 +22,7 @@
             to="/about"
             :data-text="'About Us'"
             @click="mobileMenuOpen = false"
-            active-class="router-link-active"
-            :exact-active-class="undefined">
+            active-class="router-link-active">
             About Us
           </NuxtLink>
         </li>
@@ -32,8 +31,8 @@
             to="/teachers"
             :data-text="'Teachers'"
             @click="mobileMenuOpen = false"
-            :class="{ 'router-link-active'
-            :isRouteActive('/teachers') }">
+            :class="teachersClasses">
+
             Teachers
           </NuxtLink>
         </li>
@@ -42,8 +41,7 @@
             to="/activities"
             :data-text="'Activities'"
             @click="mobileMenuOpen = false"
-            :class="{ 'router-link-active'
-            :isRouteActive('/activities') }">
+            :class="activitiesClasses">
             Activities
           </NuxtLink>
         </li>
@@ -52,8 +50,8 @@
             to="/highlights"
             :data-text="'Highlights'"
             @click="mobileMenuOpen = false"
-            :class="{ 'router-link-active'
-            :isRouteActive('/highlights') }">
+            :class="highlightsClasses">
+
             Highlights
           </NuxtLink>
         </li>
@@ -62,8 +60,7 @@
             to="/contact_us"
             :data-text="'Contact Us'"
             @click="mobileMenuOpen = false"
-            active-class="router-link-active"
-            :exact-active-class="undefined">
+            active-class="router-link-active">
             Contact Us
           </NuxtLink>
         </li>
@@ -72,8 +69,7 @@
             to="/faq"
             :data-text="'FAQ'"
             @click="mobileMenuOpen = false"
-            active-class="router-link-active"
-            :exact-active-class="undefined">
+            active-class="router-link-active">
             FAQ
           </NuxtLink>
         </li>
@@ -84,18 +80,35 @@
 </template>
 
 <script setup>
-import { ref, computed } from 'vue'
+import { ref } from 'vue'
 import { useRoute } from 'vue-router'
 
 const route = useRoute()
 const mobileMenuOpen = ref(false)
 
-const isRouteActive = (path) => {
-  if (route.path === path || route.path.startsWith(path + '/')) {
-    return true
-  }
-  return false
-}
+// Flag per tracciare la provenienza
+const isFromHighlights = ref(route.query.from === 'fromHighlights')
+
+// Osserva i cambiamenti del percorso
+watch(() => route.path, () => {
+  // Aggiorna il flag in base al nuovo percorso e parametri di query
+  isFromHighlights.value = route.query.from === 'fromHighlights'
+}, { immediate: true })
+
+// Calculated classes for each link type
+const highlightsClasses = computed(() => ({
+  'router-link-active': route.path.startsWith('/highlights') ||
+      (route.path.startsWith('/activities/') && isFromHighlights.value)
+}))
+
+const activitiesClasses = computed(() => ({
+  'router-link-active': route.path.startsWith('/activities') && !isFromHighlights.value
+}))
+const teachersClasses = computed(() => ({
+  'router-link-active': route.path.startsWith('/teachers')
+}))
+
+
 </script>
 
 <style scoped>
