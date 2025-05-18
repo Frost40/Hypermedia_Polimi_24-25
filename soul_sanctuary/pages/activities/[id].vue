@@ -1,12 +1,16 @@
 <template>
+    <!-- Head section for setting title, meta tags, and canonical link -->
     <Head>
         <Title>{{ activity.name }} - Soul Sanctuary</Title>
         <meta nrel="robots" content="index, follow">
         <link rel="canonical" href="https://soulsanctuary.example.com/activities/[id]">
     </Head>
+    <!-- Main container with background styling -->
     <div :style="backgroundStyle">
       <main class="main" role="main" aria-labelledby="activity-title">
+        <!-- Activity title -->
         <h1 id="activity-title" class="activity-title title">{{ activity.name }}</h1>
+        <!-- Navigation arrows for previous and next activities -->
         <div class="navigation">
           <NuxtLink v-if="prevId" :to="{ path: `/activities/${prevId}`, query: { from } }" class="arrow-link left">
             <img src="../../assets/svgs/previous.svg" class="arrows">
@@ -15,6 +19,7 @@
             <img src="../../assets/svgs/next.svg" class="arrows">
           </NuxtLink>
         </div>
+        <!-- Photo and description section -->
         <div class="photo_and_description">
             <div class="photo">
                 <img :src="activity.imageUrl" alt="activity image">
@@ -23,6 +28,7 @@
               <p class="text" v-html="formattedDescription"></p>
             </div>
         </div>
+        <!-- Teachers and manager section -->
         <div class="teachers-manager-row">
           <div class="teachers-column">
             <p class="subtitle" style="margin: 0;">Teachers:</p>
@@ -49,6 +55,7 @@
             </div>
           </div>
         </div>
+        <!-- Schedule section -->
         <div class="schedule-section">
           <h1 class="subtitle"> Schedule </h1>
           <CourseScheduleTable :schedule="activity.schedule" />
@@ -59,37 +66,48 @@
 
 <script setup>
 
+  // Importing necessary components
   import CourseScheduleTable from '@/components/CourseScheduleTable.vue'
   import TeacherCard from "~/components/TeacherCard.vue";
 
+  // Getting the route and id
   const route = useRoute()
   const id = route.params.id;
+  // Getting the 'from' query parameter or defaulting to 'all'
   const from = route.query.from || 'all';
 
+  // Fetching activity data based on the id
   const { data: activityData } = await useFetch('/api/activities/' + id)
   const activity = activityData.value[0]
 
+  // Fetching all activities data for guided tour
   const { data: allActivitiesData } = await useFetch('/api/activities/guidedTour')
   const allActivities = allActivitiesData.value
 
+  // Filtering activities based on the 'from' parameter
   const filteredActivities = from === 'fromHighlights'
     ? allActivities.filter(a => a.highlighted)
     : allActivities
 
+  // Finding the index of the current activity in the filtered activities
   const currentIndex = filteredActivities.findIndex(a => String(a.id) === String(id))
+  // Getting the previous and next activity ids
   const prevId = currentIndex > 0 ? filteredActivities[currentIndex - 1].id : null
   const nextId = currentIndex < filteredActivities.length - 1 ? filteredActivities[currentIndex + 1].id : null
 
+  // Fetching teachers data for the activity
   const { data: teachersData } = await useFetch('/api/activities/getTeachers/' + id)
   const allTeachers = teachersData.value
   const teachers = allTeachers.teachers;
 
+  // Formatting the description by replacing newlines with <br> tags
   const formattedDescription = computed(() =>
   activity.description.replace(/\n/g, '<br>')
   );
 
   import wallpaper from '@/assets/png/wallpaper.png'
 
+  // Defining background style
   const backgroundStyle = {
     backgroundImage: `linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)), url(${wallpaper})`,
     backgroundSize: 'cover',
@@ -99,7 +117,7 @@
     minHeight: '100vh',
   }
 
-  //Search Engine Optimization
+  // Search Engine Optimization variables
   const page_description = ref('This page contains all the details of ' + activity.name)
   const keywords = ref('Activity, Schedule, Description, ' + activity.name)
   const og_title = ref('Soul Sanctuary - Activities - ' + activity.name)
@@ -107,6 +125,7 @@
   const twitter_title = ref('Soul Sanctuary - Activities - ' + activity.name)
   const twitter_description = ref('Discover our activity, find a brief description of the course, all the teachers, managers and also the schedule')
 
+  // Setting head meta tags for SEO
   useHead({
     meta: [
       { name: 'description', content: page_description },

@@ -1,17 +1,27 @@
 <template>
+  <!-- Head section for SEO and metadata -->
   <Head>
+    <!-- Page title -->
     <Title>Soul Sanctuary - Contact Us</Title>
+    <!-- Meta robots tag for search engine crawling -->
     <meta nrel="robots" content="index, follow">
+    <!-- Canonical link to avoid duplicate content issues -->
     <link rel="canonical" href="https://soulsanctuary.example.com/contact_us">
   </Head>
 
+  <!-- Main content container with background styling -->
   <div :style="backgroundStyle">
     <main class="main" role="main">
+      <!-- Contact Us container -->
       <div class="ContactUs_container">
+
+        <!-- Left side of the contact information -->
         <div class="contact_sx">
           <p class="map_text subtitle">Come find us at:</p>
           <p class="address text">Via delle Rose, 3,  20147 Milan (MI)</p>
+          <!-- Google Maps embed -->
           <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2798.9924146157887!2d9.132024075630085!3d45.44980897107375!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4786c3ccee3628bf%3A0xb5aa44c4f52bf2e5!2sVia%20delle%20Rose%2C%203%2C%2020147%20Milano%20MI!5e0!3m2!1sit!2sit!4v1746285465739!5m2!1sit!2sit" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" class="map_embed"></iframe>        
+          <!-- Opening hours section -->
           <div class="opening_hours">
             <p class="subtitle">Opening Hours:</p>
             <div class="weekday_hours">
@@ -21,7 +31,9 @@
           </div>
         </div>
 
+        <!-- Right side of the contact information -->
         <div class="contact_dx">
+          <!-- Contact details -->
           <div class="contacts">
             <div>
               <p class="subtitle">Call us: </p>
@@ -34,6 +46,7 @@
             </div>
           </div>
 
+          <!-- Social media links -->
           <div>
             <p class="subtitle">Follow us on:</p>
             <a href="https://www.instagram.com" class="social_logo" target="_blank" aria-label="Link to Instagram"><img src="/assets/svgs/instagram.svg" alt="Instagram"></a>
@@ -52,7 +65,7 @@
   
 <script setup>
 
-  //Search Engine Optimization
+  // Search Engine Optimization variables
   const description = ref('This page contains contact information, such as the center address with opening hours, e-mail, telephone number and social media links ')
   const keywords = ref('Contact us, Center, Position, Telephone, Mail, Opening, Social')
   const og_title = ref('Soul Sanctuary - Contact Us')
@@ -60,6 +73,7 @@
   const twitter_title = ref('Soul Sanctuary - Contact Us' )
   const twitter_description = ref('Discover our contacts')
 
+  // useHead composable for setting meta information
   useHead({
     meta: [
       { name: 'description', content: description },
@@ -73,8 +87,10 @@
     ]
   })
 
+  // Import wallpaper image
   import wallpaper from '@/assets/png/wallpaper.png'
 
+  // Background style definition
   const backgroundStyle = {
     backgroundImage: `linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)), url(${wallpaper})`,
     backgroundSize: 'cover',
@@ -84,7 +100,6 @@
     minHeight: '100vh',
   }
 
-//TO DO Search Engine Optimization 
 </script>
   
 <style scoped>
