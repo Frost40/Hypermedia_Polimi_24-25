@@ -49,11 +49,4 @@ export default defineNuxtConfig({
       ]
     }
   },
-
-  router: {
-    options: {
-      linkActiveClass: 'router-link-active',
-      linkExactActiveClass: 'router-link-exact-active',
-    }
-  }
 });
