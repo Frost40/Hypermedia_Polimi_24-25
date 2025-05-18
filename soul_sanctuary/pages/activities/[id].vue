@@ -127,6 +127,11 @@
 .main{
     max-width: 1440px;
     margin: 0 auto;
+    padding-top: 2rem;
+}
+
+.main > h1 {
+  margin-top: 0;
 }
     
 .photo_and_description {
@@ -244,9 +249,9 @@
   }
 
   .teachers-cards {
-    flex-wrap: wrap;     /* wrap per andare a capo */
+    flex-wrap: wrap;     
     justify-content: center;
-    overflow-x: visible; /* niente scroll orizzontale */
+    overflow-x: visible; 
   }
 
   .responsible-card {
