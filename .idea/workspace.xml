@@ -4,8 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0b8a09fc-be63-4202-8a90-8175cd7c1f6e" name="Changes" comment="refactor ActivityCard.vue to enforce required imageUrl prop and improve background handling">
+    <list default="true" id="0b8a09fc-be63-4202-8a90-8175cd7c1f6e" name="Changes" comment="Update FAQ page title for brevity and clarity">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/soul_sanctuary/components/NavBar.vue" beforeDir="false" afterPath="$PROJECT_DIR$/soul_sanctuary/components/NavBar.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/soul_sanctuary/nuxt.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/soul_sanctuary/nuxt.config.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -66,7 +68,7 @@
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
     &quot;show.migrate.to.gradle.popup&quot;: &quot;false&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;/Applications/WebStorm.app/Contents/plugins/javascript-plugin/jsLanguageServicesImpl/external&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;C:\\Program Files\\JetBrains\\IntelliJ IDEA 2024.3.4\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
   &quot;keyToStringList&quot;: {
@@ -97,6 +99,9 @@
       <workItem from="1746512667418" duration="1729000" />
       <workItem from="1746614549614" duration="425000" />
       <workItem from="1746622128836" duration="4548000" />
+      <workItem from="1747231250633" duration="1786000" />
+      <workItem from="1747324490162" duration="36000" />
+      <workItem from="1747558269219" duration="2213000" />
     </task>
     <task id="LOCAL-00001" summary="refactor index.vue and ActivityCard.vue for improved readability and consistent styling">
       <option name="closed" value="true" />
@@ -114,7 +119,15 @@
       <option name="project" value="LOCAL" />
       <updated>1746626470583</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Update FAQ page title for brevity and clarity">
+      <option name="closed" value="true" />
+      <created>1747231495453</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1747231495453</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -123,6 +136,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="refactor index.vue and ActivityCard.vue for improved readability and consistent styling" />
     <MESSAGE value="refactor ActivityCard.vue to enforce required imageUrl prop and improve background handling" />
-    <option name="LAST_COMMIT_MESSAGE" value="refactor ActivityCard.vue to enforce required imageUrl prop and improve background handling" />
+    <MESSAGE value="Update FAQ page title for brevity and clarity" />
+    <option name="LAST_COMMIT_MESSAGE" value="Update FAQ page title for brevity and clarity" />
   </component>
 </project>

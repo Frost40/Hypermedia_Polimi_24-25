@@ -18,32 +18,62 @@
     <nav class="navbar-links" :class="{ 'mobile-open': mobileMenuOpen }">
       <ul>
         <li>
-          <NuxtLink to="/about" :data-text="'About Us'" @click="mobileMenuOpen = false">
+          <NuxtLink
+            to="/about"
+            :data-text="'About Us'"
+            @click="mobileMenuOpen = false"
+            active-class="router-link-active"
+            :exact-active-class="undefined">
             About Us
           </NuxtLink>
         </li>
         <li>
-          <NuxtLink to="/teachers" :data-text="'Teachers'" @click="mobileMenuOpen = false">
+          <NuxtLink
+            to="/teachers"
+            :data-text="'Teachers'"
+            @click="mobileMenuOpen = false"
+            :class="{ 'router-link-active'
+            :isRouteActive('/teachers') }">
             Teachers
           </NuxtLink>
         </li>
         <li>
-          <NuxtLink to="/activities" :data-text="'Activities'" @click="mobileMenuOpen = false">
+          <NuxtLink
+            to="/activities"
+            :data-text="'Activities'"
+            @click="mobileMenuOpen = false"
+            :class="{ 'router-link-active'
+            :isRouteActive('/activities') }">
             Activities
           </NuxtLink>
         </li>
         <li>
-          <NuxtLink to="/highlights" :data-text="'Highlights'" @click="mobileMenuOpen = false">
+          <NuxtLink
+            to="/highlights"
+            :data-text="'Highlights'"
+            @click="mobileMenuOpen = false"
+            :class="{ 'router-link-active'
+            :isRouteActive('/highlights') }">
             Highlights
           </NuxtLink>
         </li>
         <li>
-          <NuxtLink to="/contact_us" :data-text="'Contacts Us'" @click="mobileMenuOpen = false">
-            Contacts Us
+          <NuxtLink
+            to="/contact_us"
+            :data-text="'Contact Us'"
+            @click="mobileMenuOpen = false"
+            active-class="router-link-active"
+            :exact-active-class="undefined">
+            Contact Us
           </NuxtLink>
         </li>
         <li>
-          <NuxtLink to="/faq" :data-text="'FAQ'" @click="mobileMenuOpen = false">
+          <NuxtLink
+            to="/faq"
+            :data-text="'FAQ'"
+            @click="mobileMenuOpen = false"
+            active-class="router-link-active"
+            :exact-active-class="undefined">
             FAQ
           </NuxtLink>
         </li>
@@ -54,9 +84,18 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
+import { useRoute } from 'vue-router'
 
+const route = useRoute()
 const mobileMenuOpen = ref(false)
+
+const isRouteActive = (path) => {
+  if (route.path === path || route.path.startsWith(path + '/')) {
+    return true
+  }
+  return false
+}
 </script>
 
 <style scoped>
@@ -129,7 +168,7 @@ const mobileMenuOpen = ref(false)
   color: #DDECEA;
 }
 
-.navbar-links a.router-link-exact-active {
+.navbar-links a.router-link-active {
   font-weight: bold;
   background-color: #DDECEA;
   color: #3D5144;
