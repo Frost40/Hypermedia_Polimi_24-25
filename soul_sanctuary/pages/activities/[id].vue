@@ -12,11 +12,11 @@
         <h1 id="activity-title" class="activity-title title">{{ activity.name }}</h1>
         <!-- Navigation arrows for previous and next activities -->
         <div class="navigation">
-          <NuxtLink v-if="prevId" :to="{ path: `/activities/${prevId}`, query: { from } }" class="arrow-link left">
-            <img src="../../assets/svgs/previous.svg" class="arrows">
+          <NuxtLink v-if="prevId" :to="{ path: `/activities/${prevId}`, query: { from } }" class="arrow-link left" aria-label="Go to the previous activity">
+            <img src="../../assets/svgs/previous.svg" class="arrows" alt="" aria-hidden="true">
           </NuxtLink>
-          <NuxtLink v-if="nextId" :to="{ path: `/activities/${nextId}`, query: { from } }" class="arrow-link right">
-            <img src="../../assets/svgs/next.svg" class="arrows">
+          <NuxtLink v-if="nextId" :to="{ path: `/activities/${nextId}`, query: { from } }" class="arrow-link right" aria-label="Go to the next activity">
+            <img src="../../assets/svgs/next.svg" class="arrows" alt="" aria-hidden="true">
           </NuxtLink>
         </div>
         <!-- Photo and description section -->

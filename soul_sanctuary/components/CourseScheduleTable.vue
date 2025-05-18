@@ -4,10 +4,11 @@
     <!-- Desktop version of the table -->
     <div class="desktop">
       <table>
+        <caption class="sr-only">Weekly class schedule</caption>
         <thead>
           <tr>
             <!-- Table header displaying the day of the week -->
-            <th v-for="(entry, index) in schedule" :key="index" class="text_clear">{{ entry.day }}</th>
+            <th v-for="(entry, index) in schedule" :key="index" class="text_clear" scope="col">{{ entry.day }}</th>
           </tr>
         </thead>
         <tbody>
@@ -26,11 +27,12 @@
     <!-- Mobile version of the table -->
     <div class="mobile">
       <table>
+        <caption class="sr-only">Weekly class schedule</caption>
         <thead>
           <tr>
             <!-- Table header for the mobile version -->
-            <th class="text_clear">Day</th>
-            <th class="text_clear">Details</th>
+            <th class="text_clear" scope="col">Day</th>
+            <th class="text_clear" scope="col">Details</th>
           </tr>
         </thead>
         <tbody>
@@ -115,4 +117,16 @@ td {
 .info {
   background-color: #BCC7C2;
 }
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
 </style>
