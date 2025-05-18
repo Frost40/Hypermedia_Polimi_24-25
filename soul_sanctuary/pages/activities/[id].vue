@@ -1,9 +1,12 @@
 <template>
     <Head>
         <Title>{{ activity.name }} - Soul Sanctuary</Title>
+        <meta nrel="robots" content="index, follow">
+        <link rel="canonical" href="https://soulsanctuary.example.com/activities/[id]">
     </Head>
-    <main class="main">
-        <h1 class="activity-title title">{{ activity.name }}</h1>
+    <div :style="backgroundStyle">
+      <main class="main" role="main" aria-labelledby="activity-title">
+        <h1 id="activity-title" class="activity-title title">{{ activity.name }}</h1>
         <div class="navigation">
           <NuxtLink v-if="prevId" :to="{ path: `/activities/${prevId}`, query: { from } }" class="arrow-link left">
             <img src="../../assets/svgs/previous.svg" class="arrows">
@@ -22,7 +25,7 @@
         </div>
         <div class="teachers-manager-row">
           <div class="teachers-column">
-            <p class="subtitle">Teachers:</p>
+            <p class="subtitle" style="margin: 0;">Teachers:</p>
             <div class="teachers-cards">
               <TeacherCard
                 v-for="teacher in teachers"
@@ -35,7 +38,7 @@
             </div>
           </div>
           <div class="manager-column">
-            <p class="subtitle">Manager:</p>
+            <p class="subtitle" style="margin: 0;">Manager:</p>
             <div class="responsible-card">
               <TeacherCard
                 :id="allTeachers.manager.id"
@@ -50,7 +53,8 @@
           <h1 class="subtitle"> Schedule </h1>
           <CourseScheduleTable :schedule="activity.schedule" />
         </div>
-    </main>
+      </main>
+    </div>
 </template>
 
 <script setup>
@@ -82,7 +86,39 @@
 
   const formattedDescription = computed(() =>
   activity.description.replace(/\n/g, '<br>')
-);
+  );
+
+  import wallpaper from '@/assets/png/wallpaper.png'
+
+  const backgroundStyle = {
+    backgroundImage: `linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)), url(${wallpaper})`,
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+    backgroundAttachment: 'fixed',
+    backgroundRepeat: 'no-repeat',
+    minHeight: '100vh',
+  }
+
+  //Search Engine Optimization
+  const page_description = ref('This page contains all the details of ' + activity.name)
+  const keywords = ref('Activity, Schedule, Description, ' + activity.name)
+  const og_title = ref('Soul Sanctuary - Activities - ' + activity.name)
+  const og_description = ref('Discover our activity, find a brief description of the course, all the teachers, managers and also the schedule' )
+  const twitter_title = ref('Soul Sanctuary - Activities - ' + activity.name)
+  const twitter_description = ref('Discover our activity, find a brief description of the course, all the teachers, managers and also the schedule')
+
+  useHead({
+    meta: [
+      { name: 'description', content: page_description },
+      { name: 'keywords', content: keywords },
+      // Open Graph tags for better social sharing specific to this page
+      { property: 'og:title', content:  og_title},
+      { property: 'og:description', content: og_description},
+      // Twitter card tags for better sharing on Twitter
+      { name: 'twitter:title', content: twitter_title},
+      { name: 'twitter:description', content: twitter_description},
+    ]
+  })
 
 </script>
 
@@ -218,6 +254,29 @@
   }
 }
 
+@media (max-width: 1200px) and (min-width: 769px) {
+  .teachers-manager-row {
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+  }
+
+  .teachers-column,
+  .manager-column {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    width: 100%;
+  }
+
+  .teachers-cards,
+  .responsible-card {
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+}
 
 @media (max-width: 768px) {
   .photo_and_description {
