@@ -4,10 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0b8a09fc-be63-4202-8a90-8175cd7c1f6e" name="Changes" comment="Update FAQ page title for brevity and clarity">
+    <list default="true" id="0b8a09fc-be63-4202-8a90-8175cd7c1f6e" name="Changes" comment="Refactor NavBar component: enhance active link handling and improve styling">
+      <change afterPath="$PROJECT_DIR$/soul_sanctuary/assets/png/wallpaper_2.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/soul_sanctuary/components/NavBar.vue" beforeDir="false" afterPath="$PROJECT_DIR$/soul_sanctuary/components/NavBar.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/soul_sanctuary/nuxt.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/soul_sanctuary/nuxt.config.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/soul_sanctuary/app.vue" beforeDir="false" afterPath="$PROJECT_DIR$/soul_sanctuary/app.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/soul_sanctuary/components/AlertPopup.vue" beforeDir="false" afterPath="$PROJECT_DIR$/soul_sanctuary/components/AlertPopup.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/soul_sanctuary/layouts/default.vue" beforeDir="false" afterPath="$PROJECT_DIR$/soul_sanctuary/layouts/default.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/soul_sanctuary/pages/activities/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/soul_sanctuary/pages/activities/index.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/soul_sanctuary/pages/faq/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/soul_sanctuary/pages/faq/index.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/soul_sanctuary/pages/highlights/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/soul_sanctuary/pages/highlights/index.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -59,7 +64,7 @@
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
     &quot;dart.analysis.tool.window.visible&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;small__mods&quot;,
     &quot;last_opened_file_path&quot;: &quot;/Users/silvia.denti/Desktop/Hypermedia_Polimi_24-25&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
@@ -77,11 +82,16 @@
     ]
   }
 }</component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Utente\IdeaProjects\Hypermedia_Polimi_24-25\soul_sanctuary\assets\png" />
+    </key>
+  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-9823dce3aa75-fbdcb00ec9e3-intellij.indexing.shared.core-IU-251.23774.435" />
-        <option value="bundled-js-predefined-d6986cc7102b-f27c65a3e318-JavaScript-IU-251.23774.435" />
+        <option value="bundled-jdk-9823dce3aa75-fbdcb00ec9e3-intellij.indexing.shared.core-IU-251.25410.129" />
+        <option value="bundled-js-predefined-d6986cc7102b-6a121458b545-JavaScript-IU-251.25410.129" />
       </set>
     </attachedChunks>
   </component>
@@ -101,7 +111,9 @@
       <workItem from="1746622128836" duration="4548000" />
       <workItem from="1747231250633" duration="1786000" />
       <workItem from="1747324490162" duration="36000" />
-      <workItem from="1747558269219" duration="2213000" />
+      <workItem from="1747558269219" duration="2418000" />
+      <workItem from="1747570596275" duration="5809000" />
+      <workItem from="1747649293302" duration="3924000" />
     </task>
     <task id="LOCAL-00001" summary="refactor index.vue and ActivityCard.vue for improved readability and consistent styling">
       <option name="closed" value="true" />
@@ -127,7 +139,23 @@
       <option name="project" value="LOCAL" />
       <updated>1747231495453</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Refactor NavBar component: improve active link handling and enhance accessibility">
+      <option name="closed" value="true" />
+      <created>1747560587815</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1747560587815</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Refactor NavBar component: enhance active link handling and improve styling">
+      <option name="closed" value="true" />
+      <created>1747582877155</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1747582877155</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -137,6 +165,8 @@
     <MESSAGE value="refactor index.vue and ActivityCard.vue for improved readability and consistent styling" />
     <MESSAGE value="refactor ActivityCard.vue to enforce required imageUrl prop and improve background handling" />
     <MESSAGE value="Update FAQ page title for brevity and clarity" />
-    <option name="LAST_COMMIT_MESSAGE" value="Update FAQ page title for brevity and clarity" />
+    <MESSAGE value="Refactor NavBar component: improve active link handling and enhance accessibility" />
+    <MESSAGE value="Refactor NavBar component: enhance active link handling and improve styling" />
+    <option name="LAST_COMMIT_MESSAGE" value="Refactor NavBar component: enhance active link handling and improve styling" />
   </component>
 </project>

@@ -4,17 +4,18 @@ import FaqItem from '~/components/FaqItem.vue';
 import AlertPopup from '~/components/AlertPopup.vue';
 import arrowDownGreen from 'assets/svgs/arrow_down_green.svg'
 import arrowUpGreen from 'assets/svgs/arrow_up_green.svg'
+import wallpaper from "assets/png/wallpaper.png";
 
 
 // Example FAQ data - you'll replace this with your actual questions and answers
 const faqItems = ref([
-  { question: 'What classes do you offer?', answer: 'We offer a variety of yoga, meditation, and wellness classes...' },
-  { question: 'How much do classes cost?', answer: 'You can find our pricing details on the Pricing page...' },
-  { question: 'What is your cancellation policy?', answer: 'Please refer to our Policies page for detailed cancellation information...' },
-  { question: 'Do I need to bring my own mat?', answer: 'While we have mats available, we recommend bringing your own for comfort and hygiene...' },
-  { question: 'How do I book a class?', answer: 'You can book classes directly through our website calendar...' },
-  { question: 'Are classes suitable for beginners?', answer: 'Yes, we have classes suitable for all levels, including complete beginners...' },
-  { question: 'What should I wear?', answer: 'Wear comfortable clothing that allows for easy movement...' },
+  { question: 'I\'ve never done yoga before. Can I join your classes?', answer: 'Absolutely yes! Many of our classes, such as Hatha Yoga, are perfect for beginners. We teach the basics clearly and safely, allowing you to approach yoga with confidence and find your own rhythm. We are here to guide you step by step on your journey!' },
+  { question: 'What should I wear and what should I bring to class?', answer: 'We recommend wearing comfortable clothing that allows you to move freely. Regarding equipment, it\'s usually enough to bring a yoga mat. If other specific materials are needed for a class (like cushions or blocks), we will indicate it in the course description or let you know in advance. Also, bring a water bottle to stay hydrated!' },
+  { question: 'What are the benefits of regular yoga and meditation practice?', answer: 'Consistent practice of yoga and meditation offers numerous benefits, both physical and mental. You can expect improved flexibility, strength, and balance, as well as reduced stress and anxiety. Our Guided Meditations for Stress, Anxiety & Depression and Yoga & Mindful Eating sessions are specifically designed to help you find greater inner balance and awareness in your daily life.' },
+  { question: 'How can I choose the right type of yoga for me?', answer: 'It depends on your goals and energy levels! Hatha Yoga is ideal for starting out and building a strong foundation. Vinyasa Yoga is more dynamic and fluid. If you are expecting, Prenatal Yoga is specifically designed for you. If you have doubts, feel free to contact us! We can recommend the best course based on your needs or suggest trying different classes to find the one you love most.' },
+  { question: 'Do you participate in outdoor activities or in specific locations?', answer: 'Yes! In addition to traditional classes, we offer unique experiences in contact with nature, such as Walking Meditation in Nature and Yoga in the Park. These activities are a great opportunity to combine the benefits of the practice with the regenerating energy of the outdoor environment.' },
+  { question: 'Do you offer specific classes or courses, such as those on Chakras or mindful eating?', answer: 'Absolutely yes! We have dedicated courses on specific topics for those who wish to delve deeper. "Awaken Your Chakras" is designed to harmonize energy centers, while "Yoga & Mindful Eating" guides you to develop a more conscious and peaceful relationship with food.' },
+  { question: 'How long do classes usually last?', answer: 'The duration of classes may vary slightly depending on the type of activity, but generally, a class lasts between 60 and 90 minutes. You will find the exact duration indicated in the description of each individual course or event on our website.' },
 ]);
 
 // All refs and reactive variables
@@ -122,6 +123,14 @@ onUnmounted(() => {
   window.removeEventListener('resize', handleResize);
 });
 
+const backgroundStyle = {
+  backgroundImage: `linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)), url(${wallpaper})`,
+  backgroundSize: 'auto',
+  backgroundPosition: 'top center',
+  backgroundAttachment: 'fixed',
+  backgroundRepeat: 'repeat',
+}
+
 // Computed properties
 const dropdownPositionStyle = computed(() => {
   if (!dropdownOpen.value || !dropdownRef.value) return {};
@@ -192,10 +201,10 @@ useHead({
       :message="popupMessage"
       :errors="popupErrors"
       :show="showPopup"
+      :aria-live="'assertive'"
       @close="closePopup"
-      aria-live="assertive"
   />
-
+  <div :style="backgroundStyle">
   <main class="faq-page" role="main" aria-labelledby="page-title">
     <div class="page-header" aria-labelledby="page-title">
       <h1 id="page-title" class="page-title title_clear">FAQ</h1>
@@ -286,6 +295,7 @@ useHead({
       </section>
     </div>
   </main>
+  </div>
 </template>
 
 <style scoped>
