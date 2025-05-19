@@ -3,7 +3,7 @@
     <Title>{{ teacherData.fullname }} - Soul Sanctuary</Title>
   </Head>
   <div :style="backgroundStyle" class="background">
-    <main class="main">
+    <main class="main background" :style="backgroundStyle">
       <!-- Navigazione frecce -->
       <div class="navigation">
         <NuxtLink v-if="prevId" :to="{ path: `/teachers/${prevId}`, query: { from } }" class="arrow-link left">
