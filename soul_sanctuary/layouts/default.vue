@@ -1,6 +1,6 @@
 <template>
     <div>
-      <NavBar />
+      <NavBar></NavBar>
       <main class="main-content">
         <slot></slot>
       </main>
@@ -15,7 +15,7 @@
   
 <style scoped>
   .main-content {
-    padding: 0px;
-    margin: 0px;
+    padding: 0;
+    margin: 0;
   }
 </style>

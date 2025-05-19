@@ -1,8 +1,17 @@
 <script setup>
 import ActivityCard from "~/components/ActivityCard.vue";
+import wallpaper from "assets/png/wallpaper.png";
 
 // API call to fetch all highlights
 const { data: highlights } = await useFetch("/api/highlights");
+
+const backgroundStyle = {
+  backgroundImage: `linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)), url(${wallpaper})`,
+  backgroundSize: 'auto',
+  backgroundPosition: 'top center',
+  backgroundAttachment: 'fixed',
+  backgroundRepeat: 'repeat',
+}
 
 // Define SEO meta data
 // This overrides global SEO with page-specific content for better search relevance
@@ -32,6 +41,7 @@ useHead({
   
   <!-- Added role="main" for screen readers to identify main content -->
   <!-- Added aria-labelledby to associate this section with its heading -->
+  <div :style="backgroundStyle">
   <main class="activities-page" role="main" aria-labelledby="highlights-title">
     <div class="page-header">
       <!-- Added ID to connect with aria-labelledby -->
@@ -62,11 +72,13 @@ useHead({
       </p>
     </section>
   </main>
+  </div>
 </template>
 
 <style scoped>
 .activities-page {
   max-width: 1440px;
+  padding-top: 2.5rem;
   margin: 0 auto;
 }
 
@@ -76,7 +88,7 @@ useHead({
 }
 
 .page-title {
-  margin-bottom: 1rem;
+  margin: 0 0 1rem 0;
   padding-bottom: 0.5rem;
   padding-left: 2.5rem;
   display: flex;

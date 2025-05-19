@@ -16,6 +16,10 @@ defineProps({
   show: {
     type: Boolean,
     required: true
+  },
+  ariaLive: {
+    type: String,
+    default: 'assertive'
   }
 });
 
