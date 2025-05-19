@@ -1,8 +1,17 @@
 <script setup>
   import ActivityCard from "~/components/ActivityCard.vue";
+  import wallpaper from "assets/png/wallpaper.png";
 
   // API call to fetch all activities
   const { data: allActivities } = await useFetch("/api/activities");
+
+  const backgroundStyle = {
+    backgroundImage: `linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)), url(${wallpaper})`,
+    backgroundSize: 'auto',
+    backgroundPosition: 'top center',
+    backgroundAttachment: 'fixed',
+    backgroundRepeat: 'repeat',
+  }
 
   // Define page-specific meta tags for improved SEO
   useHead({
@@ -32,6 +41,7 @@
     <link rel="canonical" href="https://soulsanctuary.example.com/activities">
   </Head>
   <!-- Added role="main" for screen readers and aria-labelledby for accessibility -->
+  <div :style="backgroundStyle">
   <main class="activities-page" role="main" aria-labelledby="page-title">
     <!-- Added section with aria-labelledby for proper document structure -->
     <section class="page-header" aria-labelledby="page-title">
@@ -61,11 +71,13 @@
       </p>
     </section>
   </main>
+  </div>
 </template>
 
 <style scoped>
 .activities-page {
   max-width: 1440px;
+  padding-top: 2.5rem;
   margin: 0 auto;
 }
 
@@ -75,7 +87,7 @@
 }
 
 .page-title {
-  margin-bottom: 1rem;
+  margin: 0 0 1rem 0;
   padding-bottom: 0.5rem;
   padding-left: 2.5rem;
   display: flex;
