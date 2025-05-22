@@ -9,7 +9,7 @@
     <div :style="backgroundStyle">
       <main class="main" role="main" aria-labelledby="activity-title">
         <!-- Activity title -->
-        <h1 id="activity-title" class="activity-title title">{{ activity.name }}</h1>
+        <h1 id="activity-title" class="activity-title title no-line-below-768">{{ activity.name }}</h1>
         <!-- Navigation arrows for previous and next activities -->
         <div class="navigation">
           <NuxtLink v-if="prevId" :to="{ path: `/activities/${prevId}`, query: { from } }" class="arrow-link left" aria-label="Go to the previous activity">
