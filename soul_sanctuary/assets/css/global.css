@@ -90,4 +90,34 @@ body {
   .text_clear {
     font-size: 14px;
   }
+
+  .activity-title.no-line-below-768::after {
+    content: none;       
+    height: 0;           
+    margin-left: 0;      
+    background: none;   
+  }
+
+}
+
+@media (min-width: 1440px) {
+  .title {
+    font-size: 64px;
+  }
+
+  .subtitle {
+    font-size: 48px;
+  }
+
+  .subtitle_clear {
+    font-size: 48px;
+  }
+
+  .text {
+    font-size: 20px;
+  }
+
+  .text_clear {
+    font-size: 20px;
+  }
 }
