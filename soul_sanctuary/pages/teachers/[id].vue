@@ -1,10 +1,12 @@
 <template>
   <Head>
-    <Title>{{ teacherData.fullname }} - Soul Sanctuary</Title>
+    <Title>{{ teacher.fullname }} - Soul Sanctuary</Title>
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://soulsanctuary.example.com/teachers/[id]">
   </Head>
   <div :style="backgroundStyle" class="background">
-    <main class="main background" :style="backgroundStyle">
-      <!-- Navigazione frecce -->
+    <main class="main">
+      <!-- Navigation arrow -->
       <div class="navigation">
         <NuxtLink v-if="prevId" :to="{ path: `/teachers/${prevId}`, query: { from } }" class="arrow-link left">
           <img src="../../assets/svgs/previous.svg" class="arrows" />
@@ -14,40 +16,40 @@
         </NuxtLink>
       </div>
 
-      <!-- Wrapper per centratura verticale -->
+      <!-- Wrapper -->
       <div class="teacher-wrapper">
         <div class="teacher-box">
           <div class="photo-section">
-            <img :src="teacherData.photo" alt="Teacher's Photo" class="teacher-photo" />
+            <img :src="teacher.photo" alt="Teacher's Photo" class="teacher-photo" />
           </div>
           <div class="info-section">
-            <h2 class="title">{{ teacherData.fullname }}</h2>
-            <p class="text"><strong>Phone:</strong> {{ teacherData.phone }}</p>
-            <p class="text"><strong>Email:</strong> <a :href="'mailto:' + teacherData.email">{{ teacherData.email }}</a></p>
-            <p class="text"><strong>Area:</strong> {{ teacherData.area }}</p>
-            <a :href="teacherData.cv" target="_blank" class="button">Curriculum</a>
+            <h2 class="title">{{ teacher.fullname }}</h2>
+            <p class="text"><strong>Phone:</strong> <a :href="'tel:' + teacher.phone">{{ teacher.phone }}</a></p>
+            <p class="text"><strong>Email:</strong> <a :href="'mailto:' + teacher.email">{{ teacher.email }}</a></p>
+            <p class="text"><strong>Area:</strong> {{ teacher.area }}</p>
+            <a :href="teacher.cv" target="_blank" class="button">Curriculum</a>
           </div>
         </div>
       </div>
 
-      <!-- Sezione descrizione -->
+      <!-- Description section -->
       <section class="description-section">
         <div class="description-box">
           <p class="text" v-html="formattedDescription"></p>
         </div>
       </section>
 
-      <!-- Sezione attività -->
+      <!-- Activity section -->
       <div class="activity-section">
-        <h2 class="subtitle" style="text-align: center;">{{ teacherData.fullname }}'s Classes</h2>
+        <h2 class="subtitle" style="text-align: center;">{{ teacher.fullname }}'s Classes</h2>
         <div class="slider-wrapper">
-          <ActivitiesSlider :activities="teacherData.activities" />
+          <ActivitiesSlider :activities="teacher.activities" />
         </div>
 
-        <div v-if="teacherData.managedActivities && teacherData.managedActivities.length">
-          <h2 class="subtitle" style="text-align: center;">{{ teacherData.fullname }}'s Responsibilities</h2>
+        <div v-if="teacher.managedActivities && teacher.managedActivities.length">
+          <h2 class="subtitle" style="text-align: center;">{{ teacher.fullname }}'s Responsibilities</h2>
           <div class="slider-wrapper">
-            <ActivitiesSlider :activities="teacherData.managedActivities" />
+            <ActivitiesSlider :activities="teacher.managedActivities" />
           </div>
         </div>
       </div>
@@ -60,9 +62,10 @@
 import ActivitiesSlider from '@/components/ActivitySlideShow.vue'
 const route = useRoute()
 const id = route.params.id
-const from = route.query.from || 'all'
+const from = route.query.from
 
 const { data: teacherData } = await useFetch('/api/teachers/' + id)
+const teacher= teacherData.value
 
 const { data: allTeachersData } = await useFetch('/api/teachers')
 const allTeachers = allTeachersData.value
@@ -72,7 +75,7 @@ const prevId = currentIndex > 0 ? allTeachers[currentIndex - 1].id : null
 const nextId = currentIndex < allTeachers.length - 1 ? allTeachers[currentIndex + 1].id : null
 
 const formattedDescription = computed(() =>
-    teacherData.value?.description.replace(/\n/g, '<br>')
+    teacher.description.replace(/\n/g, '<br>')
 )
 
 import wallpaper from '@/assets/png/wallpaper.png'
@@ -86,7 +89,25 @@ const backgroundStyle = {
   minHeight: '100vh',
 }
 
+// Search Engine Optimization variables
+const page_description = ref('This page contains all the details about ' + teacher.fullname)
+const keywords = ref('Teacher, Yoga, Instructor, ' + teacher.fullname)
+const og_title = ref('Soul Sanctuary - Teachers - ' + teacher.fullname)
+const og_description = ref('Meet our instructor: learn more about their experience, contacts, and the activities they lead.')
+const twitter_title = ref('Soul Sanctuary - Teachers - ' + teacher.fullname)
+const twitter_description = ref('Meet our instructor: learn more about their experience, contacts, and the activities they lead.')
 
+// Setting head meta tags for SEO
+useHead({
+  meta: [
+    { name: 'description', content: page_description },
+    { name: 'keywords', content: keywords },
+    { property: 'og:title', content: og_title },
+    { property: 'og:description', content: og_description },
+    { name: 'twitter:title', content: twitter_title },
+    { name: 'twitter:description', content: twitter_description }
+  ]
+})
 </script>
 
 <style scoped>
