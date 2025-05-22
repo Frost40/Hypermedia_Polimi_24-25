@@ -42,7 +42,7 @@ const courses = [
   { value: 'guided meditations', label: 'Guided Meditations for Stress, Anxiety & Depression' },
   { value: 'walking meditation', label: 'Walking Meditation in Nature' },
   { value: 'yoga mindful eating', label: 'Yoga & Mindful Eating' },
-  { value: 'yoga in the park', label: 'Yoga in the Park' }
+  { value: 'yoga in the dark', label: 'Yoga in the Dark' }
 ];
 
 // Set of functions for the entire page

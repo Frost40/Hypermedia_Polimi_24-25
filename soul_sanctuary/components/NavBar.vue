@@ -3,7 +3,14 @@
   <header class="navbar">
     <div class="navbar-logo">
       <NuxtLink to="/" class="logo-link">
-        <img src="../assets/svgs/logo.svg" alt="Soul Sanctuary Logo" class="logo-img">
+        <NuxtImg
+            src="/assets/svgs/public_logo.svg"
+            alt="Soul Sanctuary Logo"
+            class="logo-img"
+            format="svg"
+            width="80"
+            height="80"
+        />
       </NuxtLink>
     </div>
 
@@ -19,57 +26,61 @@
       <ul>
         <li>
           <NuxtLink
-            to="/about"
-            :data-text="'About Us'"
-            @click="mobileMenuOpen = false"
-            active-class="router-link-active">
+              to="/about"
+              :data-text="'About Us'"
+              @click="mobileMenuOpen = false"
+              class="text"
+              active-class="router-link-active">
             About Us
           </NuxtLink>
         </li>
         <li>
           <NuxtLink
-            to="/teachers"
-            :data-text="'Teachers'"
-            @click="mobileMenuOpen = false"
-            :class="teachersClasses">
-
+              to="/teachers"
+              :data-text="'Teachers'"
+              @click="mobileMenuOpen = false"
+              class="text"
+              :class="teachersClasses">
             Teachers
           </NuxtLink>
         </li>
         <li>
           <NuxtLink
-            to="/activities"
-            :data-text="'Activities'"
-            @click="mobileMenuOpen = false"
-            :class="activitiesClasses">
+              to="/activities"
+              :data-text="'Activities'"
+              @click="mobileMenuOpen = false"
+              class="text"
+              :class="activitiesClasses">
             Activities
           </NuxtLink>
         </li>
         <li>
           <NuxtLink
-            to="/highlights"
-            :data-text="'Highlights'"
-            @click="mobileMenuOpen = false"
-            :class="highlightsClasses">
-
+              to="/highlights"
+              :data-text="'Highlights'"
+              @click="mobileMenuOpen = false"
+              class="text"
+              :class="highlightsClasses">
             Highlights
           </NuxtLink>
         </li>
         <li>
           <NuxtLink
-            to="/contact_us"
-            :data-text="'Contact Us'"
-            @click="mobileMenuOpen = false"
-            active-class="router-link-active">
+              to="/contact_us"
+              :data-text="'Contact Us'"
+              @click="mobileMenuOpen = false"
+              class="text"
+              active-class="router-link-active">
             Contact Us
           </NuxtLink>
         </li>
         <li>
           <NuxtLink
-            to="/faq"
-            :data-text="'FAQ'"
-            @click="mobileMenuOpen = false"
-            active-class="router-link-active">
+              to="/faq"
+              :data-text="'FAQ'"
+              @click="mobileMenuOpen = false"
+              class="text"
+              active-class="router-link-active">
             FAQ
           </NuxtLink>
         </li>

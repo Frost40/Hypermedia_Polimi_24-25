@@ -17,6 +17,10 @@ defineProps({
   provenance:{
     type: String,
     required: true,
+  },
+  index: {
+    type: Number,
+    default: 0
   }
 });
 </script>
@@ -26,10 +30,19 @@ defineProps({
         path: `/activities/${id}`,
         query: { from: provenance }
       }" class="activity-card">
-    <div class="card-bg"
-         :style="{ backgroundImage: `url(${imageUrl || defaultImage})` }"
-         :class="{ 'default-green': !imageUrl || imageUrl === defaultImage }"
-    ></div>
+    <div class="card-image-container">
+      <nuxt-img
+          :src="imageUrl || defaultImage"
+          :alt="name"
+          format="webp"
+          quality="80"
+          :loading="index < 4 ? 'eager' : 'lazy'"
+          sizes="(max-width: 800px) 100vw, 50vw"
+          placeholder
+          class="card-bg"
+          :class="{ 'default-green': !imageUrl || imageUrl === defaultImage }"
+      />
+    </div>
     <div class="activity-title subtitle">
       {{ name }}
     </div>
@@ -51,14 +64,19 @@ defineProps({
   align-items: center;
 }
 
-.card-bg {
+.card-image-container {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-size: cover;
-  background-position: center;
+}
+
+.card-bg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center; /* Centra il soggetto nell'immagine */
   transition: filter 0.3s ease;
   filter: brightness(80%);
 }

@@ -7,6 +7,7 @@ export default defineNuxtConfig({
 
   modules: [
     '@nuxtjs/google-fonts',
+    '@nuxt/image',
   ],
 
   googleFonts: {
@@ -26,22 +27,22 @@ export default defineNuxtConfig({
       viewport: 'width=device-width, initial-scale=1',
       title: 'Soul Sanctuary',
       meta: [
-        { name: 'description', content: 'Soul Sanctuary - A place for pet adoption and animal care services' },
+        { name: 'description', content: 'Soul Sanctuary - A venue for spiritual wellness and holistic healing.' },
         { name: 'keywords', content: 'spiritual wellness, meditation, mind-body connection, yoga, personal growth, wellness center, mindfulness, holistic healing, yoga practice, spiritual retreat, inner peace, wellness journey, yoga classes, spiritual guidance, lessons with teachers, self-discovery, stress relief, mental wellness, spiritual community' },
-        { name: 'author', content: 'I Maestri dello Yoga' },
+        { name: 'author', content: 'Team Members: Cotrone Mariariosaria, De Ciechi Samuele, Denti Silvia, Di Lorenzo Flavio' },
 
         // Open Graph / Facebook
         { property: 'og:type', content: 'website' },
         { property: 'og:url', content: 'https://soulsanctuary-one.vercel.app/' }, 
         { property: 'og:title', content: 'Soul Sanctuary' },
-        { property: 'og:description', content: 'Find your perfect companion at Soul Sanctuary' },
-        { property: 'og:image', content: '/assets/svgs/logo.svg' },
+        { property: 'og:description', content: 'Experience spiritual wellness and holistic healing at Soul Sanctuary' },
+        { property: 'og:image', content: 'https://soulsanctuary-one.vercel.app/tab_logo.svg' },
 
         // Twitter
         { name: 'twitter:card', content: 'summary_large_image' },
         { name: 'twitter:title', content: 'Soul Sanctuary' },
-        { name: 'twitter:description', content: 'Find your perfect companion at Soul Sanctuary' },
-        { name: 'twitter:image', content: '/assets/svgs/logo.svg' },
+        { name: 'twitter:description', content: 'Experience spiritual wellness and holistic healing at Soul Sanctuary' },
+        { name: 'twitter:image', content: 'https://soulsanctuary-one.vercel.app/tab_logo.svg' },
       ],
       link: [
         { rel: 'icon', type: 'image/svg+xml', href: '/tab_logo.svg' },
