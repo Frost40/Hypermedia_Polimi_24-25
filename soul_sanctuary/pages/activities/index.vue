@@ -5,13 +5,14 @@
   // API call to fetch all activities
   const { data: allActivities } = await useFetch("/api/activities");
 
-  const backgroundStyle = {
-    backgroundImage: `linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)), url(${wallpaper})`,
-    backgroundSize: 'auto',
-    backgroundPosition: 'top center',
-    backgroundAttachment: 'fixed',
-    backgroundRepeat: 'repeat',
-  }
+
+const backgroundStyle = {
+  backgroundImage: `linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)), url(${wallpaper})`,
+  backgroundSize: 'auto',
+  backgroundPosition: 'top center',
+  backgroundAttachment: 'fixed',
+  backgroundRepeat: 'repeat',
+}
 
   // Define page-specific meta tags for improved SEO
   useHead({
@@ -56,12 +57,13 @@
     <section class="activities-grid" aria-label="Activities list">
       <!-- Fixed placement of aria-label by moving it to a properly supported attribute -->
       <ActivityCard
-        v-for="activity in allActivities"
+        v-for="(activity, index) in allActivities"
         :key="activity.id"
         :id="activity.id"
         :name="activity.name"
         :imageUrl="activity.imageUrl"
         :provenance="'all'"
+        :index="index"
         aria-label="`Activity: ${activity.name}`"
       />
       

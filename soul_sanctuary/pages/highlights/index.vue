@@ -58,12 +58,14 @@ useHead({
       aria-label="Featured activities"
     >
       <ActivityCard
-          v-for="activity in highlights"
+          v-for="(activity, index) in highlights"
           :key="activity.id"
           :id="activity.id"
           :name="activity.name"
           :imageUrl="activity.imageUrl"
           :provenance="'fromHighlights'"
+          :index="index"
+          aria-label="`Activity: ${activity.name}`"
       />
       
       <!-- Added accessible message for when no activities are available -->
