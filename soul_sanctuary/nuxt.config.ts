@@ -32,7 +32,7 @@ export default defineNuxtConfig({
 
         // Open Graph / Facebook
         { property: 'og:type', content: 'website' },
-        { property: 'og:url', content: 'https://soulsanctuary.example.com/' },  // TODO: Update with actual URL
+        { property: 'og:url', content: 'https://soulsanctuary-one.vercel.app/' }, 
         { property: 'og:title', content: 'Soul Sanctuary' },
         { property: 'og:description', content: 'Find your perfect companion at Soul Sanctuary' },
         { property: 'og:image', content: '/assets/svgs/logo.svg' },
@@ -45,7 +45,7 @@ export default defineNuxtConfig({
       ],
       link: [
         { rel: 'icon', type: 'image/svg+xml', href: '/tab_logo.svg' },
-        { rel: 'canonical', href: 'https://soulsanctuary.example.com' } // TODO: Update with actual URL
+        { rel: 'canonical', href: 'https://soulsanctuary-one.vercel.app/' } 
       ]
     }
   },

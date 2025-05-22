@@ -38,7 +38,7 @@
     <!-- Ensure this page is indexed and links are followed -->
     <meta name="robots" content="index, follow">
     <!-- Specify canonical URL to prevent duplicate content issues -->
-    <link rel="canonical" href="https://soulsanctuary.example.com/activities">
+    <link rel="canonical" href="https://soulsanctuary-one.vercel.app/activities">
   </Head>
   <!-- Added role="main" for screen readers and aria-labelledby for accessibility -->
   <div :style="backgroundStyle">
