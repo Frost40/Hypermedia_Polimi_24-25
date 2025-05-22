@@ -36,7 +36,7 @@ useHead({
     <!-- Ensure this page is indexed and links are followed -->
     <meta name="robots" content="index, follow">
     <!-- Specify canonical URL to prevent duplicate content issues -->
-    <link rel="canonical" href="https://soulsanctuary-one.vercel.app/highlights">
+    <link rel="canonical" href="https://soulsanctuary-ten.vercel.app/highlights">
   </Head>
   
   <!-- Added role="main" for screen readers to identify main content -->

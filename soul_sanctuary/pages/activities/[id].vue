@@ -3,7 +3,7 @@
     <Head>
         <Title>{{ activity.name }} - Soul Sanctuary</Title>
         <meta nrel="robots" content="index, follow">
-        <link rel="canonical" href="https://soulsanctuary.example.com/activities/[id]">
+        <link rel="canonical" :href="'https://soulsanctuary-ten.vercel.app/${id}'">
     </Head>
     <!-- Main container with background styling -->
     <div :style="backgroundStyle">

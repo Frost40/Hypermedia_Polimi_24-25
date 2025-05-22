@@ -2,7 +2,7 @@
   <Head>
     <Title>{{ teacher.fullname }} - Soul Sanctuary</Title>
     <meta name="robots" content="index, follow" />
-    <link rel="canonical" href="https://soulsanctuary.example.com/teachers/[id]">
+    <link rel="canonical" :href="`https://soulsanctuary-ten.vercel.app/teachers/${id}`" />
   </Head>
   <div :style="backgroundStyle" class="background">
     <main class="main">

@@ -27,7 +27,7 @@
     <!-- Ensure this page is indexed and links are followed -->
     <meta name="robots" content="index, follow">
     <!-- Specify canonical URL to prevent duplicate content issues -->
-    <link rel="canonical" href="https://soulsanctuary.example.com/teachers">
+    <link rel="canonical" href="https://soulsanctuary-ten.vercel.app/teachers">
   </Head>
   <main class="teachers-page">
     <div class="page-header">
