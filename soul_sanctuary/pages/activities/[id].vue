@@ -110,11 +110,10 @@
   // Defining background style
   const backgroundStyle = {
     backgroundImage: `linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)), url(${wallpaper})`,
-    backgroundSize: 'cover',
-    backgroundPosition: 'center',
+    backgroundSize: 'auto',
+    backgroundPosition: 'top center',
     backgroundAttachment: 'fixed',
-    backgroundRepeat: 'no-repeat',
-    minHeight: '100vh',
+    backgroundRepeat: 'repeat',
   }
 
   // Search Engine Optimization variables
