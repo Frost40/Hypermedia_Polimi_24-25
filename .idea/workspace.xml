@@ -4,12 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0b8a09fc-be63-4202-8a90-8175cd7c1f6e" name="Changes" comment="Refactor NavBar component: enhance active link handling and improve styling">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/soul_sanctuary/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/soul_sanctuary/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/soul_sanctuary/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/soul_sanctuary/package.json" afterDir="false" />
-    </list>
+    <list default="true" id="0b8a09fc-be63-4202-8a90-8175cd7c1f6e" name="Changes" comment="Add @nuxt/image dependency for image optimization" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -163,7 +158,15 @@
       <option name="project" value="LOCAL" />
       <updated>1747916541679</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Add @nuxt/image dependency for image optimization">
+      <option name="closed" value="true" />
+      <created>1747918785722</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1747918785722</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -176,6 +179,7 @@
     <MESSAGE value="Refactor NavBar component: improve active link handling and enhance accessibility" />
     <MESSAGE value="Refactor NavBar component: enhance active link handling and improve styling" />
     <MESSAGE value="Implement image optimization and accessibility improvements in ActivityCard and NavBar components" />
-    <option name="LAST_COMMIT_MESSAGE" value="Implement image optimization and accessibility improvements in ActivityCard and NavBar components" />
+    <MESSAGE value="Add @nuxt/image dependency for image optimization" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add @nuxt/image dependency for image optimization" />
   </component>
 </project>
