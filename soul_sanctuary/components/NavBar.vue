@@ -129,6 +129,7 @@ const teachersClasses = computed(() => ({
   align-items: center;
   position: relative; /* Needed for absolute positioning of mobile menu */
   z-index: 3;
+  box-sizing: border-box;
 }
 
 .navbar-logo .logo-link {
