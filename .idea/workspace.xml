@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0b8a09fc-be63-4202-8a90-8175cd7c1f6e" name="Changes" comment="Add @nuxt/image dependency for image optimization" />
+    <list default="true" id="0b8a09fc-be63-4202-8a90-8175cd7c1f6e" name="Changes" comment="push prova" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -166,7 +166,15 @@
       <option name="project" value="LOCAL" />
       <updated>1747918785722</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="push prova">
+      <option name="closed" value="true" />
+      <created>1747920013605</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1747920013605</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -180,6 +188,7 @@
     <MESSAGE value="Refactor NavBar component: enhance active link handling and improve styling" />
     <MESSAGE value="Implement image optimization and accessibility improvements in ActivityCard and NavBar components" />
     <MESSAGE value="Add @nuxt/image dependency for image optimization" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add @nuxt/image dependency for image optimization" />
+    <MESSAGE value="push prova" />
+    <option name="LAST_COMMIT_MESSAGE" value="push prova" />
   </component>
 </project>
