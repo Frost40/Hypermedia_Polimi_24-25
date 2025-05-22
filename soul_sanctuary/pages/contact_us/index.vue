@@ -6,7 +6,7 @@
     <!-- Meta robots tag for search engine crawling -->
     <meta nrel="robots" content="index, follow">
     <!-- Canonical link to avoid duplicate content issues -->
-    <link rel="canonical" href="https://soulsanctuary.example.com/contact_us">
+    <link rel="canonical" href="https://soulsanctuary-ten.vercel.app/contact_us">
   </Head>
 
   <!-- Main content container with background styling -->
