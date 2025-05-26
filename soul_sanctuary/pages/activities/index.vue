@@ -54,13 +54,7 @@
     
     <!-- Added aria-label to describe this section to screen readers -->
     <section class="activities-grid" aria-label="Activities list">
-      <template v-if="pending">
-        <!-- Skeleton loader cards -->
-        <div v-for="i in 4" :key="`skeleton-${i}`" class="skeleton">
-          <div class="skeleton-image"></div>
-          <div class="skeleton-title"></div>
-        </div>
-      </template>
+
       <!-- Fixed placement of aria-label by moving it to a properly supported attribute -->
       <ActivityCard
         v-for="(activity, index) in allActivities"
