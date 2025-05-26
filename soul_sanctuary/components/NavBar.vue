@@ -47,6 +47,7 @@
         <li>
           <NuxtLink
               to="/activities"
+              prefetch
               :data-text="'Activities'"
               @click="mobileMenuOpen = false"
               class="text"

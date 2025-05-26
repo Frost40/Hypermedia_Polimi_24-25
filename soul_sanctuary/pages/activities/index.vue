@@ -3,16 +3,15 @@
   import wallpaper from "assets/png/wallpaper.png";
 
   // API call to fetch all activities
-  const { data: allActivities } = await useFetch("/api/activities");
+  const { data: allActivities, pending } = await useLazyFetch("/api/activities");
 
-
-const backgroundStyle = {
-  backgroundImage: `linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)), url(${wallpaper})`,
-  backgroundSize: 'auto',
-  backgroundPosition: 'top center',
-  backgroundAttachment: 'fixed',
-  backgroundRepeat: 'repeat',
-}
+  const backgroundStyle = {
+    backgroundImage: `linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)), url(${wallpaper})`,
+    backgroundSize: 'auto',
+    backgroundPosition: 'top center',
+    backgroundAttachment: 'fixed',
+    backgroundRepeat: 'repeat',
+  }
 
   // Define page-specific meta tags for improved SEO
   useHead({
@@ -55,6 +54,13 @@ const backgroundStyle = {
     
     <!-- Added aria-label to describe this section to screen readers -->
     <section class="activities-grid" aria-label="Activities list">
+      <template v-if="pending">
+        <!-- Skeleton loader cards -->
+        <div v-for="i in 4" :key="`skeleton-${i}`" class="skeleton">
+          <div class="skeleton-image"></div>
+          <div class="skeleton-title"></div>
+        </div>
+      </template>
       <!-- Fixed placement of aria-label by moving it to a properly supported attribute -->
       <ActivityCard
         v-for="(activity, index) in allActivities"
@@ -136,5 +142,49 @@ const backgroundStyle = {
 /* Added to ensure text remains visible during webfont load */
 .activities-page {
   font-display: swap;
+}
+
+.skeleton {
+  background: #3D5144;
+  border-radius: 40px;
+  overflow: hidden;
+  position: relative;
+}
+
+.skeleton::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  transform: translateX(-100%);
+  background: linear-gradient(90deg,
+  rgba(255,255,255,0) 0%,
+  rgba(255,255,255,0.2) 20%,
+  rgba(255,255,255,0.5) 60%,
+  rgba(255,255,255,0)
+  );
+  animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.skeleton-image {
+  width: 100%;
+  height: 80%;
+  background: #BCC7C2;
+}
+
+.skeleton-title {
+  width: 70%;
+  height: 24px;
+  margin: 12px auto;
+  background: #DDECEA;
+  border-radius: 4px;
 }
 </style>

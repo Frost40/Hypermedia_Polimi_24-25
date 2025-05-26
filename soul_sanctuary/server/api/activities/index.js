@@ -15,7 +15,7 @@ export default defineEventHandler(async (event) => {
 
     const { data: allActivities, error } = await supabase
         .from('activity')
-        .select('*')
+        .select('id, name, imageUrl')
         .order('id', { ascending: true });
 
     if (error) {
