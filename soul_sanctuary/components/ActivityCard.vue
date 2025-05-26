@@ -32,15 +32,18 @@ defineProps({
       }" class="activity-card">
     <div class="card-image-container">
       <nuxt-img
-          :src="imageUrl || defaultImage"
-          :alt="name"
-          format="webp"
-          quality="80"
-          :loading="index < 4 ? 'eager' : 'lazy'"
-          sizes="(max-width: 800px) 100vw, 50vw"
-          placeholder
-          class="card-bg"
-          :class="{ 'default-green': !imageUrl || imageUrl === defaultImage }"
+        :src="imageUrl || defaultImage"
+        :alt="name"
+        format="webp"
+        quality="80"
+        :loading="index < 4 ? 'eager' : 'lazy'"
+        sizes="(max-width: 800px) 100vw, 50vw"
+        placeholder
+        densities="1x,2x"
+        width="600"
+        height="300"
+        class="card-bg"
+        :class="{ 'default-green': !imageUrl || imageUrl === defaultImage }"
       />
     </div>
     <div class="activity-title subtitle">
