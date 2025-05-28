@@ -1,35 +1,35 @@
 <script setup>
-  import ActivityCard from "~/components/ActivityCard.vue";
-  import wallpaper from "assets/png/wallpaper.png";
+import ActivityCard from "~/components/ActivityCard.vue";
+import wallpaper from "assets/png/wallpaper.png";
 
-  // API call to fetch all activities
-  const { data: allActivities, pending } = await useLazyFetch("/api/activities");
+// API call to fetch all activities
+const { data: allActivities, pending } = await useLazyFetch("/api/activities");
 
-  const backgroundStyle = {
-    backgroundImage: `linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)), url(${wallpaper})`,
-    backgroundSize: 'auto',
-    backgroundPosition: 'top center',
-    backgroundAttachment: 'fixed',
-    backgroundRepeat: 'repeat',
-  }
+const backgroundStyle = {
+  backgroundImage: `linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)), url(${wallpaper})`,
+  backgroundSize: 'auto',
+  backgroundPosition: 'top center',
+  backgroundAttachment: 'fixed',
+  backgroundRepeat: 'repeat',
+}
 
-  // Define page-specific meta tags for improved SEO
-  useHead({
-    meta: [
-      // Page-specific description for better SEO
-      { name: 'description', content: 'Explore our yoga classes, meditation sessions, and wellness activities at Soul Sanctuary. Find activities suited for all experience levels.' },
-      // Additional keywords specific to this page
-      { name: 'keywords', content: 'yoga classes, meditation sessions, wellness activities, spiritual classes, mindfulness workshops, group activities, Soul Sanctuary activities' },
-      
-      // Open Graph specific to this page for better social sharing
-      { property: 'og:title', content: 'Activities & Classes - Soul Sanctuary' },
-      { property: 'og:description', content: 'Discover yoga, meditation, and wellness activities at Soul Sanctuary. Classes for all experience levels.' },
-      
-      // Twitter Card specific to this page
-      { name: 'twitter:title', content: 'Activities & Classes - Soul Sanctuary' },
-      { name: 'twitter:description', content: 'Discover yoga, meditation, and wellness activities at Soul Sanctuary. Classes for all experience levels.' },
-    ]
-  })
+// Define page-specific meta tags for improved SEO
+useHead({
+  meta: [
+    // Page-specific description for better SEO
+    { name: 'description', content: 'Explore our yoga classes, meditation sessions, and wellness activities at Soul Sanctuary. Find activities suited for all experience levels.' },
+    // Additional keywords specific to this page
+    { name: 'keywords', content: 'yoga classes, meditation sessions, wellness activities, spiritual classes, mindfulness workshops, group activities, Soul Sanctuary activities' },
+
+    // Open Graph specific to this page for better social sharing
+    { property: 'og:title', content: 'Activities & Classes - Soul Sanctuary' },
+    { property: 'og:description', content: 'Discover yoga, meditation, and wellness activities at Soul Sanctuary. Classes for all experience levels.' },
+
+    // Twitter Card specific to this page
+    { name: 'twitter:title', content: 'Activities & Classes - Soul Sanctuary' },
+    { name: 'twitter:description', content: 'Discover yoga, meditation, and wellness activities at Soul Sanctuary. Classes for all experience levels.' },
+  ]
+})
 </script>
 
 <template>
@@ -42,54 +42,56 @@
   </Head>
 
   <div :style="backgroundStyle">
-  <main class="activities-page" role="main" aria-labelledby="page-title">
-    <section class="page-header" aria-labelledby="page-title">
-      <h1 id="page-title" class="page-title title">All Activities</h1>
-      <p class="page-description text">
-        Discover our most popular activities below — explore what we offer and find the perfect fit for your journey.
-      </p>
-    </section>
-    
-    <section class="activities-grid" aria-label="Activities list">
-      <!-- Transition between skeleton and activity card -->
-      <TransitionGroup name="fade" tag="div" class="transition-wrapper">
-        <!-- Skeleton loader -->
-        <div v-if="pending"
-             v-for="n in 6"
-             :key="`skeleton-${n}`"
-             class="activity-card skeleton"
-             aria-label="Loading activity card">
-          <!-- Skeleton content -->
-          <div class="card-image-container skeleton-image-container">
-            <div class="skeleton-image card-bg"></div>
-          </div>
-          <div class="activity-title subtitle skeleton-title-text">
-            <span class="skeleton-text"></span>
-          </div>
-        </div>
+    <main class="activities-page" role="main" aria-labelledby="page-title">
+      <section class="page-header" aria-labelledby="page-title">
+        <h1 id="page-title" class="page-title title">All Activities</h1>
+        <p class="page-description text">
+          Discover our most popular activities below — explore what we offer and find the perfect fit for your journey.
+        </p>
+      </section>
 
-        <!-- Actual Activity cards -->
-        <ActivityCard
-            v-if="!pending"
-            v-for="(activity, index) in allActivities"
-            :key="activity.id"
-            :id="activity.id"
-            :name="activity.name"
-            :imageUrl="activity.imageUrl"
-            :provenance="'all'"
-            :index="index"
-            :aria-label="`Activity: ${activity.name}`"
-        />
-      </TransitionGroup>
+      <section class="activities-grid" aria-label="Activities list">
+        <!-- Transition between skeleton and activity card -->
+        <TransitionGroup name="fade" tag="div" class="transition-wrapper">
+          <!-- Skeleton loader -->
+          <div v-if="pending" key="skeleton-container" class="skeleton-list">
+            <div v-for="n in 6"
+                 :key="`skeleton-${n}`"
+                 class="activity-card skeleton"
+                 aria-label="Loading activity card">
+              <!-- Skeleton content -->
+              <div class="card-image-container skeleton-image-container">
+                <div class="skeleton-image card-bg"></div>
+              </div>
+              <div class="activity-title subtitle skeleton-title-text">
+                <span class="skeleton-text"></span>
+              </div>
+            </div>
+          </div>
 
-      <!-- Message in case of no activities to display -->
-      <p v-if="!pending && (!allActivities || allActivities.length === 0)"
-         class="no-results"
-         aria-live="polite">
-        No activities are currently available. Please check back soon.
-      </p>
-    </section>
-  </main>
+          <div v-else key="activities-container" class="activities-list">
+            <!-- Actual Activity cards -->
+            <ActivityCard
+                v-for="(activity, index) in allActivities"
+                :key="activity.id"
+                :id="activity.id"
+                :name="activity.name"
+                :imageUrl="activity.imageUrl"
+                :provenance="'all'"
+                :index="index"
+                :aria-label="`Activity: ${activity.name}`"
+            />
+          </div>
+        </TransitionGroup>
+
+        <!-- Message in case of no activities to display -->
+        <p v-if="!pending && (!allActivities || allActivities.length === 0)"
+           class="no-results"
+           aria-live="polite">
+          No activities are currently available. Please check back soon.
+        </p>
+      </section>
+    </main>
   </div>
 </template>
 
@@ -129,8 +131,7 @@
   padding: 0 2.5rem;
 }
 
-/* 2 columns layout for screens between 1440 and 800 */
-.activities-grid {
+.transition-wrapper {
   display: grid;
   grid-template-columns: repeat(2, minmax(350px, 1fr));
   row-gap: clamp(0.5rem, 2vw, 3rem);
@@ -142,12 +143,17 @@
 
 /* 1 column layout for screens below the 750 mark */
 @media (max-width: 800px) {
-  .activities-grid {
+  .transition-wrapper {
     grid-template-columns: 1fr;
     gap: 2.5rem;
     justify-items: center;
     max-width: 600px;
   }
+}
+
+.skeleton-list,
+.activities-list {
+  display: contents;
 }
 
 /* Added to ensure text remains visible during webfont load */
@@ -209,17 +215,13 @@
   left: 0;
   transform: translateX(-100%);
   background: linear-gradient(90deg,
-    rgba(255,255,255,0) 0%,
-    rgba(255,255,255,0.2) 20%,
-    rgba(255,255,255,0.5) 60%,
-    rgba(255,255,255,0)
+  rgba(255,255,255,0) 0%,
+  rgba(255,255,255,0.2) 20%,
+  rgba(255,255,255,0.5) 60%,
+  rgba(255,255,255,0)
   );
   animation: shimmer 1.5s infinite;
   z-index: 2;
-}
-
-.transition-wrapper {
-  display: contents;
 }
 
 .fade-enter-active,
