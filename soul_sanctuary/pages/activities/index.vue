@@ -40,35 +40,52 @@
     <!-- Specify canonical URL to prevent duplicate content issues -->
     <link rel="canonical" href="https://soulsanctuary-ten.vercel.app/activities">
   </Head>
-  <!-- Added role="main" for screen readers and aria-labelledby for accessibility -->
+
   <div :style="backgroundStyle">
   <main class="activities-page" role="main" aria-labelledby="page-title">
-    <!-- Added section with aria-labelledby for proper document structure -->
     <section class="page-header" aria-labelledby="page-title">
-      <!-- Added id to connect with aria-labelledby -->
       <h1 id="page-title" class="page-title title">All Activities</h1>
       <p class="page-description text">
         Discover our most popular activities below — explore what we offer and find the perfect fit for your journey.
       </p>
     </section>
     
-    <!-- Added aria-label to describe this section to screen readers -->
     <section class="activities-grid" aria-label="Activities list">
+      <!-- Transition between skeleton and activity card -->
+      <TransitionGroup name="fade" tag="div" class="transition-wrapper">
+        <!-- Skeleton loader -->
+        <div v-if="pending"
+             v-for="n in 6"
+             :key="`skeleton-${n}`"
+             class="activity-card skeleton"
+             aria-label="Loading activity card">
+          <!-- Skeleton content -->
+          <div class="card-image-container skeleton-image-container">
+            <div class="skeleton-image card-bg"></div>
+          </div>
+          <div class="activity-title subtitle skeleton-title-text">
+            <span class="skeleton-text"></span>
+          </div>
+        </div>
 
-      <!-- Fixed placement of aria-label by moving it to a properly supported attribute -->
-      <ActivityCard
-        v-for="(activity, index) in allActivities"
-        :key="activity.id"
-        :id="activity.id"
-        :name="activity.name"
-        :imageUrl="activity.imageUrl"
-        :provenance="'all'"
-        :index="index"
-        aria-label="`Activity: ${activity.name}`"
-      />
-      
-      <!-- Added for screen readers when no activities are available -->
-      <p v-if="!allActivities || allActivities.length === 0" aria-live="polite">
+        <!-- Actual Activity cards -->
+        <ActivityCard
+            v-if="!pending"
+            v-for="(activity, index) in allActivities"
+            :key="activity.id"
+            :id="activity.id"
+            :name="activity.name"
+            :imageUrl="activity.imageUrl"
+            :provenance="'all'"
+            :index="index"
+            :aria-label="`Activity: ${activity.name}`"
+        />
+      </TransitionGroup>
+
+      <!-- Message in case of no activities to display -->
+      <p v-if="!pending && (!allActivities || allActivities.length === 0)"
+         class="no-results"
+         aria-live="polite">
         No activities are currently available. Please check back soon.
       </p>
     </section>
@@ -138,13 +155,51 @@
   font-display: swap;
 }
 
+/* Skeleton styles */
 .skeleton {
-  background: #3D5144;
-  border-radius: 40px;
-  overflow: hidden;
   position: relative;
+  overflow: hidden;
+  text-decoration: none;
+  border-radius: 40px;
+  height: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #E8EFEC;
 }
 
+.skeleton-image-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.skeleton-image {
+  width: 100%;
+  height: 100%;
+  background-color: #BCC7C2;
+}
+
+.skeleton-title-text {
+  position: relative;
+  z-index: 1;
+  width: 70%;
+  padding: 0.5rem;
+  text-align: center;
+  background-color: transparent;
+}
+
+.skeleton-text {
+  display: block;
+  height: 24px;
+  width: 100%;
+  background-color: #DDECEA;
+  border-radius: 4px;
+}
+
+/* Shimmer effect */
 .skeleton::after {
   content: '';
   position: absolute;
@@ -154,31 +209,26 @@
   left: 0;
   transform: translateX(-100%);
   background: linear-gradient(90deg,
-  rgba(255,255,255,0) 0%,
-  rgba(255,255,255,0.2) 20%,
-  rgba(255,255,255,0.5) 60%,
-  rgba(255,255,255,0)
+    rgba(255,255,255,0) 0%,
+    rgba(255,255,255,0.2) 20%,
+    rgba(255,255,255,0.5) 60%,
+    rgba(255,255,255,0)
   );
   animation: shimmer 1.5s infinite;
+  z-index: 2;
 }
 
-@keyframes shimmer {
-  100% {
-    transform: translateX(100%);
-  }
+.transition-wrapper {
+  display: contents;
 }
 
-.skeleton-image {
-  width: 100%;
-  height: 80%;
-  background: #BCC7C2;
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s ease;
 }
 
-.skeleton-title {
-  width: 70%;
-  height: 24px;
-  margin: 12px auto;
-  background: #DDECEA;
-  border-radius: 4px;
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
 }
 </style>
