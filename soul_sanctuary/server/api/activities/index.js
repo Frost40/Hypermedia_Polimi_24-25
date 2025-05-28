@@ -22,6 +22,13 @@ export default defineEventHandler(async (event) => {
       return  createError({statusCode: 400, statusMessage: error.message})
     }
 
+    allActivities.forEach(activity => {
+      if (activity.imageUrl) {
+        // Parametri generici che verranno ulteriormente trasformati dai preset
+        activity.imageUrl = `${activity.imageUrl}?quality=80&format=webp`;
+      }
+    });
+
     return allActivities;
 
   } catch (e) {

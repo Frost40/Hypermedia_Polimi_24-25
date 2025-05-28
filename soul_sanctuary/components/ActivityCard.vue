@@ -40,8 +40,9 @@ defineProps({
         sizes="(max-width: 800px) 100vw, 50vw"
         placeholder
         densities="1x,2x"
-        width="600"
+        width="650"
         height="300"
+        fit="cover"
         class="card-bg"
         :class="{ 'default-green': !imageUrl || imageUrl === defaultImage }"
       />

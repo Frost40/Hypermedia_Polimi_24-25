@@ -53,8 +53,8 @@ useHead({
     
     <!-- Changed div to semantic section element for better document structure -->
     <!-- Added aria-label to describe this section for screen readers -->
-    <section 
-      class="activities-grid" 
+    <section
+      class="activities-grid"
       aria-label="Featured activities"
     >
       <ActivityCard
@@ -67,7 +67,7 @@ useHead({
           :index="index"
           aria-label="`Activity: ${activity.name}`"
       />
-      
+
       <!-- Added accessible message for when no activities are available -->
       <p v-if="!highlights || highlights.length === 0" class="no-results">
         No highlight activities are currently available. Please check back soon!
