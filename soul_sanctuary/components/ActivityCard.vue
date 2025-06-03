@@ -2,7 +2,7 @@
 import { ref } from 'vue';
 import defaultImage from '@/assets/pngs/No-Image-Found-400x264.png';
 
-const props = defineProps({
+defineProps({
   id: {
     type: [String, Number],
     default: 'skeleton' // Predefine id value for skeletons

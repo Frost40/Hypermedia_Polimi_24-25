@@ -2,23 +2,8 @@
 import ActivityCard from "~/components/ActivityCard.vue";
 import wallpaper from "assets/png/wallpaper.png";
 
-
-// Loading flag manually set to false at the opening of the page
-const isLoading = ref(true);
-
 // API call to fetch all highlights
-const { data: highlights, pending } = await useLazyFetch("/api/highlights", {
-  onResponse() {
-    // When the data is successfully fetched, set isLoading to false
-    setTimeout(() => {
-      isLoading.value = false;
-    }, 100); // Small delay to guarantee fluidity
-  }
-});
-
-// Use 'isLoading' and 'pending' to determine if skeletons should be shown
-const showSkeletons = computed(() => isLoading.value || pending.value);
-
+const { data: highlights, pending } = await useLazyFetch("/api/highlights")
 
 const backgroundStyle = {
   backgroundImage: `linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)), url(${wallpaper})`,
