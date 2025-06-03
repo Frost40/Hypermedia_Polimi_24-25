@@ -244,26 +244,19 @@ useHead({
             <span id="email-desc" class="sr-only">Enter a valid email address to receive our response</span>
           </div>
           <div class="form-group">
-            <label id="course-label" class="text">Course Field</label>
+            <label for="course-input" class="text">Course Field</label>
             <div ref="dropdownRef" class="dropdown-container" :class="{ open: dropdownOpen }"
                  @click="toggleDropdown"
                  role="combobox"
                  aria-expanded="dropdownOpen"
                  aria-haspopup="listbox"
                  aria-labelledby="course-label">
-              <input
-                  type="text"
-                  id="course-input"
-                  v-model="course"
-                  class="sr-only"
-                  autocomplete="off"
-                  aria-hidden="true"
-              >
+
               <span class="selected-value text">
                 {{ courses.find((opt) => opt.value === course) ? courses.find((opt) => opt.value === course).label : 'Select a course' }}
               </span>
               <span class="dropdown-icon">
-                <img :src="dropdownArrow" alt="" aria-hidden="true">
+                <img :src="dropdownArrow" alt="Dropdown Arrow">
               </span>
             </div>
             <Teleport to="body">
