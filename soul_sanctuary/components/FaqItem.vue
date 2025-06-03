@@ -42,7 +42,7 @@ const iconSrc = computed(() => {
          @mouseleave="hovered = false">
       <span class="question-text text">{{ question }}</span>
       <span class="icon">
-        <img :src="iconSrc" alt="Icon">
+        <img :src="iconSrc" :alt="expanded ? 'Reduce' : 'Expand'" role="button">
       </span>
     </div>
     <!-- Answer section -->

@@ -221,7 +221,6 @@ useHead({
               :key="index"
               :question="item.question"
               :answer="item.answer"
-              :aria-labelledby="`faq-question-${index}`"
               role="listitem"
           />
         </div>
@@ -252,11 +251,19 @@ useHead({
                  aria-expanded="dropdownOpen"
                  aria-haspopup="listbox"
                  aria-labelledby="course-label">
+              <input
+                  type="text"
+                  id="course-input"
+                  v-model="course"
+                  class="sr-only"
+                  autocomplete="off"
+                  aria-hidden="true"
+              >
               <span class="selected-value text">
                 {{ courses.find((opt) => opt.value === course) ? courses.find((opt) => opt.value === course).label : 'Select a course' }}
               </span>
               <span class="dropdown-icon">
-                <img :src="dropdownArrow" alt="Dropdown Arrow">
+                <img :src="dropdownArrow" alt="" aria-hidden="true">
               </span>
             </div>
             <Teleport to="body">
