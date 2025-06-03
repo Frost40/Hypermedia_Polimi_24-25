@@ -3,7 +3,7 @@ import ActivityCard from "~/components/ActivityCard.vue";
 import wallpaper from "assets/png/wallpaper.png";
 
 // API call to fetch all activities
-const { data: highlights, pending } = await useLazyFetch("/api/activities")
+const { data: allActivities, pending } = await useLazyFetch("/api/activities")
 
 
 const backgroundStyle = {
