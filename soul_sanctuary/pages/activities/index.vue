@@ -51,38 +51,16 @@ useHead({
       </section>
 
       <section class="activities-grid" aria-label="Activities list">
-        <!-- Transition between skeleton and activity card -->
-        <TransitionGroup name="fade" tag="div" class="transition-wrapper">
-          <!-- Skeleton loader -->
-          <div v-if="pending" key="skeleton-container" class="skeleton-list">
-            <div v-for="n in 6"
-                 :key="`skeleton-${n}`"
-                 class="activity-card skeleton"
-                 aria-label="Loading activity card">
-              <!-- Skeleton content -->
-              <div class="card-image-container skeleton-image-container">
-                <div class="skeleton-image card-bg"></div>
-              </div>
-              <div class="activity-title subtitle skeleton-title-text">
-                <span class="skeleton-text"></span>
-              </div>
-            </div>
-          </div>
-
-          <div v-else key="activities-container" class="activities-list">
-            <!-- Actual Activity cards -->
-            <ActivityCard
-                v-for="(activity, index) in allActivities"
-                :key="activity.id"
-                :id="activity.id"
-                :name="activity.name"
-                :imageUrl="activity.imageUrl"
-                :provenance="'all'"
-                :index="index"
-                :aria-label="`Activity: ${activity.name}`"
-            />
-          </div>
-        </TransitionGroup>
+        <ActivityCard
+            v-for="(activity, index) in allActivities"
+            :key="activity.id"
+            :id="activity.id"
+            :name="activity.name"
+            :imageUrl="activity.imageUrl"
+            :provenance="'all'"
+            :index="index"
+            :aria-label="`Activity: ${activity.name}`"
+        />
 
         <!-- Message in case of no activities to display -->
         <p v-if="!pending && (!allActivities || allActivities.length === 0)"
@@ -131,7 +109,8 @@ useHead({
   padding: 0 2.5rem;
 }
 
-.transition-wrapper {
+/* 2 columns layout for screens between 1440 and 750 */
+.activities-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(350px, 1fr));
   row-gap: clamp(0.5rem, 2vw, 3rem);
@@ -143,7 +122,7 @@ useHead({
 
 /* 1 column layout for screens below the 750 mark */
 @media (max-width: 800px) {
-  .transition-wrapper {
+  .activities-grid {
     grid-template-columns: 1fr;
     gap: 2.5rem;
     justify-items: center;
@@ -151,86 +130,11 @@ useHead({
   }
 }
 
-.skeleton-list,
-.activities-list {
-  display: contents;
-}
-
-/* Added to ensure text remains visible during webfont load */
-.activities-page {
-  font-display: swap;
-}
-
-/* Skeleton styles */
-.skeleton {
-  position: relative;
-  overflow: hidden;
-  text-decoration: none;
-  border-radius: 40px;
-  height: 300px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: #E8EFEC;
-}
-
-.skeleton-image-container {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-}
-
-.skeleton-image {
-  width: 100%;
-  height: 100%;
-  background-color: #BCC7C2;
-}
-
-.skeleton-title-text {
-  position: relative;
-  z-index: 1;
-  width: 70%;
-  padding: 0.5rem;
+.no-results {
+  grid-column: 1 / -1;
   text-align: center;
-  background-color: transparent;
-}
-
-.skeleton-text {
-  display: block;
-  height: 24px;
-  width: 100%;
-  background-color: #DDECEA;
-  border-radius: 4px;
-}
-
-/* Shimmer effect */
-.skeleton::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  transform: translateX(-100%);
-  background: linear-gradient(90deg,
-  rgba(255,255,255,0) 0%,
-  rgba(255,255,255,0.2) 20%,
-  rgba(255,255,255,0.5) 60%,
-  rgba(255,255,255,0)
-  );
-  animation: shimmer 1.5s infinite;
-  z-index: 2;
-}
-
-.fade-enter-active,
-.fade-leave-active {
-  transition: opacity 0.5s ease;
-}
-
-.fade-enter-from,
-.fade-leave-to {
-  opacity: 0;
+  padding: 2rem;
+  color: #3D5144;
+  font-style: italic;
 }
 </style>
