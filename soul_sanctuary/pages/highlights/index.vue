@@ -2,8 +2,23 @@
 import ActivityCard from "~/components/ActivityCard.vue";
 import wallpaper from "assets/png/wallpaper.png";
 
+
+// Loading flag manually set to false at the opening of the page
+const isLoading = ref(true);
+
 // API call to fetch all highlights
-const { data: highlights } = await useFetch("/api/highlights");
+const { data: highlights, pending } = await useLazyFetch("/api/highlights", {
+  onResponse() {
+    // When the data is successfully fetched, set isLoading to false
+    setTimeout(() => {
+      isLoading.value = false;
+    }, 100); // Small delay to guarantee fluidity
+  }
+});
+
+// Use 'isLoading' and 'pending' to determine if skeletons should be shown
+const showSkeletons = computed(() => isLoading.value || pending.value);
+
 
 const backgroundStyle = {
   backgroundImage: `linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)), url(${wallpaper})`,
@@ -13,7 +28,7 @@ const backgroundStyle = {
   backgroundRepeat: 'repeat',
 }
 
-// Define SEO meta data
+// Define SEO meta-data
 // This overrides global SEO with page-specific content for better search relevance
 useHead({
   meta: [
@@ -53,11 +68,18 @@ useHead({
     
     <!-- Changed div to semantic section element for better document structure -->
     <!-- Added aria-label to describe this section for screen readers -->
-    <section
-      class="activities-grid"
-      aria-label="Featured activities"
-    >
+    <section class="activities-grid"  aria-label="Featured activities">
+      <!-- Skeleton cards while data is been retrieved -->
       <ActivityCard
+          v-if="pending"
+          v-for="i in 8"
+          :key="`skeleton-${i}`"
+          :loading="true"
+      />
+
+      <!-- Real cards to be shown after the data has been fetched -->
+      <ActivityCard
+          v-else
           v-for="(activity, index) in highlights"
           :key="activity.id"
           :id="activity.id"
@@ -65,11 +87,14 @@ useHead({
           :imageUrl="activity.imageUrl"
           :provenance="'fromHighlights'"
           :index="index"
+          :loading="false"
           aria-label="`Activity: ${activity.name}`"
       />
 
       <!-- Added accessible message for when no activities are available -->
-      <p v-if="!highlights || highlights.length === 0" class="no-results">
+      <p v-if="!pending && (!highlights || highlights.length === 0)"
+         class="no-results"
+         aria-live="polite">
         No highlight activities are currently available. Please check back soon!
       </p>
     </section>
