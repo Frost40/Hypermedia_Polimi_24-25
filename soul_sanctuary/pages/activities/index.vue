@@ -3,7 +3,20 @@ import ActivityCard from "~/components/ActivityCard.vue";
 import wallpaper from "assets/png/wallpaper.png";
 
 // API call to fetch all activities
-const { data: allActivities, pending } = await useLazyFetch("/api/activities");
+const isLoading = ref(true);
+
+// API call to fetch all activities
+const { data: allActivities, pending } = await useLazyFetch("/api/activities", {
+  onResponse() {
+    // Quando la risposta è completa, imposta isLoading a false
+    setTimeout(() => {
+      isLoading.value = false;
+    }, 100); // Piccolo ritardo per garantire una transizione fluida
+  }
+});
+
+// Usa isLoading O pending per determinare lo stato di caricamento
+const showSkeletons = computed(() => isLoading.value || pending.value);
 
 const backgroundStyle = {
   backgroundImage: `linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)), url(${wallpaper})`,
