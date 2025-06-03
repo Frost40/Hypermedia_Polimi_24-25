@@ -2,26 +2,30 @@
 import { ref } from 'vue';
 import defaultImage from '@/assets/pngs/No-Image-Found-400x264.png';
 
-defineProps({
+const props = defineProps({
   id: {
     type: [String, Number],
-    required: true
+    default: 'skeleton' // Valore predefinito per gli skeleton
   },
   name: {
     type: String,
-    required: true
+    default: '' // Vuoto per gli skeleton
   },
   imageUrl: {
     type: String,
-    required: true,
+    default: '',
   },
-  provenance:{
+  provenance: {
     type: String,
-    required: true,
+    default: '' // Vuoto per gli skeleton
   },
   index: {
     type: Number,
     default: 0
+  },
+  loading: {
+    type: Boolean,
+    default: false
   }
 });
 
@@ -30,10 +34,22 @@ const imageLoaded = ref(false);
 function handleImageLoad() {
   imageLoaded.value = true;
 }
+
+// Lo skeleton è visibile quando è in modalità loading o quando l'immagine non è ancora caricata
+const showSkeleton = computed(() => props.loading || !imageLoaded.value);
 </script>
 
 <template>
-  <NuxtLink :to="{
+  <div v-if="loading" class="activity-card">
+    <div class="skeleton-overlay">
+      <div class="skeleton-image-container">
+        <div class="skeleton-image card-bg"></div>
+      </div>
+      <div class="activity-title subtitle skeleton-title-text"></div>
+    </div>
+  </div>
+
+  <NuxtLink v-else :to="{
         path: `/activities/${id}`,
         query: { from: provenance }
       }" class="activity-card">
@@ -42,27 +58,26 @@ function handleImageLoad() {
       <div class="skeleton-image-container">
         <div class="skeleton-image card-bg"></div>
       </div>
-      <div class="activity-title subtitle skeleton-title-text">
-      </div>
+      <div class="activity-title subtitle skeleton-title-text"></div>
     </div>
 
-    <!-- Card reale che sarà visibile dopo il caricamento -->
+    <!-- Real card visible after loading -->
     <div class="card-image-container" :class="{ 'hidden': !imageLoaded }">
       <nuxt-img
-        :src="imageUrl || defaultImage"
-        :alt="name"
-        format="webp"
-        quality="80"
-        :loading="index < 4 ? 'eager' : 'lazy'"
-        sizes="(max-width: 800px) 100vw, 50vw"
-        placeholder
-        densities="1x,2x"
-        width="650"
-        height="300"
-        fit="cover"
-        class="card-bg"
-        :class="{ 'default-green': !imageUrl || imageUrl === defaultImage }"
-        @load="handleImageLoad"
+          :src="imageUrl || defaultImage"
+          :alt="name"
+          format="webp"
+          quality="80"
+          :loading="index < 4 ? 'eager' : 'lazy'"
+          sizes="(max-width: 800px) 100vw, 50vw"
+          placeholder
+          densities="1x,2x"
+          width="650"
+          height="300"
+          fit="cover"
+          class="card-bg"
+          :class="{ 'default-green': !imageUrl || imageUrl === defaultImage }"
+          @load="handleImageLoad"
       />
     </div>
     <div class="activity-title subtitle" :class="{ 'hidden': !imageLoaded }">

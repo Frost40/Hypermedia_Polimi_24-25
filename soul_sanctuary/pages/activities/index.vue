@@ -51,7 +51,17 @@ useHead({
       </section>
 
       <section class="activities-grid" aria-label="Activities list">
+        <!-- Cards in stato di skeleton prima del caricamento dati -->
         <ActivityCard
+            v-if="pending"
+            v-for="i in 8"
+            :key="`skeleton-${i}`"
+            :loading="true"
+        />
+
+        <!-- Cards con dati reali dopo il caricamento -->
+        <ActivityCard
+            v-else
             v-for="(activity, index) in allActivities"
             :key="activity.id"
             :id="activity.id"
@@ -59,10 +69,11 @@ useHead({
             :imageUrl="activity.imageUrl"
             :provenance="'all'"
             :index="index"
+            :loading="false"
             :aria-label="`Activity: ${activity.name}`"
         />
 
-        <!-- Message in case of no activities to display -->
+        <!-- Message in caso di nessun risultato -->
         <p v-if="!pending && (!allActivities || allActivities.length === 0)"
            class="no-results"
            aria-live="polite">
@@ -136,5 +147,38 @@ useHead({
   padding: 2rem;
   color: #3D5144;
   font-style: italic;
+}
+
+.skeleton-card {
+  position: relative;
+  width: 100%;
+  height: 300px;
+  border-radius: 40px;
+  overflow: hidden;
+}
+
+.skeleton-card .skeleton-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.skeleton-card .skeleton-image {
+  width: 100%;
+  height: 100%;
+  background-color: #BCC7C2;
+}
+
+.skeleton-card .skeleton-title-text {
+  position: absolute;
+  bottom: 20px;
+  left: 15%;
+  width: 70%;
+  height: 24px;
+  background-color: rgba(61, 81, 68, 0.15);
+  border-radius: 8px;
+  padding: 1rem;
 }
 </style>
