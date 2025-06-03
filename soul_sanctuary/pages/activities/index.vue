@@ -2,20 +2,20 @@
 import ActivityCard from "~/components/ActivityCard.vue";
 import wallpaper from "assets/png/wallpaper.png";
 
-// API call to fetch all activities
+// Loading flag manually set to false at the opening of the page
 const isLoading = ref(true);
 
 // API call to fetch all activities
 const { data: allActivities, pending } = await useLazyFetch("/api/activities", {
   onResponse() {
-    // Quando la risposta è completa, imposta isLoading a false
+    // When the data is successfully fetched, set isLoading to false
     setTimeout(() => {
       isLoading.value = false;
-    }, 100); // Piccolo ritardo per garantire una transizione fluida
+    }, 100); // Small delay to guarantee fluidity
   }
 });
 
-// Usa isLoading O pending per determinare lo stato di caricamento
+// Use 'isLoading' and 'pending' to determine if skeletons should be shown
 const showSkeletons = computed(() => isLoading.value || pending.value);
 
 const backgroundStyle = {
@@ -64,7 +64,7 @@ useHead({
       </section>
 
       <section class="activities-grid" aria-label="Activities list">
-        <!-- Cards in stato di skeleton prima del caricamento dati -->
+        <!-- Skeleton cards while data is been retrieved -->
         <ActivityCard
             v-if="pending"
             v-for="i in 8"
@@ -72,7 +72,7 @@ useHead({
             :loading="true"
         />
 
-        <!-- Cards con dati reali dopo il caricamento -->
+        <!-- Real cards to be shown after the data has been fetched -->
         <ActivityCard
             v-else
             v-for="(activity, index) in allActivities"
@@ -86,7 +86,7 @@ useHead({
             :aria-label="`Activity: ${activity.name}`"
         />
 
-        <!-- Message in caso di nessun risultato -->
+        <!-- No activities message -->
         <p v-if="!pending && (!allActivities || allActivities.length === 0)"
            class="no-results"
            aria-live="polite">
@@ -160,38 +160,5 @@ useHead({
   padding: 2rem;
   color: #3D5144;
   font-style: italic;
-}
-
-.skeleton-card {
-  position: relative;
-  width: 100%;
-  height: 300px;
-  border-radius: 40px;
-  overflow: hidden;
-}
-
-.skeleton-card .skeleton-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-}
-
-.skeleton-card .skeleton-image {
-  width: 100%;
-  height: 100%;
-  background-color: #BCC7C2;
-}
-
-.skeleton-card .skeleton-title-text {
-  position: absolute;
-  bottom: 20px;
-  left: 15%;
-  width: 70%;
-  height: 24px;
-  background-color: rgba(61, 81, 68, 0.15);
-  border-radius: 8px;
-  padding: 1rem;
 }
 </style>

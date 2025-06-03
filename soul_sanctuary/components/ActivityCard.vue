@@ -5,11 +5,11 @@ import defaultImage from '@/assets/pngs/No-Image-Found-400x264.png';
 const props = defineProps({
   id: {
     type: [String, Number],
-    default: 'skeleton' // Valore predefinito per gli skeleton
+    default: 'skeleton' // Predefine id value for skeletons
   },
   name: {
     type: String,
-    default: '' // Vuoto per gli skeleton
+    default: '' // Empty for skeletons
   },
   imageUrl: {
     type: String,
@@ -17,7 +17,7 @@ const props = defineProps({
   },
   provenance: {
     type: String,
-    default: '' // Vuoto per gli skeleton
+    default: '' // Empty for skeletons
   },
   index: {
     type: Number,
@@ -34,9 +34,6 @@ const imageLoaded = ref(false);
 function handleImageLoad() {
   imageLoaded.value = true;
 }
-
-// Lo skeleton è visibile quando è in modalità loading o quando l'immagine non è ancora caricata
-const showSkeleton = computed(() => props.loading || !imageLoaded.value);
 </script>
 
 <template>
@@ -53,7 +50,7 @@ const showSkeleton = computed(() => props.loading || !imageLoaded.value);
         path: `/activities/${id}`,
         query: { from: provenance }
       }" class="activity-card">
-    <!-- Skeleton visible untill the image is fully loaded -->
+    <!-- Skeleton visible until the image is fully loaded -->
     <div v-if="!imageLoaded" class="skeleton-overlay">
       <div class="skeleton-image-container">
         <div class="skeleton-image card-bg"></div>
@@ -184,7 +181,7 @@ const showSkeleton = computed(() => props.loading || !imageLoaded.value);
   z-index: 1;
 }
 
-/* Effetto shimmer */
+/* Shimmer effect */
 .skeleton-overlay::after {
   content: '';
   position: absolute;
