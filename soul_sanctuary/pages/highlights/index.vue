@@ -72,7 +72,7 @@ useHead({
       <!-- Skeleton cards while data is been retrieved -->
       <ActivityCard
           v-if="pending"
-          v-for="i in 8"
+          v-for="i in 4"
           :key="`skeleton-${i}`"
           :loading="true"
       />
