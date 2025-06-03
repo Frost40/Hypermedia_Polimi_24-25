@@ -244,13 +244,13 @@ useHead({
             <span id="email-desc" class="sr-only">Enter a valid email address to receive our response</span>
           </div>
           <div class="form-group">
-            <label for="course-input" class="text">Course Field</label>
+            <label for="course-input" id="course-label" class="text">Course Field</label>
             <div ref="dropdownRef" class="dropdown-container" :class="{ open: dropdownOpen }"
                  @click="toggleDropdown"
                  role="combobox"
-                 aria-expanded="dropdownOpen"
+                 :aria-expanded="dropdownOpen"
                  aria-haspopup="listbox"
-                 aria-labelledby="course-label">
+                 aria-controls="course-options">
 
               <span class="selected-value text">
                 {{ courses.find((opt) => opt.value === course) ? courses.find((opt) => opt.value === course).label : 'Select a course' }}
