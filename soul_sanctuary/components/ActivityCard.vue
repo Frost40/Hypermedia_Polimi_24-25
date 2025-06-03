@@ -62,7 +62,7 @@ function handleImageLoad() {
     <div class="card-image-container" :class="{ 'hidden': !imageLoaded }">
       <nuxt-img
           :src="imageUrl || defaultImage"
-          :alt="name"
+          :alt="`Visualization cover for the ${name} activity`"
           format="webp"
           quality="80"
           :loading="index < 4 ? 'eager' : 'lazy'"

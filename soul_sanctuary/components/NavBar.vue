@@ -15,10 +15,15 @@
     </div>
 
     <!-- Hamburger button; visible on mobile -->
-    <button class="hamburger" @click="mobileMenuOpen = !mobileMenuOpen">
-      <span class="hamburger-icon"></span>
-      <span class="hamburger-icon"></span>
-      <span class="hamburger-icon"></span>
+    <button
+        class="hamburger"
+        @click="mobileMenuOpen = !mobileMenuOpen"
+        aria-label="Toggle navigation menu"
+        :aria-expanded="mobileMenuOpen"
+        aria-controls="mobile-nav">
+      <span class="hamburger-icon" aria-hidden="true"></span>
+      <span class="hamburger-icon" aria-hidden="true"></span>
+      <span class="hamburger-icon" aria-hidden="true"></span>
     </button>
 
     <!-- Navigation links -->
@@ -98,12 +103,12 @@ import { useRoute } from 'vue-router'
 const route = useRoute()
 const mobileMenuOpen = ref(false)
 
-// Flag per tracciare la provenienza
+// Flag to track the source
 const isFromHighlights = ref(route.query.from === 'fromHighlights')
 
-// Osserva i cambiamenti del percorso
+// Watch for route changes
 watch(() => route.path, () => {
-  // Aggiorna il flag in base al nuovo percorso e parametri di query
+  // Update the flag based on the new path and query parameters
   isFromHighlights.value = route.query.from === 'fromHighlights'
 }, { immediate: true })
 
