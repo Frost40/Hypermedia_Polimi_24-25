@@ -63,12 +63,12 @@ function handleImageLoad() {
       <nuxt-img
           :src="imageUrl || defaultImage"
           :alt="`Visualization cover for the ${name} activity`"
-          format="webp"
+          format="webp,jpg"
           quality="80"
           :loading="index < 4 ? 'eager' : 'lazy'"
-          sizes="(max-width: 800px) 100vw, 50vw"
+          sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 650px"
           placeholder
-          densities="1x,2x"
+          densities="1x,2x, 3x"
           width="650"
           height="300"
           fit="cover"
@@ -202,6 +202,14 @@ function handleImageLoad() {
 @keyframes shimmer {
   100% {
     transform: translateX(100%);
+  }
+}
+
+@supports (-webkit-touch-callout: none) {
+  .card-bg {
+    /* Sovrascrivi proprietà problematiche per iOS */
+    object-fit: cover;
+    transform: translateZ(0); /* Forza l'accelerazione hardware */
   }
 }
 </style>
