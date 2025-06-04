@@ -24,7 +24,7 @@ export default defineNuxtConfig({
         lang: "en",
       },
       charset: 'utf-8',
-      viewport: 'width=device-width, initial-scale=1',
+      viewport: 'width=device-width, initial-scale=1.0, viewport-fit=cover',
       title: 'Soul Sanctuary',
       meta: [
         { name: 'description', content: 'Soul Sanctuary - A venue for spiritual wellness and holistic healing.' },
