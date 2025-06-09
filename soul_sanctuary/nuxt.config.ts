@@ -42,7 +42,7 @@ export default defineNuxtConfig({
         { name: 'twitter:card', content: 'summary_large_image' },
         { name: 'twitter:title', content: 'Soul Sanctuary' },
         { name: 'twitter:description', content: 'Experience spiritual wellness and holistic healing at Soul Sanctuary' },
-        { name: 'twitter:image', content: 'https://soulsanctuary-ten.vercel.app/tab_logo.svg' },
+        { name: 'twitter:image', content: 'https://soulsanctuary-ten.vercel.app/assets/pngs/circular_logo.png' },
       ],
       link: [
         { rel: 'icon', type: 'image/svg+xml', href: 'assets/svgs/tab_logo.svg' },
