@@ -18,6 +18,13 @@ export default defineNuxtConfig({
     display: 'swap'
   },
 
+  image: {
+    // Configurazione ottimizzata per immagini Supabase
+    format: ['avif', 'webp', 'png', 'jpg'],
+    quality: 80,
+    domains: process.env.SUPABASE_URL ? [new URL(process.env.SUPABASE_URL).hostname] : [],
+  },
+
   app: {
     head: {
       htmlAttrs: {
