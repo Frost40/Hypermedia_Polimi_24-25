@@ -41,7 +41,6 @@ useHead({
   
   <!-- Added role="main" for screen readers to identify main content -->
   <!-- Added aria-labelledby to associate this section with its heading -->
-  <div :style="backgroundStyle">
   <main class="activities-page" role="main" aria-labelledby="highlights-title">
     <div class="page-header">
       <!-- Added ID to connect with aria-labelledby -->
@@ -84,7 +83,6 @@ useHead({
       </p>
     </section>
   </main>
-  </div>
 </template>
 
 <style scoped>
