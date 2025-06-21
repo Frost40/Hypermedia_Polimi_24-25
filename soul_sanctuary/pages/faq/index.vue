@@ -204,7 +204,6 @@ useHead({
       :aria-live="'assertive'"
       @close="closePopup"
   />
-  <div :style="backgroundStyle">
   <main class="faq-page" role="main" aria-labelledby="page-title">
     <div class="page-header" aria-labelledby="page-title">
       <h1 id="page-title" class="page-title title_clear">FAQ</h1>
@@ -295,7 +294,6 @@ useHead({
       </section>
     </div>
   </main>
-  </div>
 </template>
 
 <style scoped>

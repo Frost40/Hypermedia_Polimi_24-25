@@ -42,7 +42,6 @@ useHead({
     <link rel="canonical" href="https://soulsanctuary-ten.vercel.app/activities">
   </Head>
 
-  <div :style="backgroundStyle">
     <main class="activities-page" role="main" aria-labelledby="page-title">
       <section class="page-header" aria-labelledby="page-title">
         <h1 id="page-title" class="page-title title">All Activities</h1>
@@ -82,7 +81,6 @@ useHead({
         </p>
       </section>
     </main>
-  </div>
 </template>
 
 <style scoped>
