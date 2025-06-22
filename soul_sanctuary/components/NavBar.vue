@@ -4,7 +4,7 @@
     <div class="navbar-logo">
       <NuxtLink to="/" class="logo-link">
         <NuxtImg
-            src="/assets/svgs/public_logo.svg"
+            src="/assets/svg/public_logo.svg"
             alt="Soul Sanctuary Logo"
             class="logo-img"
             format="svg"

@@ -11,7 +11,7 @@
 <script setup>
   import NavBar from '~/components/NavBar.vue'
   import Footer from '~/components/Footer.vue'
-  import wallpaper from "/assets/pngs/wallpaper.webp";
+  import wallpaper from "/assets/webp/wallpaper.webp";
 
   const backgroundStyle = {
     backgroundImage: `linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)), url(${wallpaper})`,

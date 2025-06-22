@@ -2,9 +2,8 @@
 import { ref, computed, onMounted, onUnmounted } from 'vue';
 import FaqItem from '~/components/FaqItem.vue';
 import AlertPopup from '~/components/AlertPopup.vue';
-import arrowDownGreen from 'assets/svgs/arrow_down_green.svg'
-import arrowUpGreen from 'assets/svgs/arrow_up_green.svg'
-import wallpaper from "assets/png/wallpaper.png";
+import arrowDownGreen from 'assets/svg/arrow_down_green.svg'
+import arrowUpGreen from 'assets/svg/arrow_up_green.svg'
 
 
 // Example FAQ data - you'll replace this with your actual questions and answers
@@ -122,14 +121,6 @@ onUnmounted(() => {
   document.removeEventListener('click', handleClickOutside);
   window.removeEventListener('resize', handleResize);
 });
-
-const backgroundStyle = {
-  backgroundImage: `linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)), url(${wallpaper})`,
-  backgroundSize: 'auto',
-  backgroundPosition: 'top center',
-  backgroundAttachment: 'fixed',
-  backgroundRepeat: 'repeat',
-}
 
 // Computed properties
 const dropdownPositionStyle = computed(() => {

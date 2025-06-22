@@ -1,6 +1,6 @@
 <script setup>
 import { ref } from 'vue';
-import defaultImage from '@/assets/pngs/No-Image-Found-400x264.png';
+import defaultImage from 'assets/png/No-Image-Found-400x264.png';
 
 defineProps({
   id: {

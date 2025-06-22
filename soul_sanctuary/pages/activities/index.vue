@@ -1,18 +1,8 @@
 <script setup>
 import ActivityCard from "~/components/ActivityCard.vue";
-import wallpaper from "assets/png/wallpaper.png";
 
 // API call to fetch all activities
 const { data: allActivities, pending } = await useLazyFetch("/api/activities")
-
-
-const backgroundStyle = {
-  backgroundImage: `linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)), url(${wallpaper})`,
-  backgroundSize: 'auto',
-  backgroundPosition: 'top center',
-  backgroundAttachment: 'fixed',
-  backgroundRepeat: 'repeat',
-}
 
 // Define page-specific meta tags for improved SEO
 useHead({
@@ -42,45 +32,45 @@ useHead({
     <link rel="canonical" href="https://soulsanctuary-ten.vercel.app/activities">
   </Head>
 
-    <main class="activities-page" role="main" aria-labelledby="page-title">
-      <section class="page-header" aria-labelledby="page-title">
-        <h1 id="page-title" class="page-title title">All Activities</h1>
-        <p class="page-description text">
-          Discover our most popular activities below — explore what we offer and find the perfect fit for your journey.
-        </p>
-      </section>
+  <main class="activities-page" role="main" aria-labelledby="page-title">
+    <section class="page-header" aria-labelledby="page-title">
+      <h1 id="page-title" class="page-title title">All Activities</h1>
+      <p class="page-description text">
+        Discover our most popular activities below — explore what we offer and find the perfect fit for your journey.
+      </p>
+    </section>
 
-      <section class="activities-grid" aria-label="Activities list">
-        <!-- Skeleton cards while data is been retrieved -->
-        <ActivityCard
-            v-if="pending"
-            v-for="i in 8"
-            :key="`skeleton-${i}`"
-            :loading="true"
-        />
+    <section class="activities-grid" aria-label="Activities list">
+      <!-- Skeleton cards while data is been retrieved -->
+      <ActivityCard
+          v-if="pending"
+          v-for="i in 8"
+          :key="`skeleton-${i}`"
+          :loading="true"
+      />
 
-        <!-- Real cards to be shown after the data has been fetched -->
-        <ActivityCard
-            v-else
-            v-for="(activity, index) in allActivities"
-            :key="activity.id"
-            :id="activity.id"
-            :name="activity.name"
-            :imageUrl="activity.imageUrl"
-            :provenance="'all'"
-            :index="index"
-            :loading="false"
-            :aria-label="`Activity: ${activity.name}`"
-        />
+      <!-- Real cards to be shown after the data has been fetched -->
+      <ActivityCard
+          v-else
+          v-for="(activity, index) in allActivities"
+          :key="activity.id"
+          :id="activity.id"
+          :name="activity.name"
+          :imageUrl="activity.imageUrl"
+          :provenance="'all'"
+          :index="index"
+          :loading="false"
+          :aria-label="`Activity: ${activity.name}`"
+      />
 
-        <!-- No activities message -->
-        <p v-if="!pending && (!allActivities || allActivities.length === 0)"
-           class="no-results"
-           aria-live="polite">
-          No activities are currently available. Please check back soon.
-        </p>
-      </section>
-    </main>
+      <!-- No activities message -->
+      <p v-if="!pending && (!allActivities || allActivities.length === 0)"
+         class="no-results"
+         aria-live="polite">
+        No activities are currently available. Please check back soon.
+      </p>
+    </section>
+  </main>
 </template>
 
 <style scoped>

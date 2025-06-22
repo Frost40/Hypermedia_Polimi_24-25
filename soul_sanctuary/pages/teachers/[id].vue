@@ -9,10 +9,10 @@
       <!-- Navigation arrow -->
       <div class="navigation">
         <NuxtLink v-if="prevId" :to="{ path: `/teachers/${prevId}`, query: { from } }" class="arrow-link left">
-          <img src="../../assets/svgs/previous.svg" class="arrows" />
+          <img src="../../assets/svg/previous.svg" class="arrows" />
         </NuxtLink>
         <NuxtLink v-if="nextId" :to="{ path: `/teachers/${nextId}`, query: { from } }" class="arrow-link right">
-          <img src="../../assets/svgs/next.svg" class="arrows" />
+          <img src="../../assets/svg/next.svg" class="arrows" />
         </NuxtLink>
       </div>
 
