@@ -43,13 +43,13 @@ export default defineNuxtConfig({
         { property: 'og:url', content: 'https://soulsanctuary-ten.vercel.app/' },
         { property: 'og:title', content: 'Soul Sanctuary' },
         { property: 'og:description', content: 'Experience spiritual wellness and holistic healing at Soul Sanctuary' },
-        { property: 'og:image', content: 'https://soulsanctuary-ten.vercel.app/assets/pngs/circular_logo.png' },
+        { property: 'og:image', content: 'https://soulsanctuary-ten.vercel.app/assets/png/circular_logo.png' },
 
         // Twitter
         { name: 'twitter:card', content: 'summary_large_image' },
         { name: 'twitter:title', content: 'Soul Sanctuary' },
         { name: 'twitter:description', content: 'Experience spiritual wellness and holistic healing at Soul Sanctuary' },
-        { name: 'twitter:image', content: 'https://soulsanctuary-ten.vercel.app/assets/pngs/circular_logo.png' },
+        { name: 'twitter:image', content: 'https://soulsanctuary-ten.vercel.app/assets/png/circular_logo.png' },
       ],
       link: [
         { rel: 'icon', type: 'image/svg+xml', href: 'assets/svg/tab_logo.svg' },
