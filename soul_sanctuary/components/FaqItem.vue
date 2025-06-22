@@ -1,9 +1,9 @@
 <script setup>
 import { ref } from 'vue'
-import ExpandIconGreen from 'assets/svgs/arrow_down_green.svg'
-import ExpandIconWhite from 'assets/svgs/arrow_down_white.svg'
-import ReduceIconGreen from 'assets/svgs/arrow_up_green.svg'
-import ReduceIconWhite from 'assets/svgs/arrow_up_white.svg'
+import ExpandIconGreen from 'assets/svg/arrow_down_green.svg'
+import ExpandIconWhite from 'assets/svg/arrow_down_white.svg'
+import ReduceIconGreen from 'assets/svg/arrow_up_green.svg'
+import ReduceIconWhite from 'assets/svg/arrow_up_white.svg'
 
 
 // Both question and answer are required props passed by the father

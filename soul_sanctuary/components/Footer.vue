@@ -10,13 +10,13 @@
       <!-- Social media links -->
       <p class="text_clear"><strong>Social Media</strong></p>
       <a href="https://www.instagram.com" class="social_logo" target="_blank" aria-label="Link to Instagram"><img
-          src="/assets/svgs/instagram.svg" alt="Instagram"></a>
+          src="/assets/svg/instagram.svg" alt="Instagram"></a>
       <a href="https://www.facebook.com" class="social_logo" target="_blank" aria-label="Link to Facebook"><img
-          src="/assets/svgs/facebook.svg" alt="Facebook"></a>
+          src="/assets/svg/facebook.svg" alt="Facebook"></a>
       <a href="https://x.com" class="social_logo" target="_blank" aria-label="Link to X"><img
-          src="/assets/svgs/twitter.svg" alt="X"></a>
+          src="/assets/svg/twitter.svg" alt="X"></a>
       <a href="https://www.tiktok.com" class="social_logo" target="_blank" aria-label="Link to TikTok"><img
-          src="/assets/svgs/tiktok.svg" alt="TikTok"></a>
+          src="/assets/svg/tiktok.svg" alt="TikTok"></a>
       <!-- Credits -->
       <p class="text_clear"><strong>Credits: </strong>Cotrone Mariariosaria, De Ciechi Samuele, Denti Silvia, Di Lorenzo Flavio</p>
       <!-- Copyright notice -->

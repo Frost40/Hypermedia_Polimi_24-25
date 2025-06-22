@@ -52,7 +52,7 @@ export default defineNuxtConfig({
         { name: 'twitter:image', content: 'https://soulsanctuary-ten.vercel.app/assets/pngs/circular_logo.png' },
       ],
       link: [
-        { rel: 'icon', type: 'image/svg+xml', href: 'assets/svgs/tab_logo.svg' },
+        { rel: 'icon', type: 'image/svg+xml', href: 'assets/svg/tab_logo.svg' },
         { rel: 'canonical', href: 'https://soulsanctuary-ten.vercel.app/' }
       ]
     }

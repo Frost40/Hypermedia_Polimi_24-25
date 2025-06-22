@@ -49,10 +49,10 @@
           <!-- Social media links -->
           <div>
             <p class="subtitle">Follow us on:</p>
-            <a href="https://www.instagram.com" class="social_logo" target="_blank" aria-label="Link to Instagram"><img src="/assets/svgs/instagram.svg" alt="Instagram"></a>
-            <a href="https://www.facebook.com" class="social_logo" target="_blank" aria-label="Link to Facebook"><img src="/assets/svgs/facebook.svg" alt="Facebook"></a>
-            <a href="https://x.com" class="social_logo" target="_blank" aria-label="Link to X"><img src="/assets/svgs/twitter.svg" alt="X"></a>
-            <a href="https://www.tiktok.com" class="social_logo" target="_blank" aria-label="Link to TikTok"><img src="/assets/svgs/tiktok.svg" alt="TikTok"></a>
+            <a href="https://www.instagram.com" class="social_logo" target="_blank" aria-label="Link to Instagram"><img src="/assets/svg/instagram.svg" alt="Instagram"></a>
+            <a href="https://www.facebook.com" class="social_logo" target="_blank" aria-label="Link to Facebook"><img src="/assets/svg/facebook.svg" alt="Facebook"></a>
+            <a href="https://x.com" class="social_logo" target="_blank" aria-label="Link to X"><img src="/assets/svg/twitter.svg" alt="X"></a>
+            <a href="https://www.tiktok.com" class="social_logo" target="_blank" aria-label="Link to TikTok"><img src="/assets/svg/tiktok.svg" alt="TikTok"></a>
           </div>
         </div>
 
