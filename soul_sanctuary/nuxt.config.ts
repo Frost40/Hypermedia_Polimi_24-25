@@ -15,7 +15,13 @@ export default defineNuxtConfig({
       Oregano: true,
       Inter: true
     },
-    display: 'swap'
+    display: 'swap',        // Prevents render-blocking
+    preload: true,          // Adds <link rel="preload"> for critical fonts
+    download: true,         // Downloads fonts to serve locally (best performance)
+    inject: true,           // Automatically injects the <link> or <style> tags
+    // Optional optimizations:
+    // fontsDir: 'fonts',   // Where fonts are stored when downloaded
+    // stylePath: 'css/fonts.css', // Path to generated CSS
   },
 
   image: {
@@ -51,8 +57,8 @@ export default defineNuxtConfig({
         { name: 'twitter:image', content: 'https://soulsanctuary-ten.vercel.app/assets/png/circular_logo.png' },
       ],
       link: [
-        { rel: 'icon', type: 'image/svg+xml', href: 'assets/svg/tab_logo.svg' },
-        { rel: 'canonical', href: 'https://soulsanctuary-ten.vercel.app/' }
+        { rel: 'icon', type: 'image/svg+xml', href: '/assets/svg/tab_logo.svg' },
+        { rel: 'canonical', href: 'https://soulsanctuary-ten.vercel.app/' },
       ]
     }
   },

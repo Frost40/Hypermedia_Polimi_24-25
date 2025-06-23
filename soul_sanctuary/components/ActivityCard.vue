@@ -66,10 +66,12 @@ function handleImageLoad() {
           format="avif,webp,jpg"
           quality="80"
           :loading="index < 4 ? 'eager' : 'lazy'"
-          sizes="(max-width: 480px) 100vw, (max-width: 768px) 85vw, (max-width: 1024px) 50vw, 650px"
+          sizes="(max-width: 480px) 400px, (max-width: 768px) 600px, 650px"
           placeholder
           densities="1x,2x,3x"
           fit="cover"
+          width="auto"
+          height="300"
           decoding="async"
           :fetchpriority="index < 2 ? 'high' : 'low'"
           class="card-bg"
