@@ -1,7 +1,6 @@
 <script setup>
 import { ref, computed, onMounted, onUnmounted } from 'vue';
 import FaqItem from '~/components/FaqItem.vue';
-import AlertPopup from '~/components/AlertPopup.vue';
 import arrowDownGreen from 'assets/svg/arrow_down_green.svg'
 import arrowUpGreen from 'assets/svg/arrow_up_green.svg'
 
@@ -16,6 +15,8 @@ const faqItems = ref([
   { question: 'Do you offer specific classes or courses, such as those on Chakras or mindful eating?', answer: 'Absolutely yes! We have dedicated courses on specific topics for those who wish to delve deeper. "Awaken Your Chakras" is designed to harmonize energy centers, while "Yoga & Mindful Eating" guides you to develop a more conscious and peaceful relationship with food.' },
   { question: 'How long do classes usually last?', answer: 'The duration of classes may vary slightly depending on the type of activity, but generally, a class lasts between 60 and 90 minutes. You will find the exact duration indicated in the description of each individual course or event on our website.' },
 ]);
+
+const AlertPopup = defineAsyncComponent(() => import('~/components/AlertPopup.vue'));
 
 // All refs and reactive variables
 const name = ref('');
@@ -196,7 +197,7 @@ useHead({
       @close="closePopup"
   />
   <main class="faq-page" role="main" aria-labelledby="page-title">
-    <div class="page-header" aria-labelledby="page-title">
+    <div class="page-header" aria-labelledby="page-title" fetchpriority="high" v-once>
       <h1 id="page-title" class="page-title title_clear">FAQ</h1>
       <p class="page-description text_clear">
         Find answers to common questions about our yoga classes, pricing, and policies. If you have a specific question about a course, please use the form below.
