@@ -13,14 +13,19 @@ export default defineEventHandler(async (event) => {
   try {
     const supabase = createClient(supabaseUrl, supabaseKey);
 
-    // 1. Recupera i dati dell’attività con i suoi insegnanti (via teacherActivity)
+    // Get activity and teachers data
     const { data: activityData, error: activityError } = await supabase
       .from("activity")
       .select(`
         *,
         teacherActivity(
           *,
-          teacher(*)
+          teacher(
+            id,
+            fullname,
+            photo,
+            area
+          )
         )
       `)
       .eq("id", id)
@@ -33,12 +38,12 @@ export default defineEventHandler(async (event) => {
     const { teacherActivity, managerId, ...otherActivityFields } = activityData;
     const teachers = teacherActivity?.map((entry) => entry.teacher) || [];
 
-    // 2. Recupera i dati del manager (se esiste)
+    // Get manager data
     let manager = null;
     if (managerId) {
       const { data: managerData, error: managerError } = await supabase
         .from("teacher")
-        .select("*")
+        .select("id, fullname, photo, area")
         .eq("id", managerId)
         .single();
 
@@ -49,7 +54,7 @@ export default defineEventHandler(async (event) => {
       manager = managerData;
     }
 
-    // 3. Risposta finale
+    // Answer
     return {
       id,
       teachers,

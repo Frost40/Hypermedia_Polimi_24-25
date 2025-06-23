@@ -6,7 +6,6 @@
         <link rel="canonical" :href="'https://soulsanctuary-ten.vercel.app/${id}'">
     </Head>
     <!-- Main container with background styling -->
-    <div :style="backgroundStyle">
       <main class="main" role="main" aria-labelledby="activity-title">
         <!-- Activity title -->
         <h1 id="activity-title" class="activity-title title no-line-below-768">{{ activity.name }}</h1>
@@ -61,7 +60,6 @@
           <CourseScheduleTable :schedule="activity.schedule" />
         </div>
       </main>
-    </div>
 </template>
 
 <script setup>
@@ -104,17 +102,6 @@
   const formattedDescription = computed(() =>
   activity.description.replace(/\n/g, '<br>')
   );
-
-  import wallpaper from '@/assets/png/wallpaper.png'
-
-  // Defining background style
-  const backgroundStyle = {
-    backgroundImage: `linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)), url(${wallpaper})`,
-    backgroundSize: 'auto',
-    backgroundPosition: 'top center',
-    backgroundAttachment: 'fixed',
-    backgroundRepeat: 'repeat',
-  }
 
   // Search Engine Optimization variables
   const page_description = ref('This page contains all the details of ' + activity.name)
