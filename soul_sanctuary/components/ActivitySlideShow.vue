@@ -54,7 +54,7 @@ defineProps({
 .slide-image {
   width: 100%;
   height: 100%;
-  object-fit: fill; /* Stretches image to fill the container, breaking aspect ratio! Watch out if you need a large slideshow */
+  object-fit: cover;
   display: block;
   filter: brightness(90%);
 }
