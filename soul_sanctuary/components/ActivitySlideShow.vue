@@ -57,7 +57,7 @@ function handleImageLoad(index) {
           </div>
 
           <!-- Actual image -->
-          <NuxtImg
+          <nuxt-img
             :src="activity.imageUrl"
             alt="An image related to the activity"
             class="slide-image"
