@@ -3,7 +3,7 @@
   <footer class="footer">
     <div>
       <!-- Contact information -->
-      <p class="subtitle_clear">Contact Info</p>
+      <h1 class="subtitle_clear">Contact Info</h1>
       <p class="text_clear"><strong>Address: </strong>Via delle Rose, 3, 20147 Milano MI</p>
       <p class="text_clear"><strong>Email: </strong>soul_sanctuary@gmail.com</p>
       <p class="text_clear"><strong>Telephone: </strong>+39 349 567 8989</p>

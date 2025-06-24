@@ -17,13 +17,13 @@
 
         <!-- Left side of the contact information -->
         <div class="contact_sx">
-          <p class="map_text subtitle">Come find us at:</p>
+          <h1 class="map_text subtitle">Come find us at:</h1>
           <p class="address text">Via delle Rose, 3,  20147 Milan (MI)</p>
           <!-- Google Maps embed -->
           <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2798.9924146157887!2d9.132024075630085!3d45.44980897107375!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4786c3ccee3628bf%3A0xb5aa44c4f52bf2e5!2sVia%20delle%20Rose%2C%203%2C%2020147%20Milano%20MI!5e0!3m2!1sit!2sit!4v1746285465739!5m2!1sit!2sit" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" class="map_embed"></iframe>        
           <!-- Opening hours section -->
           <div class="opening_hours">
-            <p class="subtitle">Opening Hours:</p>
+            <h1 class="subtitle">Opening Hours:</h1>
             <div class="weekday_hours">
               <p class="text" >Monday - Friday: 7:00 AM - 6:00 PM</p>
               <p class="text">Saturday - Sunday: 10:00 AM - 4:00 PM</p>
@@ -36,19 +36,19 @@
           <!-- Contact details -->
           <div class="contacts">
             <div>
-              <p class="subtitle">Call us: </p>
+              <h1 class="subtitle">Call us: </h1>
               <a class="number text" href="tel:+393495678989">📞 +39 349 567 8989</a>
             </div>
 
             <div>
-              <p class="subtitle">Send us an email at: </p>
+              <h1 class="subtitle">Send us an email at: </h1>
               <a class="mail text" href="mailto:soul_sanctuary@gmail.com">✉️ soul_sanctuary@gmail.com</a>
             </div>
           </div>
 
           <!-- Social media links -->
           <div>
-            <p class="subtitle">Follow us on:</p>
+            <h1 class="subtitle">Follow us on:</h1>
             <a href="https://www.instagram.com" class="social_logo" target="_blank" aria-label="Link to Instagram"><img src="/assets/svg/instagram.svg" alt="Instagram"></a>
             <a href="https://www.facebook.com" class="social_logo" target="_blank" aria-label="Link to Facebook"><img src="/assets/svg/facebook.svg" alt="Facebook"></a>
             <a href="https://x.com" class="social_logo" target="_blank" aria-label="Link to X"><img src="/assets/svg/twitter.svg" alt="X"></a>
