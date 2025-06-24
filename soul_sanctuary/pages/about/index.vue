@@ -1,5 +1,11 @@
 <script setup>
   import ActivitiesSlider from '@/components/ActivitySlideShow.vue'
+
+  const heroImageLoaded = ref(false)
+
+  function onHeroImageLoad() {
+    heroImageLoaded.value = true
+  }
  
   // API call to fetch all activities for the slideshow
   const { data: allActivities } = await useFetch("/api/activities");
@@ -34,19 +40,27 @@
   <main class="about_container">
 
     <section class="initial-section">
+  
+      <div v-if="!heroImageLoaded" class="skeleton-image-container">
+        <div class="skeleton-image shimmer"></div>
+      </div>
+
       <NuxtImg
+        v-show="heroImageLoaded"
         src="/assets/jpg/homepage2.jpg"
         alt="Yoga background"
         format="webp,avif,jpg"
         quality="80"
-        loading="lazy"
+        loading="eager"
         placeholder
         densities="1x,2x"
         fit="cover"
         decoding="async"
-        fetchpriority="low"
+        fetchpriority="high"
         class="background-image"
+        @load="onHeroImageLoad"
       />
+
       <div class="initial-section-overlay">
         <p class="text" style="color: #3C3C3C">
           A <span class="other-font">peaceful and welcoming space</span> where mind, body, and breath come together.  <br /><br />
@@ -54,6 +68,7 @@
         </p>
       </div>
     </section>
+
 
 
     <div class="about-section reverse-for-responsive">
@@ -274,8 +289,42 @@
   width: 100%;
   border-radius: 40px;
   object-fit: cover;
+  } 
+}
 
+.skeleton-image-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: 1;
 }
+
+.skeleton-image {
+  width: 100%;
+  height: 100%;
+  background-color: #BCC7C2;
 }
+
+/* Shimmer */
+.shimmer::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  height: 100%;
+  width: 100%;
+  background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.2) 20%, rgba(255,255,255,0.5) 60%, rgba(255,255,255,0));
+  animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+  100% {
+    left: 100%;
+  }
+}
+
 
 </style>
