@@ -84,7 +84,6 @@
   color: #3D5144;
   line-height: 1.6;
   padding: 0 2.5rem;
-  text-align: left;
 }
 
 .teachers-grid {
