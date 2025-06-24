@@ -34,13 +34,27 @@
   <main class="about_container">
 
     <section class="initial-section">
+      <NuxtImg
+        src="/assets/jpg/homepage2.jpg"
+        alt="Yoga background"
+        format="webp,avif,jpg"
+        quality="80"
+        loading="lazy"
+        placeholder
+        densities="1x,2x"
+        fit="cover"
+        decoding="async"
+        fetchpriority="low"
+        class="background-image"
+      />
       <div class="initial-section-overlay">
         <p class="text" style="color: #3C3C3C">
-            A <span class="other-font">peaceful and welcoming space</span> where mind, body, and breath come together.  <br /><br />
-            Designed <span class="other-font">to inspire calm, connection, and personal growth</span> through the practice of yoga.
+          A <span class="other-font">peaceful and welcoming space</span> where mind, body, and breath come together.  <br /><br />
+          Designed <span class="other-font">to inspire calm, connection, and personal growth</span> through the practice of yoga.
         </p>
       </div>
     </section>
+
 
     <div class="about-section reverse-for-responsive">
 
@@ -145,16 +159,27 @@
 <style scoped>
 
 .initial-section {
-  background-image: url('assets/jpg/homepage2.jpg');
-  background-size: cover;
-  background-position: center;
+  position: relative;
   height: 60vh;
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: hidden;
+}
+
+.background-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 1;
 }
 
 .initial-section-overlay {
+  position: relative;
+  z-index: 2;
   background-color: #BCC7C2;
   padding: 2rem;
   border-radius: 40px;
@@ -162,6 +187,7 @@
   max-width: 700px;
   width: 80%;
 }
+
 
 .other-font {
   font-family: 'Oregano';
