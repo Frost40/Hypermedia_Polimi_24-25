@@ -43,9 +43,21 @@
     </section>
 
     <div class="about-section reverse-for-responsive">
-      <div class="about-image">
-        <img src="/assets/jpg/about_us1.jpg" alt="" /> <!--empty alt since image is decorative -->
-      </div>
+
+      <NuxtImg
+        src="/assets/jpg/about_us1.jpg"
+        alt=""
+        format="avif,webp,jpg"
+        quality="80"
+        loading="eager"
+        placeholder
+        densities="1x,2x,3x"
+        fit="cover"
+        decoding="async"
+        fetchpriority="high"
+        class="about-image"
+      />
+
       <div class="about-text">
         <h1 class="subtitle">What We Believe</h1>
         <p class="text">
@@ -71,15 +83,37 @@
           From our very first session to today, we continue to honor the tradition of yoga while embracing the needs of modern life.
         </p>
       </div>
-      <div class="about-image">
-        <img src="/assets/jpg/about_us2.jpg" alt="" />  <!--empty alt since image is decorative -->
-      </div>
+      <NuxtImg
+        src="/assets/jpg/about_us2.jpg"
+        alt=""
+        format="avif,webp,jpg"
+        quality="80"
+        loading="lazy"
+        placeholder
+        densities="1x,2x,3x"
+        fit="cover"
+        decoding="async"
+        fetchpriority="low"
+        class="about-image"
+      />
+
     </div>
 
     <div class="about-section reverse-for-responsive">
-      <div class="about-image">
-        <img src="/assets/jpg/about_us3.jpg" alt="" />  <!--empty alt since image is decorative -->
-      </div>
+      <NuxtImg
+        src="/assets/jpg/about_us3.jpg"
+        alt=""
+        format="avif,webp,jpg"
+        quality="80"
+        loading="lazy"
+        placeholder
+        densities="1x,2x,3x"
+        fit="cover"
+        decoding="async"
+        fetchpriority="low"
+        class="about-image"
+      />
+
       <div class="about-text">
         <h1 class="subtitle">Visit Us</h1>
         <p class="text">
@@ -144,7 +178,7 @@
   flex-wrap: nowrap;
 }
 
-.about-image img {
+.about-image{
   max-width: 290px;
   max-height: 408px;
   width: 100%;
@@ -208,7 +242,7 @@
     max-width: 100%;
   }
 
-  .about-image img {
+  .about-image {
   max-width: 260px;
   max-height: 320px;
   width: 100%;
