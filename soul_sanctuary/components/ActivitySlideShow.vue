@@ -65,7 +65,7 @@ function handleImageLoad(index) {
             quality="80"
             sizes="(max-width: 480px) 100vw, (max-width: 768px) 85vw, 650px"
             densities="1x,2x,3x"
-            :loading="activity.id < 3 ? 'eager' : 'lazy'"
+            loading= "eager"
             :fetchpriority="activity.id < 3 ? 'high' : 'low'"
             decoding="async"
             fit="cover"

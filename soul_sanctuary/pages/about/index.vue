@@ -90,30 +90,25 @@
       </div>
     </div>
 
-    <div class="about-section about-activities-section">
-  <div class="about-text-2">
-    <h1 class="subtitle">Our Activities</h1>
-    <p class="text">
-      At Soul Sanctuary, we offer a variety of classes and workshops designed 
-      to support your well-being—whether you're a beginner or an experienced practitioner. 
-      From dynamic yoga flows to calming meditation sessions, there's something here for everyone.
-    </p>
-    <NuxtLink to="/activities" class="button">Activities</NuxtLink>
-  </div>
-  <div class="slider-wrapper" aria-label="A slideshow of our activities">
-    <ActivitiesSlider :activities="allActivities" />
-  </div>
-</div>
-
+    <div class="about-section">
+      <div class="about-text-2">
+        <h1 class="subtitle">Our Activities</h1>
+        <p class="text">
+          At Soul Sanctuary, we offer a variety of classes and workshops designed 
+          to support your well-being—whether you're a beginner or an experienced practitioner. 
+          From dynamic yoga flows to calming meditation sessions, there's something here for everyone.
+        </p>
+        <NuxtLink to="/activities" class="button">Activities</NuxtLink>
+      </div>
+      <div class="slider-wrapper" aria-label="A slideshow of our activities">
+        <ActivitiesSlider :activities="allActivities" />
+      </div>
+    </div>
 
   </main>
 </template>
 
 <style scoped>
-.home_container {
-  width: 100%;
-  overflow-x: hidden;
-}
 
 .initial-section {
   background-image: url('assets/jpg/homepage2.jpg');
@@ -165,20 +160,10 @@
 }
 
 .about-text-2 {
+  flex: 1 1 0%;
+  min-width: 0;
   max-width: 350px;
   color: #3C3C3C;
-}
-
-
-@media (max-width: 768px) {
-  .about-section {
-    flex-direction: column;
-    text-align: center;
-  }
-
-  .about-text {
-    max-width: 100%;
-  }
 }
 
 .button {
@@ -202,20 +187,10 @@
   align-self: center;
 }
 
-.about-activities-section {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  gap: 40px;
-  padding: 2rem;
-  flex-wrap: wrap;
-}
-
 .slider-wrapper {
+  flex: 1 1 0%;
+  min-width: 0;
   max-width: 670px;
-  width: 100%;
-  flex: 1;
 }
 
 @media (max-width: 768px) {
