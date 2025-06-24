@@ -275,7 +275,26 @@
   max-width: 670px;
 }
 
+@media (max-width: 480px) {
+  .initial-section {
+    height: 32vh;
+  }
+
+  .about-image {
+    display: none;
+  }
+
+  .slider-wrapper {
+   display: none;
+  }
+}
+
+
 @media (max-width: 768px) {
+  .initial-section {
+    height: 40vh;
+  }
+
   .about-section {
     flex-direction: column;
     flex-wrap: wrap;
