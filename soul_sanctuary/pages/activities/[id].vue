@@ -5,63 +5,61 @@
         <meta nrel="robots" content="index, follow">
         <link rel="canonical" :href="'https://soulsanctuary-ten.vercel.app/${id}'">
     </Head>
-    <!-- Main container with background styling -->
-    <div :style="backgroundStyle">
-      <main class="main" role="main" aria-labelledby="activity-title">
-        <!-- Activity title -->
-        <h1 id="activity-title" class="activity-title title no-line-below-768">{{ activity.name }}</h1>
-        <!-- Navigation arrows for previous and next activities -->
-        <div class="navigation">
-          <NuxtLink v-if="prevId" :to="{ path: `/activities/${prevId}`, query: { from } }" class="arrow-link left" aria-label="Go to the previous activity">
-            <img src="../../assets/svg/previous.svg" class="arrows" alt="" aria-hidden="true">
-          </NuxtLink>
-          <NuxtLink v-if="nextId" :to="{ path: `/activities/${nextId}`, query: { from } }" class="arrow-link right" aria-label="Go to the next activity">
-            <img src="../../assets/svg/next.svg" class="arrows" alt="" aria-hidden="true">
-          </NuxtLink>
-        </div>
-        <!-- Photo and description section -->
-        <div class="photo_and_description">
-            <div class="photo">
-                <img :src="activity.imageUrl" alt="activity image">
-            </div>
-            <div class="description">
-              <p class="text" v-html="formattedDescription"></p>
-            </div>
-        </div>
-        <!-- Teachers and manager section -->
-        <div class="teachers-manager-row">
-          <div class="teachers-column">
-            <h1 class="subtitle" style="margin: 0;">Teachers:</h1>
-            <div class="teachers-cards">
-              <TeacherCard
-                v-for="teacher in teachers"
-                :key="teacher.id"
-                :id="teacher.id"
-                :name="teacher.fullname"
-                :mainAreaOfExpertise="teacher.area"
-                :imageUrl="teacher.photo"
-              />
-            </div>
+    <!-- Main container -->
+    <main class="main" role="main" aria-labelledby="activity-title">
+      <!-- Activity title -->
+      <h1 id="activity-title" class="activity-title title no-line-below-768">{{ activity.name }}</h1>
+      <!-- Navigation arrows for previous and next activities -->
+      <div class="navigation">
+        <NuxtLink v-if="prevId" :to="{ path: `/activities/${prevId}`, query: { from } }" class="arrow-link left" aria-label="Go to the previous activity">
+          <img src="../../assets/svg/previous.svg" class="arrows" alt="" aria-hidden="true">
+        </NuxtLink>
+        <NuxtLink v-if="nextId" :to="{ path: `/activities/${nextId}`, query: { from } }" class="arrow-link right" aria-label="Go to the next activity">
+          <img src="../../assets/svg/next.svg" class="arrows" alt="" aria-hidden="true">
+        </NuxtLink>
+      </div>
+      <!-- Photo and description section -->
+      <div class="photo_and_description">
+          <div class="photo">
+              <img :src="activity.imageUrl" alt="activity image">
           </div>
-          <div class="manager-column">
-            <h1 class="subtitle" style="margin: 0;">Manager:</h1>
-            <div class="responsible-card">
-              <TeacherCard
-                :id="allTeachers.manager.id"
-                :name="allTeachers.manager.fullname"
-                :mainAreaOfExpertise="allTeachers.manager.area"
-                :imageUrl="allTeachers.manager.photo"
-              />
-            </div>
+          <div class="description">
+            <p class="text" v-html="formattedDescription"></p>
+          </div>
+      </div>
+      <!-- Teachers and manager section -->
+      <div class="teachers-manager-row">
+        <div class="teachers-column">
+          <h1 class="subtitle" style="margin: 0;">Teachers:</h1>
+          <div class="teachers-cards">
+            <TeacherCard
+              v-for="teacher in teachers"
+              :key="teacher.id"
+              :id="teacher.id"
+              :name="teacher.fullname"
+              :mainAreaOfExpertise="teacher.area"
+              :imageUrl="teacher.photo"
+            />
           </div>
         </div>
-        <!-- Schedule section -->
-        <div class="schedule-section">
-          <h1 class="subtitle"> Schedule </h1>
-          <CourseScheduleTable :schedule="activity.schedule" />
+        <div class="manager-column">
+          <h1 class="subtitle" style="margin: 0;">Manager:</h1>
+          <div class="responsible-card">
+            <TeacherCard
+              :id="allTeachers.manager.id"
+              :name="allTeachers.manager.fullname"
+              :mainAreaOfExpertise="allTeachers.manager.area"
+              :imageUrl="allTeachers.manager.photo"
+            />
+          </div>
         </div>
-      </main>
-    </div>
+      </div>
+      <!-- Schedule section -->
+      <div class="schedule-section">
+        <h1 class="subtitle"> Schedule </h1>
+        <CourseScheduleTable :schedule="activity.schedule" />
+      </div>
+    </main>
 </template>
 
 <script setup>
@@ -104,17 +102,6 @@
   const formattedDescription = computed(() =>
   activity.description.replace(/\n/g, '<br>')
   );
-
-  import wallpaper from '@/assets/png/wallpaper.png'
-
-  // Defining background style
-  const backgroundStyle = {
-    backgroundImage: `linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)), url(${wallpaper})`,
-    backgroundSize: 'auto',
-    backgroundPosition: 'top center',
-    backgroundAttachment: 'fixed',
-    backgroundRepeat: 'repeat',
-  }
 
   // Search Engine Optimization variables
   const page_description = ref('This page contains all the details of ' + activity.name)
@@ -254,29 +241,6 @@
   box-sizing: border-box;
 }
 
-@media (max-width: 768px) {
-  .teachers-manager-row {
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-  }
-
-  .teachers-column,
-  .manager-column {
-    width: 100%;
-  }
-
-  .teachers-cards {
-    flex-wrap: wrap;     
-    justify-content: center;
-    overflow-x: visible; 
-  }
-
-  .responsible-card {
-    justify-content: center;
-  }
-}
-
 @media (max-width: 1200px) and (min-width: 769px) {
   .teachers-manager-row {
     flex-direction: column;
@@ -312,6 +276,27 @@
 
   .description {
     border-radius: 0 0 40px 40px;
+  }
+
+  .teachers-manager-row {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .teachers-column,
+  .manager-column {
+    width: 100%;
+  }
+
+  .teachers-cards {
+    flex-wrap: wrap;     
+    justify-content: center;
+    overflow-x: visible; 
+  }
+
+  .responsible-card {
+    justify-content: center;
   }
 }
 
