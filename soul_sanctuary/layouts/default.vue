@@ -13,6 +13,7 @@
   import Footer from '~/components/Footer.vue'
   import wallpaper from "/assets/webp/wallpaper.webp";
 
+  // Define the background style with the wallpaper image
   const backgroundStyle = {
     backgroundImage: `linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)), url(${wallpaper})`,
     backgroundSize: 'auto',
