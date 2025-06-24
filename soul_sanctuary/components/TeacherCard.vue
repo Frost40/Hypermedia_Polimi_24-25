@@ -81,14 +81,17 @@ function handleImageLoad() {
 
 <style scoped>
 .teacher-card {
-  width: 340px;
-  height: 480px;
+  flex: 1 1 300px; 
+  max-width: 340px;
+  aspect-ratio: 17 / 24;
   border-radius: 16px;
   overflow: hidden;
   text-align: center;
   background: white;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.07);
   position: relative;
+  display: flex;
+  flex-direction: column;
 }
 
 .card-link {
@@ -101,8 +104,8 @@ function handleImageLoad() {
 }
 
 .teacher-image {
-  width: 340px;
-  height: 340px;
+  width: 100%;
+  aspect-ratio: 1 / 1;
   border-radius: 20px;
   object-fit: cover;
   transition: filter 0.3s ease;
