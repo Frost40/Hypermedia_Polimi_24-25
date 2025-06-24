@@ -42,7 +42,7 @@
       </div>
     </section>
 
-    <div class="about-section">
+    <div class="about-section reverse-for-responsive">
       <div class="about-image">
         <img src="/assets/jpg/about_us1.jpg" alt="" /> <!--empty alt since image is decorative -->
       </div>
@@ -76,7 +76,7 @@
       </div>
     </div>
 
-    <div class="about-section">
+    <div class="about-section reverse-for-responsive">
       <div class="about-image">
         <img src="/assets/jpg/about_us3.jpg" alt="" />  <!--empty alt since image is decorative -->
       </div>
@@ -146,7 +146,7 @@
   justify-content: center;
   gap: 74px;
   padding: 2rem;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
 }
 
 .about-image img {
@@ -155,6 +155,8 @@
   width: 100%;
   border-radius: 40px;
   object-fit: cover;
+  min-width: 260px;
+  min-height: 320px;
 }
 
 .about-text {
@@ -216,5 +218,29 @@
   flex: 1;
 }
 
+@media (max-width: 768px) {
+  .about-section {
+    flex-direction: column;
+    flex-wrap: wrap;
+    text-align: center;
+  }
+
+  .reverse-for-responsive {
+    flex-direction: column-reverse;
+  }
+
+  .about-text, .about-text-2 {
+    max-width: 100%;
+  }
+
+  .about-image img {
+  max-width: 260px;
+  max-height: 320px;
+  width: 100%;
+  border-radius: 40px;
+  object-fit: cover;
+
+}
+}
 
 </style>
