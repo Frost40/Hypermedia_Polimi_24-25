@@ -360,6 +360,14 @@
   }
 }
 
+@supports (-webkit-touch-callout: none) {
+  .card-bg {
+    /* Sovrascrivi proprietà problematiche per iOS */
+    object-fit: cover;
+    transform: translateZ(0); /* Forza l'accelerazione hardware */
+  }
+}
+
 
 
 </style>
