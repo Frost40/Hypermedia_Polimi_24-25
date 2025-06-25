@@ -326,6 +326,10 @@
    display: none;
   }
 
+  .background-image{
+    display: none;
+  }
+
 }
 
 .skeleton-image-container {
