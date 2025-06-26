@@ -8,18 +8,19 @@
     <section class="hero">
 
       <nuxt-img
-          src="/assets/jpg/homepage_rid1.jpg"
+          src="/assets/jpg/homepage_rid1ancora.jpg"
           alt="Hero background"
-          format="avif,webp,jpg"
-          quality="80"
-          sizes="(max-width: 480px) 400px, (max-width: 768px) 600px, 650px"
-          placeholder
-          densities="1x,2x,3x"
+          format="webp,jpg"
+          quality="85"
+          width="100%"
+          height="100%"
           fit="cover"
-          width="auto"
-          height="auto"
-          decoding="async"
+          object-position="center center"
+          placeholder
+          preload
           fetchpriority="high"
+          loading="eager"
+          decoding="async"
           class="hero-bg"
       />
 
@@ -247,15 +248,6 @@
   height: 100%;
 }
 
-
-.card1 {
-  /*background-image: url('assets/jpg/homepage2.jpg');*/
-}
-
-.card2 {
-  /*background-image: url('assets/jpg/homepage3.jpg');*/
-}
-
 .text_white {
   color: white;
   margin-bottom: 0.5rem;
@@ -267,4 +259,3 @@
   text-align: center;
 }
 </style>
-

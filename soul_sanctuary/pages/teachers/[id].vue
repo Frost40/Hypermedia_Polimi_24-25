@@ -4,57 +4,59 @@
     <meta name="robots" content="index, follow" />
     <link rel="canonical" :href="`https://soulsanctuary-ten.vercel.app/teachers/${id}`" />
   </Head>
-  <div :style="backgroundStyle" class="background">
-    <main class="main">
-      <!-- Navigation arrow -->
-      <div class="navigation">
-        <NuxtLink v-if="prevId" :to="{ path: `/teachers/${prevId}`, query: { from } }" class="arrow-link left">
-          <img src="../../assets/svg/previous.svg" class="arrows" />
-        </NuxtLink>
-        <NuxtLink v-if="nextId" :to="{ path: `/teachers/${nextId}`, query: { from } }" class="arrow-link right">
-          <img src="../../assets/svg/next.svg" class="arrows" />
-        </NuxtLink>
-      </div>
 
-      <!-- Wrapper -->
-      <div class="teacher-wrapper">
-        <div class="teacher-box">
-          <div class="photo-section">
-            <img :src="teacher.photo" alt="Teacher's Photo" class="teacher-photo" />
-          </div>
-          <div class="info-section">
-            <h2 class="title">{{ teacher.fullname }}</h2>
-            <p class="text"><strong>Phone:</strong> <a :href="'tel:' + teacher.phone">{{ teacher.phone }}</a></p>
-            <p class="text"><strong>Email:</strong> <a :href="'mailto:' + teacher.email">{{ teacher.email }}</a></p>
-            <p class="text"><strong>Area:</strong> {{ teacher.area }}</p>
-            <a :href="teacher.cv" target="_blank" class="button">Curriculum</a>
-          </div>
+  <main class="main">
+    <!-- Navigation arrow -->
+    <div class="navigation">
+      <NuxtLink v-if="prevId" :to="{ path: `/teachers/${prevId}`, query: { from } }" class="arrow-link left">
+        <img src="../../assets/svg/previous.svg" class="arrows" />
+      </NuxtLink>
+      <NuxtLink v-if="nextId" :to="{ path: `/teachers/${nextId}`, query: { from } }" class="arrow-link right">
+        <img src="../../assets/svg/next.svg" class="arrows" />
+      </NuxtLink>
+    </div>
+
+    <!-- Wrapper -->
+    <div class="teacher-wrapper">
+      <div class="teacher-box">
+        <div class="photo-section">
+          <img :src="teacher.photo" alt="Teacher's Photo" class="teacher-photo" width="300"
+               height="300"
+               loading="lazy" />
+        </div>
+        <div class="info-section">
+          <h2 class="title">{{ teacher.fullname }}</h2>
+          <p class="text"><strong>Phone:</strong> <a :href="'tel:' + teacher.phone">{{ teacher.phone }}</a></p>
+          <p class="text"><strong>Email:</strong> <a :href="'mailto:' + teacher.email">{{ teacher.email }}</a></p>
+          <p class="text"><strong>Area:</strong> {{ teacher.area }}</p>
+          <a :href="teacher.cv" target="_blank" class="button">Curriculum</a>
         </div>
       </div>
+    </div>
 
-      <!-- Description section -->
-      <section class="description-section">
-        <div class="description-box">
-          <p class="text" v-html="formattedDescription"></p>
-        </div>
-      </section>
+    <!-- Description section -->
+    <section class="description-section">
+      <div class="description-box">
+        <p class="text" v-html="formattedDescription"></p>
+      </div>
+    </section>
 
-      <!-- Activity section -->
-      <div class="activity-section">
-        <h2 class="subtitle" style="text-align: center;">{{ teacher.fullname }}'s Classes</h2>
+    <!-- Activity section -->
+    <div class="activity-section">
+      <h2 class="subtitle" style="text-align: center;">{{ teacher.fullname }}'s Classes</h2>
+      <div class="slider-wrapper">
+        <ActivitiesSlider :activities="teacher.activities" />
+      </div>
+
+      <div v-if="teacher.managedActivities && teacher.managedActivities.length">
+        <h2 class="subtitle" style="text-align: center;">{{ teacher.fullname }}'s Responsibilities</h2>
         <div class="slider-wrapper">
-          <ActivitiesSlider :activities="teacher.activities" />
-        </div>
-
-        <div v-if="teacher.managedActivities && teacher.managedActivities.length">
-          <h2 class="subtitle" style="text-align: center;">{{ teacher.fullname }}'s Responsibilities</h2>
-          <div class="slider-wrapper">
-            <ActivitiesSlider :activities="teacher.managedActivities" />
-          </div>
+          <ActivitiesSlider :activities="teacher.managedActivities" />
         </div>
       </div>
-    </main>
-  </div>
+    </div>
+  </main>
+
 </template>
 
 
@@ -77,17 +79,6 @@ const nextId = currentIndex < allTeachers.length - 1 ? allTeachers[currentIndex 
 const formattedDescription = computed(() =>
     teacher.description.replace(/\n/g, '<br>')
 )
-
-import wallpaper from '@/assets/png/wallpaper.png'
-
-const backgroundStyle = {
-  backgroundImage: `linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)), url(${wallpaper})`,
-  backgroundSize: 'cover',
-  backgroundPosition: 'center',
-  backgroundAttachment: 'fixed',
-  backgroundRepeat: 'no-repeat',
-  minHeight: '100vh',
-}
 
 // Search Engine Optimization variables
 const page_description = ref('This page contains all the details about ' + teacher.fullname)
@@ -169,17 +160,17 @@ useHead({
 }
 
 .photo-section {
-  flex: 1;
-  min-width: 250px;
-  max-width: 350px;
+  /* Rimuovi l'aspect-ratio */
+  width: 300px;
+  max-width: 100%;
 }
 
 .teacher-photo {
   width: 100%;
   height: auto;
-  aspect-ratio: 1/1;
   object-fit: cover;
   border-radius: 20px;
+  display: block;
 }
 
 .info-section {
@@ -282,4 +273,3 @@ useHead({
   }
 }
 </style>
-
