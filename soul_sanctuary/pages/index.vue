@@ -6,15 +6,42 @@
   <main class="home_container">
     <!-- Hero section -->
     <section class="hero">
+
+      <nuxt-img
+          src="/assets/jpg/homepage_rid1ancora.jpg"
+          alt="Hero background"
+          format="webp,jpg"
+          quality="85"
+          width="100%"
+          height="100%"
+          fit="cover"
+          object-position="center center"
+          placeholder
+          preload
+          fetchpriority="high"
+          loading="eager"
+          decoding="async"
+          class="hero-bg"
+      />
+
       <div class="hero_overlay">
         <h1 class="title" style="color: #3C3C3C">Awaken Your Energy</h1>
-        <img src="/assets/png/logoNoBackground.png" alt="Soul Sanctuary Logo" class="hero_logo" />
+        <nuxt-img
+            src="/assets/png/logoNoBackground.png"
+            alt="Soul Sanctuary Logo"
+            format="avif,webp,png"
+            quality="80"
+            width="150"
+            height="100"
+            class="hero_logo"
+        />
         <p class="text" style="color: #3C3C3C">
           A space to reconnect with yourself.<br />
           Discover balance, clarity, and a deeper sense of well-being.
         </p>
         <NuxtLink to="/about" class="button">Learn more about Us</NuxtLink>
       </div>
+
     </section>
 
     <!-- Stats section -->
@@ -36,14 +63,38 @@
     <!-- Image cards section -->
     <section class="cards_wrapper">
       <section class="cards">
-        <div class="card card1">
-          <p class="text text_white">Have questions or need more info?</p>
-          <NuxtLink to="/contact_us" class="button small">Contact Us</NuxtLink>
+        <div class="card">
+          <nuxt-img
+              src="/assets/jpg/homepage_rid2.jpg"
+              alt="Background Contact Card"
+              format="avif,webp,jpg"
+              quality="80"
+              fit="cover"
+              fill
+              class="card-bg"
+          />
+          <div class="card-content">
+            <p class="text text_white">Have questions or need more info?</p>
+            <NuxtLink to="/contact_us" class="button small">Contact Us</NuxtLink>
+          </div>
         </div>
-        <div class="card card2">
-          <p class="text text_white">Come discover our most-loved activities.</p>
-          <NuxtLink to="/highlights" class="button small">Highlights</NuxtLink>
+
+        <div class="card">
+          <nuxt-img
+              src="/assets/jpg/homepage_rid.jpg"
+              alt="Background Highlights Card"
+              format="avif,webp,jpg"
+              quality="80"
+              fit="cover"
+              fill
+              class="card-bg"
+          />
+          <div class="card-content">
+            <p class="text text_white">Come discover our most-loved activities.</p>
+            <NuxtLink to="/highlights" class="button small">Highlights</NuxtLink>
+          </div>
         </div>
+
       </section>
     </section>
 
@@ -62,14 +113,29 @@
 }
 
 .hero {
-  background-image: url('assets/jpg/homepage1.jpg');
-  background-size: cover;
-  background-position: center;
+  position: relative;
   height: 80vh;
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: hidden;
 }
+
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+
+.hero_overlay {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+}
+
 
 .hero_overlay {
   background-color: rgba(188, 199, 194, 0.7); /* BCC7C2 */
@@ -81,7 +147,7 @@
 }
 
 .hero_logo {
-  height: 100px;
+  /*height: 100px;*/
   margin: 1rem auto;
 }
 
@@ -154,27 +220,32 @@
 }
 
 .card {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 5 / 3; /* ~500x300 */
+  border-radius: 20px;
   flex: 1 1 calc(50% - 1rem);
   max-width: 500px;
   min-width: 280px;
-  height: 300px;
-  border-radius: 20px;
-  overflow: hidden;
-  padding: 1rem;
-  background-size: cover;
-  background-position: center;
+}
+
+.card-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+
+.card-content {
+  position: relative;
+  z-index: 1;
   display: flex;
   flex-direction: column;
   justify-content: center;
   text-align: center;
-}
-
-.card1 {
-  background-image: url('assets/jpg/homepage2.jpg');
-}
-
-.card2 {
-  background-image: url('assets/jpg/homepage3.jpg');
+  height: 100%;
 }
 
 .text_white {
