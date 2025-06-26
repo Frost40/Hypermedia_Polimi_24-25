@@ -216,7 +216,7 @@
 
 .teachers-manager-row {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   gap: 5rem;
   margin: 2rem 2.5rem;
   flex-wrap: wrap;
@@ -224,22 +224,23 @@
 
 .teachers-column,
 .manager-column {
-  flex: 1;
-}
-
-.teachers-cards {
+  flex: 0 1 auto;
   display: flex;
-  gap: 1rem;     
-  padding-bottom: 0.5rem;
-  box-sizing: border-box;
+  flex-direction: column;
+  align-items: center;
 }
 
+
+
+.teachers-cards,
 .responsible-card {
   display: flex;
-  justify-content: flex-start;
+  flex-wrap: wrap;
   gap: 1rem;
-  box-sizing: border-box;
+  justify-content: center;
 }
+
+
 
 @media (max-width: 1200px) and (min-width: 769px) {
   .teachers-manager-row {
