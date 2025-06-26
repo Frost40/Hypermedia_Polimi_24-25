@@ -1,5 +1,5 @@
 <script setup>
-  import ActivitiesSlider from '@/components/ActivitySlideShow.vue'
+  import ActivitiesSlider from '~/components/ActivityCarousel.vue'
 
   const heroImageLoaded = ref(false)
 

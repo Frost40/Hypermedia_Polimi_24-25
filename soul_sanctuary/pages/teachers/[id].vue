@@ -59,7 +59,7 @@
 
 
 <script setup>
-import ActivitiesSlider from '@/components/ActivitySlideShow.vue'
+import ActivitiesSlider from '~/components/ActivityCarousel.vue'
 const route = useRoute()
 const id = route.params.id
 const from = route.query.from
