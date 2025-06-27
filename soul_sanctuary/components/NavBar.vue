@@ -3,7 +3,14 @@
   <header class="navbar">
     <div class="navbar-logo">
       <NuxtLink to="/" class="logo-link">
-        <LogoSvg class="logo-img" />
+        <NuxtImg
+            src="/assets/svg/public_logo.svg"
+            alt="Soul Sanctuary Logo"
+            class="logo-img"
+            format="svg"
+            width="80"
+            height="80"
+        />
       </NuxtLink>
     </div>
 
@@ -92,7 +99,6 @@
 <script setup>
 import { ref } from 'vue'
 import { useRoute } from 'vue-router'
-import LogoSvg from '~/assets/svg/logo.svg?component'
 
 const route = useRoute()
 const mobileMenuOpen = ref(false)
