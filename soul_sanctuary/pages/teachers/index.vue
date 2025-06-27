@@ -2,7 +2,8 @@
   import TeacherCard from "~/components/TeacherCard.vue";
 
   // API call to fetch all teachers
-  const { data: allTeachers } = await useFetch("/api/teachers");
+  const { data: allTeachers, pending } = await useLazyFetch('/api/teachers')
+
 
   // Define SEO meta data
   // This overrides global SEO with page-specific content for better search relevance
@@ -37,16 +38,39 @@
       </p>
     </div>
     <div class="teachers-grid" aria-label="A grid where each card represents a teacher of the Soul Sanctuary">
+      <!-- Show loading skeletons -->
       <TeacherCard
+        v-if="pending"
+        v-for="n in 6"
+        :key="`skeleton-${n}`"
+        :id="n"
+        :name="''"
+        :mainAreaOfExpertise="''"
+        :imageUrl="''"
+        :loading="true"
+      />
+
+      <!-- Show real teacher cards once loaded -->
+      <TeacherCard
+        v-else
         v-for="teacher in allTeachers"
         :key="teacher.id"
         :id="teacher.id"
         :name="teacher.fullname"
         :mainAreaOfExpertise="teacher.area"
         :imageUrl="teacher.photo"
+        :loading="false"
         aria-label="`Teacher: ${teacher.fullname}`"
       />
+
+      <!-- No teachers message -->
+      <p v-if="!pending && (!allTeachers || allTeachers.length === 0)"
+         class="no-results"
+         aria-live="polite">
+        No teachers are currently employed at the center. Please check back soon.
+      </p>
     </div>
+
   </main>
 </template>
 
@@ -96,5 +120,15 @@
   margin: 0 auto;
 }
 
+@media (max-width: 800px) {
+  
+  .no-results {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 2rem;
+    color: #3D5144;
+    font-style: italic;
+  }
+}
 
 </style>
