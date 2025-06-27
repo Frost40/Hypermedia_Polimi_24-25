@@ -5,6 +5,7 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   css: ['~/assets/css/global.css'],
 
+  // Modules
   modules: [
     '@nuxtjs/google-fonts',
     '@nuxt/image',
