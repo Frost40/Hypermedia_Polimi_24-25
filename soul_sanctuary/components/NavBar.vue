@@ -7,6 +7,7 @@
             src="/assets/svg/public_logo.svg"
             alt="Soul Sanctuary Logo"
             class="logo-img"
+            format="svg"
             width="80"
             height="80"
         />
