@@ -11,6 +11,9 @@ export default defineNuxtConfig({
     '@nuxt/image',
   ],
 
+  vite: {
+    plugins: [svgLoader()]
+  },
 
   googleFonts: {
     families: {
