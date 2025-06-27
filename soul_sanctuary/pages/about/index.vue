@@ -8,7 +8,7 @@
   }
  
   // API call to fetch all activities for the slideshow
-  const { data: allActivities } = await useFetch("/api/activities");
+  const { data: allActivities } = await useLazyFetch("/api/activities");
 
     // Define SEO meta data
     // This overrides global SEO with page-specific content for better search relevance
@@ -46,6 +46,7 @@
       </div>
 
       <NuxtImg
+        preload
         v-show="heroImageLoaded"
         src="/assets/jpg/homepage2.jpg"
         alt="Yoga background"
