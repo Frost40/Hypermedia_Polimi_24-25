@@ -8,11 +8,11 @@
   <main class="main">
     <!-- Navigation arrow -->
     <div class="navigation">
-      <NuxtLink v-if="prevId" :to="{ path: `/teachers/${prevId}`, query: { from } }" class="arrow-link left">
-        <img src="../../assets/svg/previous.svg" class="arrows" />
+      <NuxtLink v-if="prevId" :to="{ path: `/teachers/${prevId}`, query: { from } }" class="arrow-link left" aria-label="Go to the previous activity">
+        <img src="../../assets/svg/previous.svg" class="arrows" alt="" aria-hidden="true"/>
       </NuxtLink>
-      <NuxtLink v-if="nextId" :to="{ path: `/teachers/${nextId}`, query: { from } }" class="arrow-link right">
-        <img src="../../assets/svg/next.svg" class="arrows" />
+      <NuxtLink v-if="nextId" :to="{ path: `/teachers/${nextId}`, query: { from } }" class="arrow-link right" aria-label="Go to the next activity">
+        <img src="../../assets/svg/next.svg" class="arrows" alt="" aria-hidden="true"/>
       </NuxtLink>
     </div>
 
@@ -160,15 +160,16 @@ useHead({
 }
 
 .photo-section {
-  /* Rimuovi l'aspect-ratio */
-  width: 300px;
-  max-width: 100%;
+  max-width: none;
+  display: flex;
+  justify-content: center;
 }
 
 .teacher-photo {
-  width: 100%;
-  height: auto;
+  width: 300px;
+  height: 300px;
   object-fit: cover;
+  object-position: center;
   border-radius: 20px;
   display: block;
 }
@@ -271,5 +272,13 @@ useHead({
   .teacher-wrapper {
     min-height: auto;
   }
+
+  @media (max-width: 768px) {
+    .teacher-photo {
+      width: 200px;
+      height: 200px;
+    }
+  }
+
 }
 </style>
