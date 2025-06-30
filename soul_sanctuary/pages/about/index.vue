@@ -15,9 +15,9 @@
     useHead({
       meta: [
         // Page-specific description for better search results
-        { name: 'description', content: 'Discover Soul Sanctuary\'s history and mission. Find out about where the center is located and how contact it.' },
+        { name: 'description', content: 'Discover Soul Sanctuary\'s history and mission. Find out about basic information about the center.' },
         // Additional keywords specific to this page
-        { name: 'keywords', content: 'yoga center, yoga center history , yoga center past, location, phone number, email, map, wellness' },
+        { name: 'keywords', content: 'yoga center, yoga center history , yoga center past,yoga center beliefs,mission, goals, location, overview activities' },
         // Open Graph tags for better social sharing specific to this page
         { property: 'og:title', content: 'Soul Sanctuary - Popular Wellness About Us page' },
         { property: 'og:description', content: 'Discover our center and find out why Soul Sanctuary is the perfect fit for you.' },
