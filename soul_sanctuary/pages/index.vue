@@ -264,15 +264,6 @@ useHead({
   height: 100%;
 }
 
-
-.card1 {
-  /*background-image: url('assets/jpg/homepage2.jpg');*/
-}
-
-.card2 {
-  /*background-image: url('assets/jpg/homepage3.jpg');*/
-}
-
 .text_white {
   color: white;
   margin-bottom: 0.5rem;
