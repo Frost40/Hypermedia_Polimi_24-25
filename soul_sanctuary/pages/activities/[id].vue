@@ -27,6 +27,11 @@
             <p class="text" v-html="formattedDescription"></p>
           </div>
       </div>
+      <!-- Schedule section -->
+      <div class="schedule-section">
+        <h1 class="subtitle"> Schedule </h1>
+        <CourseScheduleTable :schedule="activity.schedule" />
+      </div>
       <!-- Teachers and manager section -->
       <div class="teachers-manager-row">
         <div class="teachers-column">
@@ -53,11 +58,6 @@
             />
           </div>
         </div>
-      </div>
-      <!-- Schedule section -->
-      <div class="schedule-section">
-        <h1 class="subtitle"> Schedule </h1>
-        <CourseScheduleTable :schedule="activity.schedule" />
       </div>
     </main>
 </template>
@@ -211,7 +211,8 @@
 }
 
 .schedule-section {
-  padding-bottom: 5rem; 
+  margin-top: 3rem;      
+  padding-bottom: 2rem;
 }
 
 .teachers-manager-row {
