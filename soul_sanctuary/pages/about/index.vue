@@ -6,7 +6,7 @@
   function onHeroImageLoad() {
     heroImageLoaded.value = true
   }
- 
+
   // API call to fetch all activities for the slideshow
   const { data: allActivities } = await useLazyFetch("/api/activities");
 
@@ -40,7 +40,7 @@
   <main class="about_container">
 
     <section class="initial-section">
-  
+
       <div v-if="!heroImageLoaded" class="skeleton-image-container">
         <div class="skeleton-image shimmer"></div>
       </div>
@@ -88,7 +88,7 @@
         width="290"
         height="408"
         class="about-image"
-        
+
       />
 
       <div class="about-text">
@@ -96,7 +96,7 @@
         <p class="text">
           We believe yoga is more than a physical practice—it's a path to personal transformation and collective well-being. <br />
           At the core of what we do is the intention to create a welcoming, inclusive space where everyone can feel seen, supported, and empowered. <br />
-          Whether you're stepping onto the mat for the first time or deepening an ongoing practice, we invite you to slow down, reconnect with yourself, 
+          Whether you're stepping onto the mat for the first time or deepening an ongoing practice, we invite you to slow down, reconnect with yourself,
           and find balance through mindful movement, breath, and stillness.<br />
           Our mission is to nurture growth from the inside out, one breath at a time.
         </p>
@@ -107,11 +107,11 @@
       <div class="about-text">
         <h1 class="subtitle">Our History</h1>
         <p class="text">
-          What began as a small group of passionate yoga practitioners has blossomed into a vibrant 
+          What began as a small group of passionate yoga practitioners has blossomed into a vibrant
           and welcoming sanctuary for well-being. <br />
-          Founded with the intention of creating a peaceful space for growth and connection, 
+          Founded with the intention of creating a peaceful space for growth and connection,
           our center has steadily evolved over the years. <br />
-          We've welcomed hundreds of students and teachers, hosted countless classes, workshops, and retreats, 
+          We've welcomed hundreds of students and teachers, hosted countless classes, workshops, and retreats,
           and built a community grounded in mindfulness and compassion. <br />
           From our very first session to today, we continue to honor the tradition of yoga while embracing the needs of modern life.
         </p>
@@ -154,7 +154,7 @@
       <div class="about-text">
         <h1 class="subtitle">Visit Us</h1>
         <p class="text">
-          You can find us at Via delle Rose, 3, 20147 Milan (MI), in a quiet corner of the city where calm and clarity meet. 
+          You can find us at Via delle Rose, 3, 20147 Milan (MI), in a quiet corner of the city where calm and clarity meet.
           Our doors are open Monday to Friday from 9:00 AM to 6:00 PM, and on Saturdays from 9:00 AM to 1:00 PM — we look forward to welcoming you.
         </p>
         <NuxtLink to="/contact_us" class="button">Contact us</NuxtLink>
@@ -165,8 +165,8 @@
       <div class="about-text-2">
         <h1 class="subtitle">Our Activities</h1>
         <p class="text">
-          At Soul Sanctuary, we offer a variety of classes and workshops designed 
-          to support your well-being—whether you're a beginner or an experienced practitioner. 
+          At Soul Sanctuary, we offer a variety of classes and workshops designed
+          to support your well-being—whether you're a beginner or an experienced practitioner.
           From dynamic yoga flows to calming meditation sessions, there's something here for everyone.
         </p>
         <NuxtLink to="/activities" class="button">Activities</NuxtLink>
@@ -311,7 +311,7 @@
   width: 100%;
   border-radius: 40px;
   object-fit: cover;
-  } 
+  }
 }
 
 @media (max-width: 480px) {

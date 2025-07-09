@@ -1,7 +1,23 @@
+<script setup>
+useHead({
+  meta: [
+    { name: 'description', content: 'Soul Sanctuary - A yoga and wellness center in Milan. Join our vibrant community and explore balance, clarity, and transformation.' },
+    { name: 'keywords', content: 'yoga Milan, wellness studio, yoga classes, mindfulness, meditation, Soul Sanctuary, yoga center homepage' },
+    { property: 'og:title', content: 'Soul Sanctuary - Awaken Your Energy' },
+    { property: 'og:description', content: 'Discover a place to reconnect with yourself. Explore our studio, community, and wellness programs.' },
+    { name: 'twitter:title', content: 'Soul Sanctuary - Awaken Your Energy' },
+    { name: 'twitter:description', content: 'A space to reconnect with yourself. Discover clarity and well-being through yoga and community.' }
+  ]
+})
+</script>
+
 <template>
   <Head>
     <Title>Soul Sanctuary - Homepage</Title>
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://soulsanctuary-ten.vercel.app/">
   </Head>
+
 
   <main class="home_container">
     <!-- Hero section -->
