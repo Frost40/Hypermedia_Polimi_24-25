@@ -1,10 +1,13 @@
 <template>
+
+  <!-- Head section for setting title, meta tags, and canonical link -->
   <Head>
     <Title>{{ teacher.fullname }} - Soul Sanctuary</Title>
     <meta name="robots" content="index, follow" />
     <link rel="canonical" :href="`https://soulsanctuary-ten.vercel.app/teachers/${id}`" />
   </Head>
 
+  <!-- Main container -->
   <main class="main">
     <!-- Navigation arrow -->
     <div class="navigation">
@@ -20,14 +23,23 @@
     <div class="teacher-wrapper">
       <div class="teacher-box">
         <div class="photo-section">
-          <img :src="teacher.photo" alt="Teacher's Photo" class="teacher-photo" width="300"
-               height="300"
-               loading="lazy" />
+          <nuxt-img
+              :src="teacher.photo"
+              alt="Teacher's Photo"
+              format="avif,webp,jpg"
+              quality="80"
+              loading="lazy"
+              fetchpriority="high"
+              width="300"
+              height="300"
+              class="teacher-photo"
+          />
         </div>
+
         <div class="info-section">
-          <h2 class="title">{{ teacher.fullname }}</h2>
-          <p class="text"><strong>Phone:</strong> <a :href="'tel:' + teacher.phone">{{ teacher.phone }}</a></p>
-          <p class="text"><strong>Email:</strong> <a :href="'mailto:' + teacher.email">{{ teacher.email }}</a></p>
+          <h2 class="title contacts">{{ teacher.fullname }}</h2>
+          <p class="text"><strong>Phone:</strong> <a class="color-link" :href="'tel:' + teacher.phone">{{ teacher.phone }}</a></p>
+          <p class="text"><strong>Email:</strong> <a class="color-link" :href="'mailto:' + teacher.email">{{ teacher.email }}</a></p>
           <p class="text"><strong>Area:</strong> {{ teacher.area }}</p>
           <a :href="teacher.cv" target="_blank" class="button">Curriculum</a>
         </div>
@@ -56,28 +68,25 @@
       </div>
     </div>
   </main>
-
 </template>
 
 
 <script setup>
+// Importing necessary components
 import ActivitiesSlider from '~/components/ActivityCarousel.vue'
 const route = useRoute()
 const id = route.params.id
 const from = route.query.from
 
-const { data: teacherData } = await useAsyncData(
-    `teacher-${id}`,
-    () => $fetch(`/api/teachers/${id}`)
-)
-const teacher = teacherData.value
+// Teacher data
+const { data: teacherData } = await useFetch('/api/teachers/' + id)
+const teacher= teacherData.value
 
-const { data: allTeachersData } = await useAsyncData(
-    'all-teachers',
-    () => $fetch('/api/teachers')
-)
+// All teachers
+const { data: allTeachersData } = await useFetch('/api/teachers')
 const allTeachers = allTeachersData.value
 
+// Prev/Next navigation logic
 const currentIndex = allTeachers.findIndex(t => String(t.id) === String(id))
 const prevId = currentIndex > 0 ? allTeachers[currentIndex - 1].id : null
 const nextId = currentIndex < allTeachers.length - 1 ? allTeachers[currentIndex + 1].id : null
@@ -249,6 +258,17 @@ useHead({
   margin: 0 auto;
 }
 
+a.color-link {
+  color: blue;
+  text-decoration: none;
+}
+
+a.color-link:hover {
+  color: blue;
+  font-weight: bold;
+  text-decoration: underline;
+}
+
 @media (max-width: 768px) {
   .teacher-box {
     flex-direction: column;
@@ -285,6 +305,5 @@ useHead({
       height: 200px;
     }
   }
-
 }
 </style>
