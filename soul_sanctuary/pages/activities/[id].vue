@@ -21,7 +21,15 @@
       <!-- Photo and description section -->
       <div class="photo_and_description">
           <div class="photo">
-              <img :src="activity.imageUrl" alt="activity image">
+              <nuxt-img
+                :src="activity.imageUrl"
+                alt="activity image"
+                format="avif,webp,jpg"
+                quality="80"
+                loading="lazy"
+                fetchpriority="high"
+                class="photo_initial"
+              />
           </div>
           <div class="description">
             <p class="text" v-html="formattedDescription"></p>
@@ -154,7 +162,7 @@
   min-width: 300px;
 }
 
-.photo img {
+.photo_initial {
   width: 100%;
   height: 100%;
   border-radius: 40px 0 0 40px;
