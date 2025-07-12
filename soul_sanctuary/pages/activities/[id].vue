@@ -21,6 +21,14 @@
       <!-- Photo and description section -->
       <div class="photo_and_description">
           <div class="photo">
+              <!-- Skeleton shimmer until image loads -->
+              <div v-if="!imageLoaded" class="skeleton-overlay">
+                <div class="skeleton-image-container">
+                  <div class="skeleton-image card-bg"></div>
+                </div>
+              </div>
+
+              <!-- Real image, hidden until loaded -->
               <nuxt-img
                 :src="activity.imageUrl"
                 alt="activity image"
@@ -29,6 +37,8 @@
                 loading="lazy"
                 fetchpriority="high"
                 class="photo_initial"
+                :class="{ hidden: !imageLoaded }"
+                @load="handleImageLoad"
               />
           </div>
           <div class="description">
@@ -75,6 +85,12 @@
   // Importing necessary components
   import CourseScheduleTable from '@/components/CourseScheduleTable.vue'
   import TeacherCard from "~/components/TeacherCard.vue";
+
+  const imageLoaded = ref(false)
+
+  function handleImageLoad() {
+    imageLoaded.value = true
+  }
 
   const route = useRoute()
   const id = route.params.id
@@ -178,6 +194,7 @@
 }
 
 .photo {
+  position: relative;
   flex: 1;
   min-width: 300px;
 }
@@ -269,6 +286,52 @@
   justify-content: center;
 }
 
+.hidden {
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.skeleton-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  overflow: hidden;
+  border-radius: 40px 0 0 40px;
+}
+
+.skeleton-image-container {
+  width: 100%;
+  height: 100%;
+}
+
+.skeleton-image {
+  width: 100%;
+  height: 100%;
+  background-color: #BCC7C2;
+}
+
+.skeleton-overlay::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; bottom: 0; right: 0;
+  background: linear-gradient(90deg,
+    rgba(255,255,255,0) 0%,
+    rgba(255,255,255,0.2) 20%,
+    rgba(255,255,255,0.5) 60%,
+    rgba(255,255,255,0) 100%
+  );
+  transform: translateX(-100%);
+  animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}
 
 
 @media (max-width: 1200px) and (min-width: 769px) {
