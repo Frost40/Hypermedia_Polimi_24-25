@@ -76,40 +76,60 @@
   import CourseScheduleTable from '@/components/CourseScheduleTable.vue'
   import TeacherCard from "~/components/TeacherCard.vue";
 
-  // Getting the route and id
   const route = useRoute()
-  const id = route.params.id;
-  // Getting the 'from' query parameter or defaulting to 'all'
-  const from = route.query.from || 'all';
+  const id = route.params.id
+  const from = route.query.from || 'all'
 
-  // Fetching activity data based on the id
-  const { data: activityData } = await useFetch('/api/activities/' + id)
-  const activity = activityData.value[0]
+  // Activity data
+  const { data: activityData } = await useAsyncData(
+    `activity-${id}`,
+    () => $fetch(`/api/activities/${id}`),
+    {
+      transform: (data) => data[0]
+    }
+  )
+  const activity = activityData.value
 
-  // Fetching all activities data for guided tour
-  const { data: allActivitiesData } = await useFetch('/api/activities/guidedTour')
+  // All activities
+  const { data: allActivitiesData } = await useAsyncData(
+    'all-activities',
+    () => $fetch('/api/activities/guidedTour')
+  )
   const allActivities = allActivitiesData.value
 
-  // Filtering activities based on the 'from' parameter
-  const filteredActivities = from === 'fromHighlights'
-    ? allActivities.filter(a => a.highlighted)
-    : allActivities
+  // Prev/Next navigation logic
+  const filteredActivities = computed(() => {
+    return from === 'fromHighlights'
+      ? allActivities.filter(a => a.highlighted)
+      : allActivities
+  })
 
-  // Finding the index of the current activity in the filtered activities
-  const currentIndex = filteredActivities.findIndex(a => String(a.id) === String(id))
-  // Getting the previous and next activity ids
-  const prevId = currentIndex > 0 ? filteredActivities[currentIndex - 1].id : null
-  const nextId = currentIndex < filteredActivities.length - 1 ? filteredActivities[currentIndex + 1].id : null
+  const currentIndex = computed(() =>
+    filteredActivities.value.findIndex(a => String(a.id) === String(id))
+  )
 
-  // Fetching teachers data for the activity
-  const { data: teachersData } = await useFetch('/api/activities/getTeachers/' + id)
+  const prevId = computed(() =>
+    currentIndex.value > 0 ? filteredActivities.value[currentIndex.value - 1].id : null
+  )
+
+  const nextId = computed(() =>
+    currentIndex.value < filteredActivities.value.length - 1
+      ? filteredActivities.value[currentIndex.value + 1].id
+      : null
+  )
+
+  // Teachers
+  const { data: teachersData } = await useAsyncData(
+    `teachers-${id}`,
+    () => $fetch(`/api/activities/getTeachers/${id}`)
+  )
   const allTeachers = teachersData.value
-  const teachers = allTeachers.teachers;
+  const teachers = allTeachers.teachers
 
-  // Formatting the description by replacing newlines with <br> tags
+  // Format description with <br>
   const formattedDescription = computed(() =>
-  activity.description.replace(/\n/g, '<br>')
-  );
+    activity.description.replace(/\n/g, '<br>')
+  )
 
   // Search Engine Optimization variables
   const page_description = ref('This page contains all the details of ' + activity.name)
