@@ -25,7 +25,7 @@ export default defineNuxtConfig({
     // stylePath: 'css/fonts.css', // Path to generated CSS
   },
 
-  // Image module configuration
+  // Image module configuration.
   image: {
     format: ['avif', 'webp', 'png', 'jpg'],
     quality: 80,
