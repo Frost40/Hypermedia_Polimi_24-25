@@ -66,10 +66,16 @@ const route = useRoute()
 const id = route.params.id
 const from = route.query.from
 
-const { data: teacherData } = await useFetch('/api/teachers/' + id)
-const teacher= teacherData.value
+const { data: teacherData } = await useAsyncData(
+    `teacher-${id}`,
+    () => $fetch(`/api/teachers/${id}`)
+)
+const teacher = teacherData.value
 
-const { data: allTeachersData } = await useFetch('/api/teachers')
+const { data: allTeachersData } = await useAsyncData(
+    'all-teachers',
+    () => $fetch('/api/teachers')
+)
 const allTeachers = allTeachersData.value
 
 const currentIndex = allTeachers.findIndex(t => String(t.id) === String(id))
