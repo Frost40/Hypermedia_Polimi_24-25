@@ -21,25 +21,15 @@
       <!-- Photo and description section -->
       <div class="photo_and_description">
           <div class="photo">
-              <!-- Skeleton shimmer until image loads -->
-              <div v-if="!imageLoaded" class="skeleton-overlay">
-                <div class="skeleton-image-container">
-                  <div class="skeleton-image card-bg"></div>
-                </div>
-              </div>
-
-              <!-- Real image, hidden until loaded -->
-              <nuxt-img
-                :src="activity.imageUrl"
-                alt="activity image"
-                format="avif,webp,jpg"
-                quality="80"
-                loading="lazy"
-                fetchpriority="high"
-                class="photo_initial"
-                :class="{ hidden: !imageLoaded }"
-                @load="handleImageLoad"
-              />
+            <nuxt-img
+              :src="activity.imageUrl"
+              alt="activity image"
+              format="avif,webp,jpg"
+              quality="80"
+              loading="lazy"
+              fetchpriority="high"
+              class="photo_initial"
+            />
           </div>
           <div class="description">
             <p class="text" v-html="formattedDescription"></p>
@@ -86,66 +76,40 @@
   import CourseScheduleTable from '@/components/CourseScheduleTable.vue'
   import TeacherCard from "~/components/TeacherCard.vue";
 
-  const imageLoaded = ref(false)
-
-  function handleImageLoad() {
-    imageLoaded.value = true
-  }
-
+  // Getting the route and id
   const route = useRoute()
-  const id = route.params.id
-  const from = route.query.from || 'all'
+  const id = route.params.id;
+  // Getting the 'from' query parameter or defaulting to 'all'
+  const from = route.query.from || 'all';
 
-  // Activity data
-  const { data: activityData } = await useAsyncData(
-    `activity-${id}`,
-    () => $fetch(`/api/activities/${id}`),
-    {
-      transform: (data) => data[0]
-    }
-  )
-  const activity = activityData.value
+  // Fetching activity data based on the id
+  const { data: activityData } = await useFetch('/api/activities/' + id)
+  const activity = activityData.value[0]
 
-  // All activities
-  const { data: allActivitiesData } = await useAsyncData(
-    'all-activities',
-    () => $fetch('/api/activities/guidedTour')
-  )
+  // Fetching all activities data for guided tour
+  const { data: allActivitiesData } = await useFetch('/api/activities/guidedTour')
   const allActivities = allActivitiesData.value
 
-  // Prev/Next navigation logic
-  const filteredActivities = computed(() => {
-    return from === 'fromHighlights'
-      ? allActivities.filter(a => a.highlighted)
-      : allActivities
-  })
+  // Filtering activities based on the 'from' parameter
+  const filteredActivities = from === 'fromHighlights'
+    ? allActivities.filter(a => a.highlighted)
+    : allActivities
 
-  const currentIndex = computed(() =>
-    filteredActivities.value.findIndex(a => String(a.id) === String(id))
-  )
+  // Finding the index of the current activity in the filtered activities
+  const currentIndex = filteredActivities.findIndex(a => String(a.id) === String(id))
+  // Getting the previous and next activity ids
+  const prevId = currentIndex > 0 ? filteredActivities[currentIndex - 1].id : null
+  const nextId = currentIndex < filteredActivities.length - 1 ? filteredActivities[currentIndex + 1].id : null
 
-  const prevId = computed(() =>
-    currentIndex.value > 0 ? filteredActivities.value[currentIndex.value - 1].id : null
-  )
-
-  const nextId = computed(() =>
-    currentIndex.value < filteredActivities.value.length - 1
-      ? filteredActivities.value[currentIndex.value + 1].id
-      : null
-  )
-
-  // Teachers
-  const { data: teachersData } = await useAsyncData(
-    `teachers-${id}`,
-    () => $fetch(`/api/activities/getTeachers/${id}`)
-  )
+  // Fetching teachers data for the activity
+  const { data: teachersData } = await useFetch('/api/activities/getTeachers/' + id)
   const allTeachers = teachersData.value
-  const teachers = allTeachers.teachers
+  const teachers = allTeachers.teachers;
 
-  // Format description with <br>
+  // Formatting the description by replacing newlines with <br> tags
   const formattedDescription = computed(() =>
-    activity.description.replace(/\n/g, '<br>')
-  )
+  activity.description.replace(/\n/g, '<br>')
+  );
 
   // Search Engine Optimization variables
   const page_description = ref('This page contains all the details of ' + activity.name)
@@ -194,7 +158,6 @@
 }
 
 .photo {
-  position: relative;
   flex: 1;
   min-width: 300px;
 }
@@ -276,8 +239,6 @@
   align-items: center;
 }
 
-
-
 .teachers-cards,
 .responsible-card {
   display: flex;
@@ -286,52 +247,6 @@
   justify-content: center;
 }
 
-.hidden {
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-
-.skeleton-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 2;
-  overflow: hidden;
-  border-radius: 40px 0 0 40px;
-}
-
-.skeleton-image-container {
-  width: 100%;
-  height: 100%;
-}
-
-.skeleton-image {
-  width: 100%;
-  height: 100%;
-  background-color: #BCC7C2;
-}
-
-.skeleton-overlay::after {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; bottom: 0; right: 0;
-  background: linear-gradient(90deg,
-    rgba(255,255,255,0) 0%,
-    rgba(255,255,255,0.2) 20%,
-    rgba(255,255,255,0.5) 60%,
-    rgba(255,255,255,0) 100%
-  );
-  transform: translateX(-100%);
-  animation: shimmer 1.5s infinite;
-}
-
-@keyframes shimmer {
-  100% {
-    transform: translateX(100%);
-  }
-}
 
 
 @media (max-width: 1200px) and (min-width: 769px) {
