@@ -65,5 +65,5 @@ export default defineNuxtConfig({
     }
   },
 
-  ssr: true, // Enable server-side rendering for better SEO and performance
+  ssr: true, // Enable server-side rendering for better SEO and performance.
 });
