@@ -2,7 +2,7 @@
 import { defineAsyncComponent } from 'vue'
 const ActivityCard = defineAsyncComponent(() => import('~/components/ActivityCard.vue'))
 
-// API call to fetch all activities
+// API call to fetch all activities.
 const { data: allActivities, pending } = await useLazyFetch("/api/activities")
 
 // Define page-specific meta tags for improved SEO
