@@ -1,10 +1,12 @@
 <template>
+  <!-- Head section for setting title, meta tags, and canonical link -->
     <Head>
-        <Title>{{ activity?.name || 'Caricamento Attività' }} - Soul Sanctuary</Title>
+        <Title>{{ activity?.name || 'Loading the Activity' }} - Soul Sanctuary</Title>
         <meta nrel="robots" content="index, follow">
         <link rel="canonical" :href="`https://soulsanctuary-ten.vercel.app/activities/${id}`">
     </Head>
     <main class="main" role="main" aria-labelledby="activity-title">
+        <!--Skeleton for the loading-->
         <div v-if="isLoading" class="activity-page-skeleton">
             <div class="skeleton-title"></div>
             <div class="skeleton-navigation">
@@ -42,12 +44,15 @@
                 </div>
             </div>
         </div>
-
+        <!--Error-->
         <div v-else-if="activityError || allActivitiesError || teachersError">
             <p>Errore nel caricamento dell'attività. Per favore riprova più tardi.</p>
             </div>
+        <!--Main Content of the page-->
         <div v-else>
+            <!--Title-->
             <h1 id="activity-title" class="activity-title title no-line-below-768">{{ activity.name }}</h1>
+            <!--Navigation Group Index-->
             <div class="navigation">
                 <NuxtLink v-if="prevId" :to="{ path: `/activities/${prevId}`, query: { from } }" class="arrow-link left" aria-label="Go to the previous activity">
                     <img src="../../assets/svg/previous.svg" class="arrows" alt="" aria-hidden="true">
@@ -56,6 +61,7 @@
                     <img src="../../assets/svg/next.svg" class="arrows" alt="" aria-hidden="true">
                 </NuxtLink>
             </div>
+            <!--Photo and description of the activity-->
             <div class="photo_and_description">
                 <div class="photo">
                     <nuxt-img
@@ -72,10 +78,12 @@
                     <p class="text" v-html="formattedDescription"></p>
                 </div>
             </div>
+            <!--Schedule Section-->
             <div class="schedule-section">
                 <h1 class="subtitle"> Schedule </h1>
                 <CourseScheduleTable :schedule="activity.schedule" />
             </div>
+            <!--Teachers and Manager section-->
             <div class="teachers-manager-row">
                 <div class="teachers-column">
                     <h1 class="subtitle" style="margin: 0;">Teachers:</h1>
@@ -111,7 +119,7 @@ import { useRoute, useHead } from '#imports'
 import { computed, ref } from 'vue'
 
 import CourseScheduleTable from '@/components/CourseScheduleTable.vue'
-import TeacherCard from '~/components/TeacherCard.vue' // Assicurati che il percorso sia corretto
+import TeacherCard from '~/components/TeacherCard.vue'
 
 // Route
 const route = useRoute()
@@ -122,7 +130,7 @@ const from = route.query.from || 'all'
 const { data: activityData, pending: activityPending, error: activityError } = await useLazyFetch(`/api/activities/${id}`);
 const activity = computed(() => activityData.value?.[0]);
 
-// Fetch all activities for navigation logic
+// Fetch all activities IDs for navigation logic
 const { data: allActivitiesData, pending: allActivitiesPending, error: allActivitiesError } = await useLazyFetch('/api/activities/guidedTour');
 const allActivities = computed(() => allActivitiesData.value || []);
 
@@ -142,7 +150,7 @@ const { data: teachersData, pending: teachersPending, error: teachersError } = a
 const allTeachers = computed(() => teachersData.value);
 const teachers = computed(() => allTeachers.value?.teachers || []);
 
-// Determina se la pagina è in fase di caricamento
+// isLoading
 const isLoading = computed(() => activityPending.value || allActivitiesPending.value || teachersPending.value);
 
 // Format description
@@ -151,12 +159,12 @@ const formattedDescription = computed(() =>
 );
 
 // SEO
-const page_description = computed(() => 'Questa pagina contiene tutti i dettagli di ' + (activity.value?.name || 'questa attività'));
-const keywords = computed(() => 'Attività, Orario, Descrizione, ' + (activity.value?.name || 'Attività'));
-const og_title = computed(() => 'Soul Sanctuary - Attività - ' + (activity.value?.name || 'Attività'));
-const og_description = ref('Scopri la nostra attività, trova una breve descrizione del corso, tutti gli insegnanti, i responsabili e anche l\'orario');
-const twitter_title = computed(() => 'Soul Sanctuary - Attività - ' + (activity.value?.name || 'Attività'));
-const twitter_description = ref('Scopri la nostra attività, trova una breve descrizione del corso, all the teachers, managers and also the schedule');
+const page_description = computed(() => 'This page contains all the details of ' + (activity.value?.name || 'this activity'));
+const keywords = computed(() => 'Activity, Schedule, Description, ' + (activity.value?.name || 'Activity'));
+const og_title = computed(() => 'Soul Sanctuary - Activity - ' + (activity.value?.name || 'Activity'));
+const og_description = ref('Discover our activity, find a brief description of the course, all the teachers, managers and also the schedule');
+const twitter_title = computed(() => 'Soul Sanctuary - Activity - ' + (activity.value?.name || 'Activity'));
+const twitter_description = ref('Discover our activity, find a brief description of the course, all the teachers, managers and also the schedule');
 
 // Setting head meta tags for SEO
 useHead({
@@ -175,7 +183,11 @@ useHead({
 })
 </script>
 
+
 <style scoped>
+
+/* Main CSS */
+
 .main{
     max-width: 1440px;
     margin: 0 auto;
@@ -355,6 +367,8 @@ useHead({
   }
 }
 
+/* Skeleton CSS */
+
 .activity-page-skeleton {
     max-width: 1440px;
     margin: 0 auto;
@@ -362,9 +376,9 @@ useHead({
 }
 
 .skeleton-title {
-    height: 3rem; /* Altezza simile a un h1 */
+    height: 3rem; 
     width: 60%;
-    margin: 0 auto 1.5rem 2.5rem; /* Margini per allinearsi al titolo reale */
+    margin: 0 auto 1.5rem 2.5rem; 
     background-color: #e0e0e0;
     border-radius: 8px;
     animation: pulse-bg 1.5s infinite ease-in-out;
@@ -382,29 +396,29 @@ useHead({
     width: 30px;
     height: 30px;
     background-color: #e0e0e0;
-    border-radius: 50%; /* Per simulare una freccia rotonda */
+    border-radius: 50%; 
     animation: pulse-bg 1.5s infinite ease-in-out;
 }
 
 .skeleton-section {
-    background-color: #BCC7C2; /* Stesso colore del blocco reale */
+    background-color: #BCC7C2;
     border-radius: 40px;
-    margin: 0 2.5rem 2rem; /* Margini per allinearsi ai blocchi reali */
+    margin: 0 2.5rem 2rem; 
     overflow: hidden;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    justify-content: center; /* Per centrare il contenuto in caso di flex-wrap */
-    padding: 1.5rem; /* Padding interno per simulare lo spazio del contenuto */
+    justify-content: center; 
+    padding: 1.5rem; 
     animation: pulse-bg 1.5s infinite ease-in-out;
 }
 
 .skeleton-image-placeholder {
     flex: 1;
     min-width: 300px;
-    aspect-ratio: 1 / 1; /* O altezza fissa */
-    background-color: #e0e0e0; /* Colore più scuro per il placeholder dell'immagine */
-    border-radius: 40px 0 0 40px; /* Bordi arrotondati come l'immagine reale */
+    aspect-ratio: 1 / 1; 
+    background-color: #e0e0e0; 
+    border-radius: 40px 0 0 40px; 
     animation: pulse-bg 1.5s infinite ease-in-out;
 }
 
@@ -416,11 +430,11 @@ useHead({
     flex-direction: column;
     justify-content: center;
     box-sizing: border-box;
-    gap: 10px; /* Spazio tra le linee di testo */
+    gap: 10px; 
 }
 
 .skeleton-line {
-    height: 1em; /* Altezza di una riga di testo */
+    height: 1em; 
     background-color: #e0e0e0;
     border-radius: 4px;
     animation: pulse-bg 1.5s infinite ease-in-out;
@@ -441,7 +455,7 @@ useHead({
 .skeleton-subtitle {
     height: 2rem;
     width: 150px;
-    margin: 0 auto 1rem; /* Per centrare il sottotitolo nello scheletro */
+    margin: 0 auto 1rem; 
     background-color: #e0e0e0;
     border-radius: 6px;
     animation: pulse-bg 1.5s infinite ease-in-out;
@@ -470,7 +484,7 @@ useHead({
     flex-direction: column;
     align-items: center;
     gap: 1rem;
-    width: 100%; /* Permette di occupare la larghezza per i card */
+    width: 100%;
 }
 
 .skeleton-cards-container {
@@ -481,14 +495,13 @@ useHead({
 }
 
 .skeleton-teacher-card {
-  width: 150px; /* Larghezza approssimativa di una card insegnante */
-  height: 220px; /* Altezza approssimativa di una card insegnante */
+  width: 150px; 
+  height: 220px;
   background-color: #e0e0e0;
   border-radius: 16px;
   animation: pulse-bg 1.5s infinite ease-in-out;
 }
 
-/* Animazione di pulsazione per i placeholder */
 @keyframes pulse-bg {
     0% {
         background-color: #e0e0e0;
@@ -501,7 +514,6 @@ useHead({
     }
 }
 
-/* Media queries per lo scheletro per riflettere il layout responsivo */
 @media (max-width: 768px) {
   .skeleton-image-placeholder {
     border-radius: 40px 40px 0 0;

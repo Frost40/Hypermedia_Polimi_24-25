@@ -156,16 +156,16 @@ const showManagedActivitiesSkeleton = computed(() => {
 });
 
 // Search Engine Optimization variables
-const page_description = computed(() => 'Questa pagina contiene tutti i dettagli su ' + (teacher.value?.fullname || 'questo insegnante'));
-const keywords = computed(() => 'Insegnante, Yoga, Istruttore, ' + (teacher.value?.fullname || 'Insegnante'));
-const og_title = computed(() => 'Soul Sanctuary - Insegnanti - ' + (teacher.value?.fullname || 'Insegnante'));
-const og_description = ref('Incontra il nostro istruttore: scopri di più sulla loro esperienza, contatti e le attività che conducono.');
-const twitter_title = computed(() => 'Soul Sanctuary - Insegnanti - ' + (teacher.value?.fullname || 'Insegnante'));
-const twitter_description = ref('Incontra il nostro istruttore: scopri di più sulla loro esperienza, contatti e le attività che conducono.');
+const page_description = computed(() => 'This page contains all the details about ' + (teacher.value?.fullname || 'this teacher'));
+const keywords = computed(() => 'Teacher, Yoga, Instructor, ' + (teacher.value?.fullname || 'Teacher'));
+const og_title = computed(() => 'Soul Sanctuary - Teacher - ' + (teacher.value?.fullname || 'Teacher'));
+const og_description = ref('Meet our instructor: learn more about their experience, contacts, and the activities they lead.');
+const twitter_title = computed(() => 'Soul Sanctuary - Insegnanti - ' + (teacher.value?.fullname || 'Teacher'));
+const twitter_description = ref('Meet our instructor: learn more about their experience, contacts, and the activities they lead.');
 
 // Setting head meta tags for SEO
 useHead({
-  title: computed(() => teacher.value?.fullname ? `${teacher.value.fullname} - Soul Sanctuary` : 'Soul Sanctuary - Insegnante'),
+  title: computed(() => teacher.value?.fullname ? `${teacher.value.fullname} - Soul Sanctuary` : 'Soul Sanctuary - Teacher'),
   meta: [
     { name: 'description', content: page_description },
     { name: 'keywords', content: keywords },
