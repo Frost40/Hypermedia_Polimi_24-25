@@ -23,7 +23,9 @@ const imageLoaded = ref([])
 watch(
   () => props.activities,
   (newVal) => {
-    imageLoaded.value = new Array(newVal.length).fill(false)
+    if (Array.isArray(newVal)) {
+      imageLoaded.value = new Array(newVal.length).fill(false)
+    }
   },
   { immediate: true }
 )
