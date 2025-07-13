@@ -209,9 +209,9 @@ function handleImageLoad() {
 
 @supports (-webkit-touch-callout: none) {
   .card-bg {
-    /* Sovrascrivi proprietà problematiche per iOS */
+    /* Overwrites problematic properties for iOS */
     object-fit: cover;
-    transform: translateZ(0); /* Forza l'accelerazione hardware */
+    transform: translateZ(0); /* Forced hardware acceleration */
   }
 }
 </style>

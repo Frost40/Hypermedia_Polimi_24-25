@@ -21,10 +21,12 @@ defineProps({
 const expanded = ref(false)
 const hovered = ref(false)
 
+// Function to toggle the expanded state
 const toggle = () => {
   expanded.value = !expanded.value
 }
 
+// Computed property to determine the icon source based on the state
 const iconSrc = computed(() => {
   if(expanded.value) {
     return ReduceIconWhite

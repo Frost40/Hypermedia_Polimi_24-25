@@ -50,6 +50,7 @@ const closePopup = () => {
   showPopup.value = false;
 };
 
+// Function to handle form submission
 const handleSubmit = async () => {
   isSubmitting.value = true;
 
@@ -91,22 +92,26 @@ const handleSubmit = async () => {
   }
 };
 
+// Function to toggle the dropdown course list
 const toggleDropdown = () => {
   dropdownOpen.value = !dropdownOpen.value;
 };
 
+// Function to handle clicks outside the dropdown to close it automatically
 const handleClickOutside = (event) => {
   if (dropdownOpen.value && dropdownRef.value && !dropdownRef.value.contains(event.target)) {
     dropdownOpen.value = false;
   }
 };
 
+// Function to automatically close the dropdown on window resize
 const handleResize = () => {
   if (dropdownOpen.value) {
     dropdownOpen.value = false;
   }
 };
 
+// Function to select a course from the dropdown
 const selectCourse = (option) => {
   course.value = option.value;
   dropdownOpen.value = false;
@@ -136,6 +141,7 @@ const dropdownPositionStyle = computed(() => {
   };
 });
 
+// Computed property to determine the dropdown arrow icon based on the open state
 const dropdownArrow = computed(() => {
   return dropdownOpen.value ? arrowUpGreen : arrowDownGreen;
 })
