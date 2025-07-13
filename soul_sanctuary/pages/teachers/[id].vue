@@ -483,8 +483,9 @@ a.color-link:hover {
   background-color: #BCC7C2;
   padding: 2rem;
   border-radius: 20px;
-  width: calc(100% - 4rem);
+  width: 100%;
   max-width: 1000px;
+  overflow: hidden;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
@@ -494,6 +495,7 @@ a.color-link:hover {
 
 .skeleton-description-box {
   width: 100%;
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
   gap: 10px;
