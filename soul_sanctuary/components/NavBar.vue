@@ -2,7 +2,7 @@
   <main class="main-content">
   <header class="navbar">
     <div class="navbar-logo">
-      <NuxtLink to="/" class="logo-link">
+      <NuxtLink to="/" class="logo-link" aria-label="Soul Sanctuary logo - Home">
         <svg width="80" height="80" viewBox="0 0 600 600" fill="none" xmlns="http://www.w3.org/2000/svg">
           <mask id="mask0_3001_117" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="349" y="148" width="74" height="76">
             <path d="M349.793 148.505H422.314V223.604H349.793V148.505Z" fill="white"/>

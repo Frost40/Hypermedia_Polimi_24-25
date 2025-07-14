@@ -247,7 +247,9 @@ useHead({
                  role="combobox"
                  :aria-expanded="dropdownOpen"
                  aria-haspopup="listbox"
-                 aria-controls="course-options">
+                 aria-controls="course-options"
+                 aria-labelledby="course-label"
+            >
 
               <span class="selected-value text">
                 {{ courses.find((opt) => opt.value === course) ? courses.find((opt) => opt.value === course).label : 'Select a course' }}
@@ -263,6 +265,7 @@ useHead({
                   class="custom-dropdown"
                   role="listbox"
                   aria-labelledby="course-label"
+                  id="course-options"
               >
                 <div
                     v-for="(option, index) in courses"
@@ -284,9 +287,13 @@ useHead({
             <textarea id="question" v-model="question" placeholder="Type your question here ..."
                       rows="4" required aria-required="true"></textarea>
           </div>
-          <button type="submit" class="submit-button" :disabled="isSubmitting"
-                  aria-busy="isSubmitting">
-            {{ isSubmitting ? 'Submitting...' : 'Submit' }}
+          <button
+              type="submit"
+              class="submit-button"
+              :disabled="isSubmitting"
+              :aria-busy="isSubmitting.toString()"
+          >
+          {{ isSubmitting ? 'Submitting...' : 'Submit' }}
           </button>
         </form>
       </section>
