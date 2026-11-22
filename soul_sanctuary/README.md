@@ -1,75 +1,36 @@
-# Nuxt Minimal Starter
+<div align="center">
 
-Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+<img src="../documentation/assets/logo-mark.svg" alt="Soul Sanctuary logo" width="88" />
 
-## Setup
+<h1>Soul Sanctuary &mdash; Nuxt 3 App</h1>
 
-Make sure to install dependencies:
+<p>
+  <img src="https://img.shields.io/badge/Nuxt-3.16.2-3D5144?style=flat-square&logo=nuxtdotjs&logoColor=DDECEA" alt="Nuxt 3.16.2" />
+  <img src="https://img.shields.io/badge/Vue-3.5.13-3D5144?style=flat-square&logo=vuedotjs&logoColor=DDECEA" alt="Vue 3.5.13" />
+  <img src="https://img.shields.io/badge/Supabase-2.49.4-2c3e33?style=flat-square&logo=supabase&logoColor=DDECEA" alt="Supabase" />
+</p>
 
-```bash
-# npm
-npm install
+<p>Application package for <strong>Soul Sanctuary</strong>. See the <a href="../README.md">root README</a> for the full UI showcase, architecture diagrams, API specification, and design system.</p>
 
-# pnpm
-pnpm install
+</div>
 
-# yarn
-yarn install
+---
 
-# bun
-bun install
+## Environment
+
+Configure `soul_sanctuary/.env` before running:
+
+```env
+SUPABASE_URL=https://<your-project-ref>.supabase.co
+SUPABASE_KEY=<your-supabase-key>
 ```
 
-## Development Server
-
-Start the development server on `http://localhost:3000`:
+## Scripts
 
 ```bash
-# npm
-npm run dev
-
-# pnpm
-pnpm dev
-
-# yarn
-yarn dev
-
-# bun
-bun run dev
+npm install        # Install dependencies & run nuxt prepare
+npm run dev        # Start local SSR dev server at http://localhost:3000
+npm run build      # Build SSR production bundle (.output/)
+npm run preview    # Preview production build locally
+npm run generate   # Generate static bundle
 ```
-
-## Production
-
-Build the application for production:
-
-```bash
-# npm
-npm run build
-
-# pnpm
-pnpm build
-
-# yarn
-yarn build
-
-# bun
-bun run build
-```
-
-Locally preview production build:
-
-```bash
-# npm
-npm run preview
-
-# pnpm
-pnpm preview
-
-# yarn
-yarn preview
-
-# bun
-bun run preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.

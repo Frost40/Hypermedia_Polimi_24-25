@@ -1,0 +1,23 @@
+# IDE & OS
+.idea/
+.fleet/
+.DS_Store
+Thumbs.db
+
+# Environment variables
+.env
+.env.*
+!.env.example
+
+# Dependencies & Build outputs
+node_modules/
+.nuxt/
+.output/
+.nitro/
+.data/
+.cache/
+dist/
+
+# Logs
+logs/
+*.log
